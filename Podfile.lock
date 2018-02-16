@@ -1,0 +1,52 @@
+PODS:
+  - Action (3.5.0):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - KIF (3.6.0):
+    - KIF/Core (= 3.6.0)
+  - KIF/Core (3.6.0)
+  - Nimble (7.0.3)
+  - RxBlocking (4.1.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.1.1):
+    - RxSwift (~> 4.0)
+  - RxNimble (4.1.0):
+    - Nimble (~> 7.0)
+    - RxBlocking (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.1)
+  - RxTest (4.1.1):
+    - RxSwift (~> 4.0)
+  - SnapKit (4.0.0)
+
+DEPENDENCIES:
+  - Action
+  - FBSnapshotTestCase
+  - KIF
+  - Nimble
+  - RxBlocking
+  - RxNimble
+  - RxSwift
+  - RxTest
+  - SnapKit
+
+SPEC CHECKSUMS:
+  Action: d60087ebce41b969d1afdad01e2fa1372a82f26e
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  KIF: bd770edd8ce49bc7308501e4871e58a02d137be3
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  RxBlocking: 22e7d7b86a1c0c42164a30d64f56f97128b4ffab
+  RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
+  RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
+  RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
+  RxTest: f934010a5b07ecd627cb70b38eb4baf0414591d2
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+
+PODFILE CHECKSUM: 27a3954fef45ea10ac46f03e7e484d55092595ed
+
+COCOAPODS: 1.4.0
