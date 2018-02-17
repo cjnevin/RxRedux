@@ -31,3 +31,17 @@ struct StyleState {
     var list: [Style]
 }
 
+class Style: Equatable {
+    static func ==(lhs: Style, rhs: Style) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    func apply() { }
+    func unapply() { }
+}

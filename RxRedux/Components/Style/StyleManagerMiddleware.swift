@@ -1,20 +1,7 @@
 import UIKit
 
-class Style: Equatable {
-    static func ==(lhs: Style, rhs: Style) -> Bool {
-        return lhs.name == rhs.name
-    }
-    
-    let name: String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
-    func apply() { }
-    func unapply() { }
-    
-    func refresh() {
+extension Style {
+    fileprivate func refresh() {
         for window in UIApplication.shared.windows {
             for view in window.subviews {
                 view.removeFromSuperview()
