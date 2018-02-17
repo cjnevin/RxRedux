@@ -10,6 +10,10 @@ class Presenter<T> {
         subPresenters.append(presenter)
     }
     
+    func attachPresenters(_ presenters: [Presenter<T>]) {
+        subPresenters.append(contentsOf: presenters)
+    }
+    
     func attachView(_ view: View) {
         assert(self.view == nil)
         self.view = view

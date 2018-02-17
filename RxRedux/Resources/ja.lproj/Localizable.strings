@@ -1,0 +1,11 @@
+"count.title" = "カウンタ";
+"count.tab.title" = "カウント";
+"count.decrement" = "デクリメント";
+"count.increment" = "インクリメント";
+"count.value" = "カウントは今：%d";
+
+"language.title" = "言語を選択する";
+"language.tab.title" = "言語";
+"language.en" = "英語";
+"language.fr" = "フランス語";
+"language.ja" = "日本語";

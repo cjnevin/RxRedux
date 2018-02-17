@@ -1,23 +1,8 @@
 import Foundation
-
-func localize(_ string: String) -> String {
-    let localized = NSLocalizedString(string, comment: string)
-    if localized == string {
-        fatalError("Localized string is missing")
-    }
-    return localized
-}
+import Localize_Swift
 
 extension String {
-    func localized() -> String {
-        return localize(self)
-    }
-    
-    func localized(_ arguments: CVarArg...) -> String {
-        return String(format: localized(), arguments: arguments)
-    }
-    
-    func localizedWithInt(_ number: Int) -> String {
-        return localized(number)
+    func localizedWithParameter<T: CVarArg>(_ parameter: T) -> String {
+        return localizedFormat(parameter)
     }
 }

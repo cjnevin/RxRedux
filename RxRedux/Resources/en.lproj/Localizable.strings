@@ -1,3 +1,11 @@
+"count.title" = "Counter";
+"count.tab.title" = "Count";
 "count.decrement" = "Decrement";
 "count.increment" = "Increment";
 "count.value" = "Count is now: %d";
+
+"language.title" = "Select Language";
+"language.tab.title" = "Language";
+"language.en" = "English";
+"language.fr" = "French";
+"language.ja" = "Japanese";

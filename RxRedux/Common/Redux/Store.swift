@@ -9,7 +9,7 @@ final class Store<StateType> {
     private let stateSubject: BehaviorSubject<StateType>
     private var middlewares: [MiddlewareType]
     
-    init(reducer: @escaping Reducer<StateType>, state: StateType, middlewares: MiddlewareType...) {
+    init(reducer: @escaping Reducer<StateType>, state: StateType, middlewares: [MiddlewareType] = []) {
         self.reducer = reducer
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)

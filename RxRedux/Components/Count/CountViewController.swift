@@ -15,19 +15,14 @@ class CountViewController: UIViewController {
     
     var presenter: CountPresenter<CountViewController>?
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        presenter?.attachView(self)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        presenter?.detachView()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
+        presenter?.attachView(self)
+    }
+    
+    deinit {
+        presenter?.detachView()
     }
     
     func render() {
@@ -58,14 +53,20 @@ extension CountViewController: CountView {
         value.text = text
     }
     
-    func setDecrementText(_ text: String, action: CocoaAction) {
-        decrement.setTitle(text, for: .normal)
+    func setDecrementAction(_ action: CocoaAction) {
         decrement.rx.action = action
     }
     
-    func setIncrementText(_ text: String, action: CocoaAction) {
-        increment.setTitle(text, for: .normal)
+    func setDecrementText(_ text: String) {
+        decrement.setTitle(text, for: .normal)
+    }
+    
+    func setIncrementAction(_ action: CocoaAction) {
         increment.rx.action = action
+    }
+    
+    func setIncrementText(_ text: String) {
+        increment.setTitle(text, for: .normal)
     }
 }
 

@@ -17,6 +17,16 @@
 		830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F802037895700441057 /* NSLocalizedString+Helper.swift */; };
 		830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F822037B0F100441057 /* Action+ActionType.swift */; };
 		830E6F862037BA5400441057 /* Store+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F852037BA5400441057 /* Store+Driver.swift */; };
+		834117082038929E00399D2C /* LanguageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117072038929E00399D2C /* LanguageReducer.swift */; };
+		8341170A2038955C00399D2C /* LanguagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117092038955C00399D2C /* LanguagePresenter.swift */; };
+		8341170C2038971500399D2C /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170B2038971500399D2C /* LanguageViewController.swift */; };
+		8341170E203897E700399D2C /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170D203897E700399D2C /* Identifiable.swift */; };
+		834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170F2038980800399D2C /* LanguageTableViewCell.swift */; };
+		8341171220389E0300399D2C /* LanguageManagerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171120389E0300399D2C /* LanguageManagerMiddleware.swift */; };
+		834117142038AAD300399D2C /* TitlableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117132038AAD300399D2C /* TitlableView.swift */; };
+		834117162038ABA400399D2C /* TabbableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117152038ABA400399D2C /* TabbableView.swift */; };
+		834117192038AC3F00399D2C /* TitlablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117182038AC3F00399D2C /* TitlablePresenter.swift */; };
+		8341171B2038AD6200399D2C /* TabbablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171A2038AD6200399D2C /* TabbablePresenter.swift */; };
 		83C40379203512F000138C77 /* CountReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C40378203512F000138C77 /* CountReducerTests.swift */; };
 		83C403892035185A00138C77 /* CountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4037620350FF600138C77 /* CountViewControllerTests.swift */; };
 		83C4038B20370CD700138C77 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038A20370CD700138C77 /* AppReducer.swift */; };
@@ -61,6 +71,17 @@
 		830E6F822037B0F100441057 /* Action+ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+ActionType.swift"; sourceTree = "<group>"; };
 		830E6F842037B16C00441057 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		830E6F852037BA5400441057 /* Store+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Driver.swift"; sourceTree = "<group>"; };
+		834117072038929E00399D2C /* LanguageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageReducer.swift; sourceTree = "<group>"; };
+		834117092038955C00399D2C /* LanguagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePresenter.swift; sourceTree = "<group>"; };
+		8341170B2038971500399D2C /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		8341170D203897E700399D2C /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		8341170F2038980800399D2C /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		8341171120389E0300399D2C /* LanguageManagerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManagerMiddleware.swift; sourceTree = "<group>"; };
+		834117132038AAD300399D2C /* TitlableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlableView.swift; sourceTree = "<group>"; };
+		834117152038ABA400399D2C /* TabbableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbableView.swift; sourceTree = "<group>"; };
+		834117182038AC3F00399D2C /* TitlablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlablePresenter.swift; sourceTree = "<group>"; };
+		8341171A2038AD6200399D2C /* TabbablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbablePresenter.swift; sourceTree = "<group>"; };
+		8341171E2038B6D400399D2C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83C4037620350FF600138C77 /* CountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewControllerTests.swift; sourceTree = "<group>"; };
 		83C40378203512F000138C77 /* CountReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducerTests.swift; sourceTree = "<group>"; };
@@ -107,6 +128,7 @@
 		8304A1562033C05D00E8BCF1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				834117172038ABF500399D2C /* Behaviour */,
 				830E6F79203763FD00441057 /* Extensions */,
 				8304A1582033C07E00E8BCF1 /* Middleware */,
 				8304A1572033C07100E8BCF1 /* Redux */,
@@ -130,6 +152,7 @@
 		8304A1582033C07E00E8BCF1 /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
+				8341171120389E0300399D2C /* LanguageManagerMiddleware.swift */,
 				8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */,
 			);
 			path = Middleware;
@@ -181,6 +204,7 @@
 			children = (
 				834117002038691F00399D2C /* App */,
 				834116FF203868F000399D2C /* Count */,
+				834117062038928B00399D2C /* Language */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -208,6 +232,29 @@
 				83F9A3342033A2A2002D4B5B /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		834117062038928B00399D2C /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				834117072038929E00399D2C /* LanguageReducer.swift */,
+				834117092038955C00399D2C /* LanguagePresenter.swift */,
+				8341170B2038971500399D2C /* LanguageViewController.swift */,
+				8341170F2038980800399D2C /* LanguageTableViewCell.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		834117172038ABF500399D2C /* Behaviour */ = {
+			isa = PBXGroup;
+			children = (
+				8341170D203897E700399D2C /* Identifiable.swift */,
+				834117152038ABA400399D2C /* TabbableView.swift */,
+				8341171A2038AD6200399D2C /* TabbablePresenter.swift */,
+				834117132038AAD300399D2C /* TitlableView.swift */,
+				834117182038AC3F00399D2C /* TitlablePresenter.swift */,
+			);
+			path = Behaviour;
 			sourceTree = "<group>";
 		};
 		83C4039420375B5A00138C77 /* Common */ = {
@@ -355,6 +402,7 @@
 				en,
 				Base,
 				fr,
+				ja,
 			);
 			mainGroup = 83F9A3112033A2A2002D4B5B;
 			productRefGroup = 83F9A31B2033A2A2002D4B5B /* Products */;
@@ -490,6 +538,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
+				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -497,6 +546,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -514,21 +564,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */,
+				834117142038AAD300399D2C /* TitlableView.swift in Sources */,
 				830E6F862037BA5400441057 /* Store+Driver.swift in Sources */,
 				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
+				834117162038ABA400399D2C /* TabbableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountReducer.swift in Sources */,
 				83F9A3402033A2E1002D4B5B /* Reducer.swift in Sources */,
+				834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */,
+				834117082038929E00399D2C /* LanguageReducer.swift in Sources */,
 				83C4038B20370CD700138C77 /* AppReducer.swift in Sources */,
 				83F9A3442033A6D7002D4B5B /* Middleware.swift in Sources */,
 				830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */,
+				8341170A2038955C00399D2C /* LanguagePresenter.swift in Sources */,
 				83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */,
 				8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */,
+				8341170E203897E700399D2C /* Identifiable.swift in Sources */,
+				8341171B2038AD6200399D2C /* TabbablePresenter.swift in Sources */,
 				83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */,
+				834117192038AC3F00399D2C /* TitlablePresenter.swift in Sources */,
 				83F9A3462033A77A002D4B5B /* ActionType.swift in Sources */,
 				830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */,
 				830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */,
+				8341170C2038971500399D2C /* LanguageViewController.swift in Sources */,
 				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
+				8341171220389E0300399D2C /* LanguageManagerMiddleware.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +619,7 @@
 			children = (
 				830E6F77203760AC00441057 /* en */,
 				830E6F842037B16C00441057 /* fr */,
+				8341171E2038B6D400399D2C /* ja */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

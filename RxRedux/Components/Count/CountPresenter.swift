@@ -7,23 +7,33 @@ class CountPresenter<T: CountView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observeOnMain(\.countState.counter)
-                .map(CountText.value)
-                .drive(onNext: view.setCountText))
+            store.observe(\.languageState.current)
+                .subscribe(onNext: { (language) in
+                    view.setDecrementText(CountText.decrement)
+                    view.setIncrementText(CountText.increment)
+                }))
         
-        view.setDecrementText(CountText.decrement, action: CocoaAction(CountAction.decrement))
-        view.setIncrementText(CountText.increment, action: CocoaAction(CountAction.increment))
+        disposeOnViewDetach(Observable
+            .combineLatest(store.observe(\.languageState.current),
+                           store.observe(\.countState.counter)) { CountText.value($1) }
+                .subscribe(onNext: view.setCountText))
+        
+        view.setDecrementAction(CocoaAction(CountAction.decrement))
+        view.setIncrementAction(CocoaAction(CountAction.increment))
     }
 }
 
-protocol CountView {
+protocol CountView: TitlableView, TabbableView {
     func setCountText(_ text: String)
-    func setDecrementText(_ text: String, action: CocoaAction)
-    func setIncrementText(_ text: String, action: CocoaAction)
+    func setDecrementText(_ text: String)
+    func setDecrementAction(_ action: CocoaAction)
+    func setIncrementText(_ text: String)
+    func setIncrementAction(_ action: CocoaAction)
 }
 
 private enum CountText {
-    static let decrement = "count.decrement".localized()
-    static let increment = "count.increment".localized()
-    static let value = "count.value".localizedWithInt
+    static var title: String { return "count.title".localized() }
+    static var decrement: String { return "count.decrement".localized() }
+    static var increment: String { return "count.increment".localized() }
+    static let value: (Int) -> (String) = "count.value".localizedWithParameter
 }

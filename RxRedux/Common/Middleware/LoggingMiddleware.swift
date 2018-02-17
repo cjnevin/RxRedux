@@ -5,9 +5,9 @@ struct LoggingMiddleware<S, T: Store<S>> {
         return { store in
             return { next in
                 return { action in
-                    print("willDispatch \(action) -> \(store.state)")
+                    debugPrint("willDispatch \(action) -> \(store.state)")
                     next(action)
-                    print("didDispatch \(action) -> \(store.state)")
+                    debugPrint("didDispatch \(action) -> \(store.state)")
                 }
             }
         }
