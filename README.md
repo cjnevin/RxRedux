@@ -1,6 +1,8 @@
 # RxRedux
 Custom implementation of Redux logic with Rx binding
 
+![Redux](https://github.com/ChrisAU/RxRedux/blob/master/Redux.png "Redux")
+
 # Action
 
 `Actions` are payloads of information that send data from your application to your `Store`.
@@ -14,11 +16,22 @@ You send them to the `Store` using `store.dispatch()`.
 **Note:** In Swift, enums are perfectly suited for defining similar `Actions`.
 
 ```
-enum FetchAction {
+enum FetchAction: ActionType {
     case started
-    case failed(Error)
-    case completed(Posts)
+    case success(Posts)
+    case failure(Error)
 }
+```
+
+Combined with generics you may be able to get away with just typealiases in many scenarios.
+
+```
+enum LoadAction<T>: ActionType {
+    case started
+    case success(T)
+    case failure(Error)
+}
+typealias FetchAction = LoadAction<Posts>
 ```
 
 # ActionCreator
@@ -27,15 +40,15 @@ enum FetchAction {
 
 Asynchronous `ActionCreator`'s can return an initial `Action` (such as loading) followed by other `Actions` as the asynchronous task progresses this can help you notify the user of a percentage of completion, a successful result, and an error.
 
-Consider this _asynchronous_ action creator, it returns a result immediately, followed by two other ones after the API responds:
+Consider this _asynchronous_ action creator, it returns a result immediately, followed by another one after the API responds:
 
 ```
-func fetchPosts(from url: URL) -> Action {
+func fetchPosts(from url: URL) -> ActionType {
     api.fetch(url, method: .GET) { response, error in
         if let error = error {
-            store.dispatch(FetchAction.failed(error))
+            store.dispatch(FetchAction.failure(error))
         } else {
-            store.dispatch(FetchAction.completed(Posts.parse(response))
+            store.dispatch(FetchAction.success(Posts.parse(response))
         }
     }
     return FetchAction.started
@@ -45,7 +58,7 @@ func fetchPosts(from url: URL) -> Action {
 Alternatively, _synchronous_ action creators would likely trigger either action A or B depending on state:
 
 ```
-func toggleSwitch(_ on: Bool) -> Action {
+func toggleSwitch(_ on: Bool) -> ActionType {
     return on ? SwitchAction.off : SwitchAction.on
 }
 ```
