@@ -30,7 +30,7 @@ Asynchronous `ActionCreator`'s can return an initial `Action` (such as loading) 
 Consider this _asynchronous_ action creator, it returns a result immediately, followed by two other ones after the API responds:
 
 ```
-func fetchPosts(from url: URL) -> Action {
+func fetchPosts(from url: URL) -> ActionType {
     api.fetch(url, method: .GET) { response, error in
         if let error = error {
             store.dispatch(FetchAction.failed(error))
@@ -45,7 +45,7 @@ func fetchPosts(from url: URL) -> Action {
 Alternatively, _synchronous_ action creators would likely trigger either action A or B depending on state:
 
 ```
-func toggleSwitch(_ on: Bool) -> Action {
+func toggleSwitch(_ on: Bool) -> ActionType {
     return on ? SwitchAction.off : SwitchAction.on
 }
 ```
