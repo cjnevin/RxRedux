@@ -13,9 +13,9 @@ class CountPresenter<T: CountView>: Presenter<T> {
                     view.setIncrementText(CountText.increment)
                 }))
         
-        disposeOnViewDetach(Observable
-            .combineLatest(store.observe(\.languageState.current),
-                           store.observe(\.countState.counter)) { CountText.value($1) }
+        disposeOnViewDetach(
+            store.localizedObserve(\.countState.counter)
+                .map { CountText.value($0) }
                 .subscribe(onNext: view.setCountText))
         
         view.setDecrementAction(CocoaAction(CountAction.decrement))

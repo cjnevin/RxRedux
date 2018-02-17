@@ -32,6 +32,7 @@
 		834117272038BCBB00399D2C /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117262038BCBB00399D2C /* StyleTableViewCell.swift */; };
 		834117292038BCE100399D2C /* StyleReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117282038BCE100399D2C /* StyleReducer.swift */; };
 		8341172B2038BF6800399D2C /* StyleManagerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341172A2038BF6800399D2C /* StyleManagerMiddleware.swift */; };
+		8341172F2038DB6400399D2C /* Store+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341172E2038DB6400399D2C /* Store+Language.swift */; };
 		83C40379203512F000138C77 /* CountReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C40378203512F000138C77 /* CountReducerTests.swift */; };
 		83C403892035185A00138C77 /* CountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4037620350FF600138C77 /* CountViewControllerTests.swift */; };
 		83C4038B20370CD700138C77 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038A20370CD700138C77 /* AppReducer.swift */; };
@@ -92,6 +93,7 @@
 		834117262038BCBB00399D2C /* StyleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
 		834117282038BCE100399D2C /* StyleReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleReducer.swift; sourceTree = "<group>"; };
 		8341172A2038BF6800399D2C /* StyleManagerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManagerMiddleware.swift; sourceTree = "<group>"; };
+		8341172E2038DB6400399D2C /* Store+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Language.swift"; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83C4037620350FF600138C77 /* CountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewControllerTests.swift; sourceTree = "<group>"; };
 		83C40378203512F000138C77 /* CountReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducerTests.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				834117092038955C00399D2C /* LanguagePresenter.swift */,
 				8341170B2038971500399D2C /* LanguageViewController.swift */,
 				8341170F2038980800399D2C /* LanguageTableViewCell.swift */,
+				8341172E2038DB6400399D2C /* Store+Language.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				834117162038ABA400399D2C /* TabbableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountReducer.swift in Sources */,
+				8341172F2038DB6400399D2C /* Store+Language.swift in Sources */,
 				83F9A3402033A2E1002D4B5B /* Reducer.swift in Sources */,
 				834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */,
 				834117082038929E00399D2C /* LanguageReducer.swift in Sources */,
