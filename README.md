@@ -27,7 +27,7 @@ enum FetchAction {
 
 Asynchronous `ActionCreator`'s can return an initial `Action` (such as loading) followed by other `Actions` as the asynchronous task progresses this can help you notify the user of a percentage of completion, a successful result, and an error.
 
-Consider this _asynchronous_ action creator, it returns a result immediately, followed by two other ones after the API responds:
+Consider this _asynchronous_ action creator, it returns a result immediately, followed by another one after the API responds:
 
 ```
 func fetchPosts(from url: URL) -> ActionType {
