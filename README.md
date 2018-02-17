@@ -16,7 +16,7 @@ You send them to the `Store` using `store.dispatch()`.
 **Note:** In Swift, enums are perfectly suited for defining similar `Actions`.
 
 ```
-enum FetchAction {
+enum FetchAction: ActionType {
     case started
     case failed(Error)
     case completed(Posts)
