@@ -1,6 +1,8 @@
 # RxRedux
 Custom implementation of Redux logic with Rx binding
 
+![Redux](https://github.com/ChrisAU/RxRedux/blob/master/Redux.png "Redux")
+
 # Action
 
 `Actions` are payloads of information that send data from your application to your `Store`.
