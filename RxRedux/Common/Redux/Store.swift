@@ -41,11 +41,13 @@ final class Store<StateType> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged()
+            .share(replay: 1, scope: .whileConnected)
     }
     
     func observe<T: Equatable>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged(==)
+            .share(replay: 1, scope: .whileConnected)
     }
 }

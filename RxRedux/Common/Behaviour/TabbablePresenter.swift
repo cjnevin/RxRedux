@@ -1,4 +1,4 @@
-import Foundation
+import RxSwift
 
 class TabbablePresenter<T: TabbableView>: Presenter<T> {
     private let localizationKey: String
@@ -13,7 +13,6 @@ class TabbablePresenter<T: TabbableView>: Presenter<T> {
         disposeOnViewDetach(
             store.observe(\.languageState.current)
                 .map { [weak self] _ in self?.localizationKey.localized() ?? "" }
-                .debug()
                 .subscribe(onNext: view.setTabTitle)
         )
     }

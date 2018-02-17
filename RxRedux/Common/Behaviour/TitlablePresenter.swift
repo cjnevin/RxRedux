@@ -1,4 +1,4 @@
-import Foundation
+import RxSwift
 
 class TitlablePresenter<T: TitlableView>: Presenter<T> {
     private let localizationKey: String
