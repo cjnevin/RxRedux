@@ -49,15 +49,15 @@ class BlueStyle: Style {
         UIApplication.shared.keyWindow?.tintColor = UIColor.rgb(53, 107, 141)
         UIApplication.shared.statusBarStyle = .lightContent
         
-        UITabBar.appearance().unselectedItemTintColor = UIColor.rgb(135, 185, 218)
-        UITabBar.appearance().tintColor = UIColor.rgb(53, 107, 141)
+        UITabBar.appearance().unselectedItemTintColor = UIColor.rgb(53, 107, 141)
+        UITabBar.appearance().tintColor = UIColor.rgb(135, 185, 218)
         UITabBar.appearance().isTranslucent = false
         UITabBar.appearance().backgroundImage = image
         
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
 
-        UINavigationBar.appearance().tintColor = UIColor.rgb(53, 107, 141)
+        UINavigationBar.appearance().tintColor = UIColor.rgb(135, 185, 218)
         UINavigationBar.appearance().setBackgroundImage(image, for: .default)
     }
 }
@@ -103,22 +103,6 @@ extension UIColor {
         let m: CGFloat = 255.0
         return UIColor(red: r/m, green: g/m, blue: b/m, alpha: 1)
     }
-}
-
-extension UILabel {
-    var defaultFont: UIFont? {
-        get { return self.font }
-        set { self.font = newValue }
-    }
-    
-    var defaultTextColor: UIColor? {
-        get { return self.textColor }
-        set { self.textColor = newValue }
-    }
-}
-
-class StyleManager {
-    
 }
 
 struct StyleManagerMiddleware<S, T: Store<S>> {
