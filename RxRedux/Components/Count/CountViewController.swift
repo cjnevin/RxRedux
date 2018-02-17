@@ -17,6 +17,9 @@ class CountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = .all
+        extendedLayoutIncludesOpaqueBars = false
+        navigationController?.navigationBar.isTranslucent = true
         render()
         presenter?.attachView(self)
     }
@@ -73,7 +76,6 @@ extension CountViewController: CountView {
 fileprivate extension UILabel {
     static var value: UILabel {
         let label = UILabel(CountViewAccessibility.countValue)
-        label.textColor = .black
         return label
     }
 }
@@ -81,15 +83,11 @@ fileprivate extension UILabel {
 fileprivate extension UIButton {
     static var decrement: UIButton {
         let button = UIButton(CountViewAccessibility.countDecrement)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
         return button
     }
     
     static var increment: UIButton {
         let button = UIButton(CountViewAccessibility.countIncrement)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
         return button
     }
 }

@@ -27,6 +27,11 @@
 		834117162038ABA400399D2C /* TabbableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117152038ABA400399D2C /* TabbableView.swift */; };
 		834117192038AC3F00399D2C /* TitlablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117182038AC3F00399D2C /* TitlablePresenter.swift */; };
 		8341171B2038AD6200399D2C /* TabbablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171A2038AD6200399D2C /* TabbablePresenter.swift */; };
+		834117232038BC2D00399D2C /* StyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117222038BC2D00399D2C /* StyleViewController.swift */; };
+		834117252038BC8B00399D2C /* StylePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117242038BC8B00399D2C /* StylePresenter.swift */; };
+		834117272038BCBB00399D2C /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117262038BCBB00399D2C /* StyleTableViewCell.swift */; };
+		834117292038BCE100399D2C /* StyleReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117282038BCE100399D2C /* StyleReducer.swift */; };
+		8341172B2038BF6800399D2C /* StyleManagerMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341172A2038BF6800399D2C /* StyleManagerMiddleware.swift */; };
 		83C40379203512F000138C77 /* CountReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C40378203512F000138C77 /* CountReducerTests.swift */; };
 		83C403892035185A00138C77 /* CountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4037620350FF600138C77 /* CountViewControllerTests.swift */; };
 		83C4038B20370CD700138C77 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038A20370CD700138C77 /* AppReducer.swift */; };
@@ -82,6 +87,11 @@
 		834117182038AC3F00399D2C /* TitlablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlablePresenter.swift; sourceTree = "<group>"; };
 		8341171A2038AD6200399D2C /* TabbablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbablePresenter.swift; sourceTree = "<group>"; };
 		8341171E2038B6D400399D2C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		834117222038BC2D00399D2C /* StyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleViewController.swift; sourceTree = "<group>"; };
+		834117242038BC8B00399D2C /* StylePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylePresenter.swift; sourceTree = "<group>"; };
+		834117262038BCBB00399D2C /* StyleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
+		834117282038BCE100399D2C /* StyleReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleReducer.swift; sourceTree = "<group>"; };
+		8341172A2038BF6800399D2C /* StyleManagerMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManagerMiddleware.swift; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83C4037620350FF600138C77 /* CountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewControllerTests.swift; sourceTree = "<group>"; };
 		83C40378203512F000138C77 /* CountReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducerTests.swift; sourceTree = "<group>"; };
@@ -151,7 +161,6 @@
 		8304A1582033C07E00E8BCF1 /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
-				8341171120389E0300399D2C /* LanguageManagerMiddleware.swift */,
 				8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */,
 			);
 			path = Middleware;
@@ -204,6 +213,7 @@
 				834117002038691F00399D2C /* App */,
 				834116FF203868F000399D2C /* Count */,
 				834117062038928B00399D2C /* Language */,
+				834117212038BC2D00399D2C /* Style */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -236,6 +246,7 @@
 		834117062038928B00399D2C /* Language */ = {
 			isa = PBXGroup;
 			children = (
+				8341171120389E0300399D2C /* LanguageManagerMiddleware.swift */,
 				834117072038929E00399D2C /* LanguageReducer.swift */,
 				834117092038955C00399D2C /* LanguagePresenter.swift */,
 				8341170B2038971500399D2C /* LanguageViewController.swift */,
@@ -255,6 +266,18 @@
 				834117182038AC3F00399D2C /* TitlablePresenter.swift */,
 			);
 			path = Behaviour;
+			sourceTree = "<group>";
+		};
+		834117212038BC2D00399D2C /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				8341172A2038BF6800399D2C /* StyleManagerMiddleware.swift */,
+				834117282038BCE100399D2C /* StyleReducer.swift */,
+				834117242038BC8B00399D2C /* StylePresenter.swift */,
+				834117222038BC2D00399D2C /* StyleViewController.swift */,
+				834117262038BCBB00399D2C /* StyleTableViewCell.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 		83C4039420375B5A00138C77 /* Common */ = {
@@ -566,7 +589,11 @@
 				8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */,
 				834117142038AAD300399D2C /* TitlableView.swift in Sources */,
 				830E6F862037BA5400441057 /* Store+Driver.swift in Sources */,
+				834117232038BC2D00399D2C /* StyleViewController.swift in Sources */,
+				834117252038BC8B00399D2C /* StylePresenter.swift in Sources */,
+				8341172B2038BF6800399D2C /* StyleManagerMiddleware.swift in Sources */,
 				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
+				834117292038BCE100399D2C /* StyleReducer.swift in Sources */,
 				834117162038ABA400399D2C /* TabbableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountReducer.swift in Sources */,
@@ -589,6 +616,7 @@
 				8341170C2038971500399D2C /* LanguageViewController.swift in Sources */,
 				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
 				8341171220389E0300399D2C /* LanguageManagerMiddleware.swift in Sources */,
+				834117272038BCBB00399D2C /* StyleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

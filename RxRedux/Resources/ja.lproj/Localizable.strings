@@ -9,3 +9,8 @@
 "language.en" = "English";
 "language.fr" = "Français";
 "language.ja" = "日本語";
+
+"style.tab.title" = "スタイル";
+"style.title" = "スタイルを選択";
+"style.blue" = "ミッドナイトブルー";
+"style.green" = "エメラルドグリーン";

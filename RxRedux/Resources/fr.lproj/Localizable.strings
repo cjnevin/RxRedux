@@ -9,3 +9,8 @@
 "language.en" = "English";
 "language.fr" = "Français";
 "language.ja" = "日本語";
+
+"style.tab.title" = "Style";
+"style.title" = "Sélectionnez un style";
+"style.blue" = "Bleu nuit";
+"style.green" = "Vert émeraude";

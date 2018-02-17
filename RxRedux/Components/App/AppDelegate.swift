@@ -6,7 +6,8 @@ var store = Store<AppState>(
     state: AppState.initialState,
     middlewares: [
         LanguageManagerMiddleware.create(),
-        LoggingMiddleware.create()
+        LoggingMiddleware.create(),
+        StyleManagerMiddleware.create()
     ])
 
 @UIApplicationMain
@@ -28,6 +29,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         countNavigationController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "counter-empty"), selectedImage: #imageLiteral(resourceName: "counter-filled"))
         
         
+        // MARK: STYLE
+        let styleViewController = StyleViewController()
+        let stylePresenter = StylePresenter<StyleViewController>()
+        stylePresenter.attachPresenters([
+            TitlablePresenter(localizationKey: "style.title"),
+            TabbablePresenter(localizationKey: "style.tab.title")
+            ])
+        styleViewController.presenter = stylePresenter
+        
+        let styleNavigationController = UINavigationController(rootViewController: styleViewController)
+        styleNavigationController.tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "theme-empty"), selectedImage: #imageLiteral(resourceName: "theme-filled"))
+        
+        // Force load of view
+        _ = styleViewController.view
+        
         // MARK: LANGUAGE
         
         let languageViewController = LanguageViewController()
@@ -48,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: TABS
         
         let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [countNavigationController, languageNavigationController]
+        tabBarController.viewControllers = [countNavigationController, styleNavigationController, languageNavigationController]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController
