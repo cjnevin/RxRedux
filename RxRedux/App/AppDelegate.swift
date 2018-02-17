@@ -12,7 +12,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        store.register(LoggingMiddleware<AppState, Store<AppState>>.create())
+        store.register(LoggingMiddleware.create())
         store.dispatch(AppAction.launch)
         
         let viewController = CountViewController()

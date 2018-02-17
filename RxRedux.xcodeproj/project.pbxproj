@@ -117,7 +117,6 @@
 		8304A1572033C07100E8BCF1 /* Redux */ = {
 			isa = PBXGroup;
 			children = (
-				8304A1582033C07E00E8BCF1 /* Middleware */,
 				83F9A3452033A77A002D4B5B /* ActionType.swift */,
 				83F9A3432033A6D7002D4B5B /* Middleware.swift */,
 				83F9A33F2033A2E1002D4B5B /* Reducer.swift */,
@@ -144,6 +143,37 @@
 				830E6F7E2037834300441057 /* UIView+SnapKit.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		834116FF203868F000399D2C /* Count */ = {
+			isa = PBXGroup;
+			children = (
+				83C4038C20370DB900138C77 /* CountReducer.swift */,
+				8304A1542033B71100E8BCF1 /* CountPresenter.swift */,
+				83F9A31F2033A2A2002D4B5B /* CountViewController.swift */,
+			);
+			path = Count;
+			sourceTree = "<group>";
+		};
+		834117002038691F00399D2C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8304A1582033C07E00E8BCF1 /* Middleware */,
+				83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */,
+				83C4038A20370CD700138C77 /* AppReducer.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		834117012038693500399D2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83F9A3242033A2A2002D4B5B /* Assets.xcassets */,
+				83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */,
+				83F9A3292033A2A2002D4B5B /* Info.plist */,
+				830E6F78203760AC00441057 /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		83C4039420375B5A00138C77 /* Helpers */ = {
@@ -178,16 +208,10 @@
 		83F9A31C2033A2A2002D4B5B /* RxRedux */ = {
 			isa = PBXGroup;
 			children = (
-				83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */,
-				83C4038A20370CD700138C77 /* AppReducer.swift */,
-				83C4038C20370DB900138C77 /* CountReducer.swift */,
-				8304A1542033B71100E8BCF1 /* CountPresenter.swift */,
-				83F9A31F2033A2A2002D4B5B /* CountViewController.swift */,
+				834117002038691F00399D2C /* App */,
+				834116FF203868F000399D2C /* Count */,
 				8304A1562033C05D00E8BCF1 /* Common */,
-				83F9A3242033A2A2002D4B5B /* Assets.xcassets */,
-				83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */,
-				83F9A3292033A2A2002D4B5B /* Info.plist */,
-				830E6F78203760AC00441057 /* Localizable.strings */,
+				834117012038693500399D2C /* Resources */,
 			);
 			path = RxRedux;
 			sourceTree = "<group>";
@@ -633,7 +657,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RxRedux/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RxRedux/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.RxRedux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,7 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RxRedux/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RxRedux/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.RxRedux;
 				PRODUCT_NAME = "$(TARGET_NAME)";
