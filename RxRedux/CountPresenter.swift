@@ -2,28 +2,28 @@ import Foundation
 import Action
 import RxSwift
 
+enum CountViewText {
+    static let decrement = "count.decrement".localized()
+    static let increment = "count.increment".localized()
+    static let value = "count.value".localizedWithInt
+}
+
 class CountPresenter<T: CountView>: Presenter<T> {
-    private func format(_ count: Int) -> String {
-        return "Count is now: \(count)"
-    }
-    
     override func attachView(_ view: T) {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observe(\.countState.counter).map(format).subscribe(onNext: view.setCountText)
-        )
+            store.observe(\.countState.counter)
+                .map(CountViewText.value)
+                .subscribe(onNext: view.setCountText))
         
-        let decrement = CocoaAction() { .just(store.dispatch(CountAction.decrement)) }
-        let increment = CocoaAction() { .just(store.dispatch(CountAction.increment)) }
-        
-        view.setDecrementAction(decrement)
-        view.setIncrementAction(increment)
+        view.setDecrementText(CountViewText.decrement, action: CocoaAction(CountAction.decrement))
+        view.setIncrementText(CountViewText.increment, action: CocoaAction(CountAction.increment))
     }
 }
 
 protocol CountView {
     func setCountText(_ text: String)
-    func setDecrementAction(_ action: CocoaAction)
-    func setIncrementAction(_ action: CocoaAction)
+    func setDecrementText(_ text: String, action: CocoaAction)
+    func setIncrementText(_ text: String, action: CocoaAction)
 }

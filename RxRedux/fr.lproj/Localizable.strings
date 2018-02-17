@@ -1,0 +1,3 @@
+"count.decrement" = "Décrémenter";
+"count.increment" = "Incrément";
+"count.value" = "Le compte est maintenant: %d";

@@ -29,22 +29,22 @@ class CountViewControllerTests: RxReduxTestCase {
     }
     
     func test_whenIncrementButtonIsTapped_thenCountValueIsChanged() {
-        incrementButton.tap()
+        increment.tap()
         FBSnapshotVerifyView(sut.view)
     }
     
     func test_whenDecrementButtonIsTapped_thenCountValueIsChanged() {
-        decrementButton.tap()
+        decrement.tap()
         FBSnapshotVerifyView(sut.view)
     }
     
     // MARK: Helpers
     
-    var decrementButton: KIFUIViewTestActor {
-        return viewTester().usingIdentifier(CountViewAccessibility.countDecrementButton.rawValue)
+    var decrement: KIFUIViewTestActor {
+        return viewTester().usingIdentifier(CountViewAccessibility.countDecrement.rawValue)
     }
     
-    var incrementButton: KIFUIViewTestActor {
-        return viewTester().usingIdentifier(CountViewAccessibility.countIncrementButton.rawValue)
+    var increment: KIFUIViewTestActor {
+        return viewTester().usingIdentifier(CountViewAccessibility.countIncrement.rawValue)
     }
 }

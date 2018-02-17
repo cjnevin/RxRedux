@@ -3,15 +3,15 @@ import SnapKit
 import Action
 
 enum CountViewAccessibility: String {
-    case countValueLabel
-    case countDecrementButton
-    case countIncrementButton
+    case countValue
+    case countDecrement
+    case countIncrement
 }
 
 class CountViewController: UIViewController {
-    fileprivate lazy var countLabel: UILabel = .make(accessibilityIdentifier: .countValueLabel)
-    fileprivate lazy var decrementButton: UIButton = .make(text: "Decrement", accessibilityIdentifier: .countDecrementButton)
-    fileprivate lazy var incrementButton: UIButton = .make(text: "Increment", accessibilityIdentifier: .countIncrementButton)
+    fileprivate lazy var value = UILabel(CountViewAccessibility.countValue)
+    fileprivate lazy var decrement = UIButton(CountViewAccessibility.countDecrement)
+    fileprivate lazy var increment = UIButton(CountViewAccessibility.countIncrement)
     
     var presenter: CountPresenter<CountViewController>?
     
@@ -27,76 +27,51 @@ class CountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        render()
+    }
+    
+    func render() {
         view.backgroundColor = .white
         
-        [countLabel, decrementButton, incrementButton].forEach(view.addSubview)
-        
         let padding = CGFloat(20)
+        let buttonHeight = CGFloat(40)
         
-        countLabel.snp.makeConstraints { (make) in
+        value.textColor = .black
+        
+        view.addSubview(value) { make in
             make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide).inset(padding)
         }
         
-        decrementButton.snp.makeConstraints { (make) in
-            make.height.equalTo(40)
+        decrement.setTitleColor(.black, for: .normal)
+        decrement.backgroundColor = .lightGray
+        increment.setTitleColor(.black, for: .normal)
+        increment.backgroundColor = .lightGray
+        
+        view.addSubview(decrement) { make in
+            make.height.equalTo(buttonHeight)
             make.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(padding)
         }
         
-        incrementButton.snp.makeConstraints { (make) in
-            make.height.equalTo(40)
+        view.addSubview(increment) { (make) in
+            make.height.equalTo(buttonHeight)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(padding)
-            make.bottom.equalTo(decrementButton.snp.top).offset(-20)
+            make.bottom.equalTo(decrement.snp.top).offset(-padding)
         }
     }
 }
 
 extension CountViewController: CountView {
     func setCountText(_ text: String) {
-        countLabel.text = text
+        value.text = text
     }
     
-    func setDecrementAction(_ action: CocoaAction) {
-        decrementButton.rx.action = action
+    func setDecrementText(_ text: String, action: CocoaAction) {
+        decrement.setTitle(text, for: .normal)
+        decrement.rx.action = action
     }
     
-    func setIncrementAction(_ action: CocoaAction) {
-        incrementButton.rx.action = action
-    }
-}
-
-fileprivate extension UILabel {
-    static func make(
-        backgroundColor: UIColor = .clear,
-        textColor: UIColor = .black,
-        text: String = "",
-        accessibilityIdentifier: CountViewAccessibility? = nil) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.textColor = textColor
-        if let accessibilityIdentifier = accessibilityIdentifier?.rawValue {
-            label.accessibilityIdentifier = accessibilityIdentifier
-            label.isAccessibilityElement = true
-        }
-        return label
-    }
-}
-
-fileprivate extension UIButton {
-    static func make(
-        backgroundColor: UIColor = .lightGray,
-        textColor: UIColor = .black,
-        text: String = "",
-        disabledTextColor: UIColor = UIColor.lightText,
-        accessibilityIdentifier: CountViewAccessibility? = nil) -> UIButton {
-        let button = UIButton()
-        button.setTitle(text, for: .normal)
-        button.setTitleColor(textColor, for: .normal)
-        button.setTitleColor(disabledTextColor, for: .disabled)
-        button.backgroundColor = backgroundColor
-        if let accessibilityIdentifier = accessibilityIdentifier?.rawValue {
-            button.accessibilityIdentifier = accessibilityIdentifier
-            button.isAccessibilityElement = true
-        }
-        return button
+    func setIncrementText(_ text: String, action: CocoaAction) {
+        increment.setTitle(text, for: .normal)
+        increment.rx.action = action
     }
 }

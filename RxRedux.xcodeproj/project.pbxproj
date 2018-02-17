@@ -11,6 +11,11 @@
 		60230DF1083D915FC5E3B71E /* Pods_RxRedux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EF77FB77CC13EA1756BB2 /* Pods_RxRedux.framework */; };
 		8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304A1542033B71100E8BCF1 /* CountPresenter.swift */; };
 		8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */; };
+		830E6F76203760AC00441057 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 830E6F78203760AC00441057 /* Localizable.strings */; };
+		830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F7A2037641200441057 /* UIView+Accessibility.swift */; };
+		830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F7E2037834300441057 /* UIView+SnapKit.swift */; };
+		830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F802037895700441057 /* NSLocalizedString+Helper.swift */; };
+		830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F822037B0F100441057 /* Action+ActionType.swift */; };
 		83C40379203512F000138C77 /* CountReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C40378203512F000138C77 /* CountReducerTests.swift */; };
 		83C403892035185A00138C77 /* CountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4037620350FF600138C77 /* CountViewControllerTests.swift */; };
 		83C4038B20370CD700138C77 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038A20370CD700138C77 /* AppReducer.swift */; };
@@ -19,7 +24,6 @@
 		83C4039320374B6300138C77 /* RxReduxTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4039220374B6300138C77 /* RxReduxTestCase.swift */; };
 		83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */; };
 		83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A31F2033A2A2002D4B5B /* CountViewController.swift */; };
-		83F9A3232033A2A2002D4B5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3212033A2A2002D4B5B /* Main.storyboard */; };
 		83F9A3252033A2A2002D4B5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3242033A2A2002D4B5B /* Assets.xcassets */; };
 		83F9A3282033A2A2002D4B5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */; };
 		83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A33D2033A2AD002D4B5B /* Store.swift */; };
@@ -49,6 +53,12 @@
 		827719A3DDB52CCE167C06F9 /* Pods-RxReduxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxReduxUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxReduxUITests/Pods-RxReduxUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8304A1542033B71100E8BCF1 /* CountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountPresenter.swift; sourceTree = "<group>"; };
 		8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingMiddleware.swift; sourceTree = "<group>"; };
+		830E6F77203760AC00441057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		830E6F7A2037641200441057 /* UIView+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Accessibility.swift"; sourceTree = "<group>"; };
+		830E6F7E2037834300441057 /* UIView+SnapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
+		830E6F802037895700441057 /* NSLocalizedString+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLocalizedString+Helper.swift"; sourceTree = "<group>"; };
+		830E6F822037B0F100441057 /* Action+ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+ActionType.swift"; sourceTree = "<group>"; };
+		830E6F842037B16C00441057 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83C4037620350FF600138C77 /* CountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewControllerTests.swift; sourceTree = "<group>"; };
 		83C40378203512F000138C77 /* CountReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducerTests.swift; sourceTree = "<group>"; };
@@ -59,7 +69,6 @@
 		83F9A31A2033A2A2002D4B5B /* RxRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F9A31F2033A2A2002D4B5B /* CountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
-		83F9A3222033A2A2002D4B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		83F9A3242033A2A2002D4B5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83F9A3272033A2A2002D4B5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83F9A3292033A2A2002D4B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +105,7 @@
 		8304A1562033C05D00E8BCF1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				830E6F79203763FD00441057 /* Extensions */,
 				8304A1572033C07100E8BCF1 /* Redux */,
 				83F9A3412033A3ED002D4B5B /* Presenter.swift */,
 			);
@@ -120,6 +130,17 @@
 				8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */,
 			);
 			path = Middleware;
+			sourceTree = "<group>";
+		};
+		830E6F79203763FD00441057 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				830E6F802037895700441057 /* NSLocalizedString+Helper.swift */,
+				830E6F822037B0F100441057 /* Action+ActionType.swift */,
+				830E6F7A2037641200441057 /* UIView+Accessibility.swift */,
+				830E6F7E2037834300441057 /* UIView+SnapKit.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		83C4039420375B5A00138C77 /* Helpers */ = {
@@ -156,14 +177,14 @@
 			children = (
 				83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */,
 				83C4038A20370CD700138C77 /* AppReducer.swift */,
-				83F9A31F2033A2A2002D4B5B /* CountViewController.swift */,
-				8304A1542033B71100E8BCF1 /* CountPresenter.swift */,
 				83C4038C20370DB900138C77 /* CountReducer.swift */,
+				8304A1542033B71100E8BCF1 /* CountPresenter.swift */,
+				83F9A31F2033A2A2002D4B5B /* CountViewController.swift */,
 				8304A1562033C05D00E8BCF1 /* Common */,
-				83F9A3212033A2A2002D4B5B /* Main.storyboard */,
 				83F9A3242033A2A2002D4B5B /* Assets.xcassets */,
 				83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */,
 				83F9A3292033A2A2002D4B5B /* Info.plist */,
+				830E6F78203760AC00441057 /* Localizable.strings */,
 			);
 			path = RxRedux;
 			sourceTree = "<group>";
@@ -274,6 +295,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 83F9A3112033A2A2002D4B5B;
 			productRefGroup = 83F9A31B2033A2A2002D4B5B /* Products */;
@@ -292,8 +314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F9A3282033A2A2002D4B5B /* LaunchScreen.storyboard in Resources */,
+				830E6F76203760AC00441057 /* Localizable.strings in Resources */,
 				83F9A3252033A2A2002D4B5B /* Assets.xcassets in Resources */,
-				83F9A3232033A2A2002D4B5B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,10 +463,14 @@
 				83F9A3402033A2E1002D4B5B /* Reducer.swift in Sources */,
 				83C4038B20370CD700138C77 /* AppReducer.swift in Sources */,
 				83F9A3442033A6D7002D4B5B /* Middleware.swift in Sources */,
+				830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */,
 				83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */,
 				8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */,
 				83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */,
 				83F9A3462033A77A002D4B5B /* ActionType.swift in Sources */,
+				830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */,
+				830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */,
+				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,12 +496,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		83F9A3212033A2A2002D4B5B /* Main.storyboard */ = {
+		830E6F78203760AC00441057 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				83F9A3222033A2A2002D4B5B /* Base */,
+				830E6F77203760AC00441057 /* en */,
+				830E6F842037B16C00441057 /* fr */,
 			);
-			name = Main.storyboard;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */ = {
@@ -493,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -550,6 +578,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
