@@ -9,9 +9,9 @@ enum CountViewAccessibility: String {
 }
 
 class CountViewController: UIViewController {
-    fileprivate lazy var value = UILabel(CountViewAccessibility.countValue)
-    fileprivate lazy var decrement = UIButton(CountViewAccessibility.countDecrement)
-    fileprivate lazy var increment = UIButton(CountViewAccessibility.countIncrement)
+    fileprivate lazy var value = UILabel.value
+    fileprivate lazy var decrement = UIButton.decrement
+    fileprivate lazy var increment = UIButton.increment
     
     var presenter: CountPresenter<CountViewController>?
     
@@ -36,16 +36,9 @@ class CountViewController: UIViewController {
         let padding = CGFloat(20)
         let buttonHeight = CGFloat(40)
         
-        value.textColor = .black
-        
         view.addSubview(value) { make in
             make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide).inset(padding)
         }
-        
-        decrement.setTitleColor(.black, for: .normal)
-        decrement.backgroundColor = .lightGray
-        increment.setTitleColor(.black, for: .normal)
-        increment.backgroundColor = .lightGray
         
         view.addSubview(decrement) { make in
             make.height.equalTo(buttonHeight)
@@ -75,3 +68,28 @@ extension CountViewController: CountView {
         increment.rx.action = action
     }
 }
+
+fileprivate extension UILabel {
+    static var value: UILabel {
+        let label = UILabel(CountViewAccessibility.countValue)
+        label.textColor = .black
+        return label
+    }
+}
+
+fileprivate extension UIButton {
+    static var decrement: UIButton {
+        let button = UIButton(CountViewAccessibility.countIncrement)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .lightGray
+        return button
+    }
+    
+    static var increment: UIButton {
+        let button = UIButton(CountViewAccessibility.countIncrement)
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .lightGray
+        return button
+    }
+}
+
