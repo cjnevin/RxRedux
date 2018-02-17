@@ -185,13 +185,38 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		83C4039420375B5A00138C77 /* Helpers */ = {
+		8341170320386C9500399D2C /* Count */ = {
+			isa = PBXGroup;
+			children = (
+				83C40378203512F000138C77 /* CountReducerTests.swift */,
+				83C4037620350FF600138C77 /* CountViewControllerTests.swift */,
+			);
+			path = Count;
+			sourceTree = "<group>";
+		};
+		8341170420386C9900399D2C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8341170320386C9500399D2C /* Count */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8341170520386CB400399D2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				83F9A3342033A2A2002D4B5B /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		83C4039420375B5A00138C77 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				83C4039220374B6300138C77 /* RxReduxTestCase.swift */,
 				83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */,
 			);
-			path = Helpers;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		83F9A3112033A2A2002D4B5B = {
@@ -227,10 +252,9 @@
 		83F9A3312033A2A2002D4B5B /* RxReduxTests */ = {
 			isa = PBXGroup;
 			children = (
-				83C4039420375B5A00138C77 /* Helpers */,
-				83C40378203512F000138C77 /* CountReducerTests.swift */,
-				83C4037620350FF600138C77 /* CountViewControllerTests.swift */,
-				83F9A3342033A2A2002D4B5B /* Info.plist */,
+				8341170420386C9900399D2C /* Components */,
+				83C4039420375B5A00138C77 /* Common */,
+				8341170520386CB400399D2C /* Resources */,
 			);
 			path = RxReduxTests;
 			sourceTree = "<group>";
@@ -696,7 +720,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RxReduxTests/Info.plist;
+				INFOPLIST_FILE = RxReduxTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.RxReduxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -713,7 +737,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RxReduxTests/Info.plist;
+				INFOPLIST_FILE = RxReduxTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cjnevin.RxReduxTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
