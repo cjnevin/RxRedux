@@ -1,17 +1,19 @@
 import RxSwift
 
 final class Store<StateType> {
+    typealias MiddlewareType = Middleware<Store<StateType>>
+    
     private(set) var state: StateType
     
     private let reducer: Reducer<StateType>
     private let stateSubject: BehaviorSubject<StateType>
-    private let middleware: [Middleware<Store<StateType>>]
+    private var middlewares: [MiddlewareType]
     
-    init(reducer: @escaping Reducer<StateType>, state: StateType, middleware: [Middleware<Store<StateType>>]) {
+    init(reducer: @escaping Reducer<StateType>, state: StateType, middlewares: MiddlewareType...) {
         self.reducer = reducer
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)
-        self.middleware = middleware
+        self.middlewares = middlewares
     }
     
     deinit {
@@ -20,14 +22,18 @@ final class Store<StateType> {
     
     func dispatch(_ action: ActionType) {
         assert(Thread.isMainThread)
-        middleware.reduce(dispatchInternal, { dispatch, middlewareInstance in
-            middlewareInstance(self)(dispatch)
+        middlewares.reduce(dispatchInternal, { dispatch, middleware in
+            middleware(self)(dispatch)
         })(action)
     }
     
     private func dispatchInternal(_ action: ActionType) {
         state = reducer(state, action)
         stateSubject.onNext(state)
+    }
+    
+    func register(_ middleware: MiddlewareType...) {
+        middlewares.append(contentsOf: middleware)
     }
     
     func observe<T: Equatable>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
