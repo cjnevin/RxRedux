@@ -18,8 +18,8 @@ You send them to the `Store` using `store.dispatch()`.
 ```
 enum FetchAction: ActionType {
     case started
-    case failed(Error)
-    case completed(Posts)
+    case success(Posts)
+    case failure(Error)
 }
 ```
 
@@ -46,9 +46,9 @@ Consider this _asynchronous_ action creator, it returns a result immediately, fo
 func fetchPosts(from url: URL) -> ActionType {
     api.fetch(url, method: .GET) { response, error in
         if let error = error {
-            store.dispatch(FetchAction.failed(error))
+            store.dispatch(FetchAction.failure(error))
         } else {
-            store.dispatch(FetchAction.completed(Posts.parse(response))
+            store.dispatch(FetchAction.success(Posts.parse(response))
         }
     }
     return FetchAction.started
