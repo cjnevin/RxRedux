@@ -21,7 +21,7 @@ final class Store<StateType> {
     }
     
     func dispatch(_ action: ActionType) {
-        assert(Thread.isMainThread)
+        precondition(Thread.isMainThread)
         middlewares.reduce(dispatchInternal, { dispatch, middleware in
             middleware(self)(dispatch)
         })(action)
@@ -33,6 +33,7 @@ final class Store<StateType> {
     }
     
     func register(_ middleware: MiddlewareType...) {
+        precondition(Thread.isMainThread)
         middlewares.append(contentsOf: middleware)
     }
     
