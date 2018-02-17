@@ -24,7 +24,7 @@ class CountReducerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = Store<CountState>(reducer: Reducers.reduce, state: CountState(counter: 0), middleware: [])
+        sut = Store<CountState>(reducer: Reducers.reduce, state: CountState(counter: 0))
     }
     
     override func tearDown() {

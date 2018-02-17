@@ -2,7 +2,7 @@ import FBSnapshotTestCase
 @testable import RxRedux
 
 func resetStore() {
-    store = Store<AppState>(reducer: Reducers.reduce, state: AppState.initialState, middleware: [])
+    store = Store<AppState>(reducer: Reducers.reduce, state: AppState.initialState)
 }
 
 class RxReduxTestCase: FBSnapshotTestCase {

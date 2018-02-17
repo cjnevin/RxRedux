@@ -4,6 +4,8 @@
 
 .idea
 
+RxReduxTests/FailureDiffs
+
 ## Build generated
 build/
 DerivedData/
