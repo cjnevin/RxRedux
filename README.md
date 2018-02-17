@@ -138,14 +138,14 @@ The `Presenter` is responsible for _what_ the `View` will present, but not _how_
 
 **Important:** The presenter does not import `UIKit`, it's concerned only with receiving and formatting the `State` for consumption by the `View`, these will usually be either `Model` objects or primitive types.
 
-Observing changes using KeyPath:
+Observing changes using `KeyPath`:
 ```
 store.observe(\.counter).subscribe { newCount in
     print("New count is:", newCount)
 }
 ```
 
-Sending actions to the store using CocoaAction from RxSwiftCommunity:
+Sending actions to the store using `CocoaAction` from RxSwiftCommunity:
 ```
 view.setIncrementAction(CocoaAction() { _ in
     .just(store.dispatch(CountAction.increment))
