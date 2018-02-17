@@ -23,6 +23,17 @@ enum FetchAction: ActionType {
 }
 ```
 
+Combined with generics you may be able to get away with just typealiases in many scenarios.
+
+```
+enum LoadAction<T>: ActionType {
+    case started
+    case success(T)
+    case failure(Error)
+}
+typealias FetchAction = LoadAction<Posts>
+```
+
 # ActionCreator
 
 `Action creators` are exactly that—functions that create `actions`. It's easy to conflate the terms “action” and “action creator,” so do your best to use the proper term.
