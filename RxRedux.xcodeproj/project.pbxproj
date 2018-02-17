@@ -132,7 +132,6 @@
 				830E6F79203763FD00441057 /* Extensions */,
 				8304A1582033C07E00E8BCF1 /* Middleware */,
 				8304A1572033C07100E8BCF1 /* Redux */,
-				83F9A3412033A3ED002D4B5B /* Presenter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -249,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				8341170D203897E700399D2C /* Identifiable.swift */,
+				83F9A3412033A3ED002D4B5B /* Presenter.swift */,
 				834117152038ABA400399D2C /* TabbableView.swift */,
 				8341171A2038AD6200399D2C /* TabbablePresenter.swift */,
 				834117132038AAD300399D2C /* TitlableView.swift */,
