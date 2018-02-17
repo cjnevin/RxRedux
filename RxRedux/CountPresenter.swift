@@ -7,9 +7,9 @@ class CountPresenter<T: CountView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observe(\.countState.counter)
+            store.observeOnMain(\.countState.counter)
                 .map(CountText.value)
-                .subscribe(onNext: view.setCountText))
+                .drive(onNext: view.setCountText))
         
         view.setDecrementText(CountText.decrement, action: CocoaAction(CountAction.decrement))
         view.setIncrementText(CountText.increment, action: CocoaAction(CountAction.increment))

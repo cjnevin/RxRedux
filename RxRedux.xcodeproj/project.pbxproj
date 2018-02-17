@@ -16,6 +16,7 @@
 		830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F7E2037834300441057 /* UIView+SnapKit.swift */; };
 		830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F802037895700441057 /* NSLocalizedString+Helper.swift */; };
 		830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F822037B0F100441057 /* Action+ActionType.swift */; };
+		830E6F862037BA5400441057 /* Store+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F852037BA5400441057 /* Store+Driver.swift */; };
 		83C40379203512F000138C77 /* CountReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C40378203512F000138C77 /* CountReducerTests.swift */; };
 		83C403892035185A00138C77 /* CountViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4037620350FF600138C77 /* CountViewControllerTests.swift */; };
 		83C4038B20370CD700138C77 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038A20370CD700138C77 /* AppReducer.swift */; };
@@ -59,6 +60,7 @@
 		830E6F802037895700441057 /* NSLocalizedString+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLocalizedString+Helper.swift"; sourceTree = "<group>"; };
 		830E6F822037B0F100441057 /* Action+ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Action+ActionType.swift"; sourceTree = "<group>"; };
 		830E6F842037B16C00441057 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		830E6F852037BA5400441057 /* Store+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Driver.swift"; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83C4037620350FF600138C77 /* CountViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewControllerTests.swift; sourceTree = "<group>"; };
 		83C40378203512F000138C77 /* CountReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducerTests.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				83F9A3432033A6D7002D4B5B /* Middleware.swift */,
 				83F9A33F2033A2E1002D4B5B /* Reducer.swift */,
 				83F9A33D2033A2AD002D4B5B /* Store.swift */,
+				830E6F852037BA5400441057 /* Store+Driver.swift */,
 			);
 			path = Redux;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */,
+				830E6F862037BA5400441057 /* Store+Driver.swift in Sources */,
 				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountReducer.swift in Sources */,

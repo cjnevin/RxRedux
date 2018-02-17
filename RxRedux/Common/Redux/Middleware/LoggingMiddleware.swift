@@ -1,7 +1,7 @@
 import Foundation
 
 struct LoggingMiddleware<S, T: Store<S>> {
-    func create() -> (T) -> DispatchCreator {
+    static func create() -> (T) -> DispatchCreator {
         return { store in
             return { next in
                 return { action in
