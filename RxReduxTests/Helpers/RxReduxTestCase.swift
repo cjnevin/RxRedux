@@ -10,5 +10,12 @@ class RxReduxTestCase: FBSnapshotTestCase {
         super.setUp()
         resetStore()
         isDeviceAgnostic = true
+        assertLanguageIsSupported()
+    }
+    
+    private func assertLanguageIsSupported() {
+        let validLanguages = ["en", "en-US"]
+        let current = Locale.preferredLanguages[0]
+        Swift.assert(validLanguages.contains(current))
     }
 }
