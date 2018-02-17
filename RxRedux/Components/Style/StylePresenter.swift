@@ -8,7 +8,7 @@ class StylePresenter<T: StyleView>: Presenter<T> {
         
         disposeOnViewDetach(Observable
             .combineLatest(store.observe(\.styleState.current),
-                           store.localizedObserve(\.styleState.list))
+                           store.observeWithLanguageChange(\.styleState.list))
             .map { (args) -> [StyleCellViewModel] in
                 args.1.map { style in
                     StyleCellViewModel(style: style, isSelected: args.0 == style)

@@ -14,7 +14,7 @@ class CountPresenter<T: CountView>: Presenter<T> {
                 }))
         
         disposeOnViewDetach(
-            store.localizedObserve(\.countState.counter)
+            store.observeWithLanguageChange(\.countState.counter)
                 .map { CountText.value($0) }
                 .subscribe(onNext: view.setCountText))
         
