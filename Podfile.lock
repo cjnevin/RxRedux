@@ -20,8 +20,6 @@ PODS:
     - RxBlocking (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.1.1)
-  - RxTest (4.1.1):
-    - RxSwift (~> 4.0)
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
@@ -29,10 +27,8 @@ DEPENDENCIES:
   - FBSnapshotTestCase
   - KIF
   - Nimble
-  - RxBlocking
   - RxNimble
   - RxSwift
-  - RxTest
   - SnapKit
 
 SPEC CHECKSUMS:
@@ -44,9 +40,8 @@ SPEC CHECKSUMS:
   RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
   RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
   RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
-  RxTest: f934010a5b07ecd627cb70b38eb4baf0414591d2
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 27a3954fef45ea10ac46f03e7e484d55092595ed
+PODFILE CHECKSUM: 8d4e3f99ebea331735b238fbff89c5b12a481a99
 
 COCOAPODS: 1.4.0

@@ -15,3 +15,7 @@ struct AppState {
         return AppState(countState: CountState(counter: 0))
     }
 }
+
+enum AppAction: ActionType {
+    case launch
+}

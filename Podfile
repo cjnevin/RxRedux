@@ -13,8 +13,6 @@ target 'RxRedux' do
   target 'RxReduxTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RxBlocking'
-    pod 'RxTest'
     pod 'RxNimble'
     pod 'Nimble'
     pod 'FBSnapshotTestCase'

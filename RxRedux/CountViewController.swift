@@ -79,7 +79,7 @@ fileprivate extension UILabel {
 
 fileprivate extension UIButton {
     static var decrement: UIButton {
-        let button = UIButton(CountViewAccessibility.countIncrement)
+        let button = UIButton(CountViewAccessibility.countDecrement)
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         return button

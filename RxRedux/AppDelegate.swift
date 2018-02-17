@@ -13,10 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         store.register(LoggingMiddleware<AppState, Store<AppState>>.create())
+        store.dispatch(AppAction.launch)
         
-        let presenter = CountPresenter<CountViewController>()
         let viewController = CountViewController()
-        viewController.presenter = presenter
+        viewController.presenter = .init()
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = viewController
