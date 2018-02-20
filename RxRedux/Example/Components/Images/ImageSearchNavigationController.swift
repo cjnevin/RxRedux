@@ -3,7 +3,7 @@ import UIKit
 extension ImageSearchViewController {
     typealias Presenter = ImageSearchPresenter<ImageSearchViewController>
     
-    static var `defaultPresenter`: Presenter {
+    static var defaultPresenter: Presenter {
         let imageSearchPresenter = Presenter()
         imageSearchPresenter.attachPresenters([
             LocalizableTitlePresenter(localizationKey: "image.search.title"),
@@ -20,7 +20,21 @@ extension ImageSearchViewController {
     }
 }
 
-class ImageSearchViewSearchController {
+extension ImageViewController {
+    typealias Presenter = ImagePresenter<ImageViewController>
+    
+    static var defaultPresenter: Presenter {
+        return Presenter()
+    }
+    
+    static func make(presenter: Presenter = defaultPresenter) -> ImageViewController {
+        let controller = ImageViewController()
+        controller.presenter = presenter
+        return controller
+    }
+}
+
+private class ImageSearchController {
     static func make() -> UISearchController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.hidesNavigationBarDuringPresentation = false
@@ -35,7 +49,7 @@ class ImageSearchNavigationController: UINavigationController, Router {
     override init(rootViewController: UIViewController = ImageSearchViewController.make()) {
         super.init(rootViewController: rootViewController)
         
-        let searchController = ImageSearchViewSearchController.make()
+        let searchController = ImageSearchController.make()
         rootViewController.navigationItem.hidesSearchBarWhenScrolling = false
         rootViewController.navigationItem.searchController = searchController
         searchController.searchResultsUpdater = rootViewController as? UISearchResultsUpdating
@@ -58,10 +72,7 @@ class ImageSearchNavigationController: UINavigationController, Router {
     func handle(route: RouteAction) -> Bool {
         switch route {
         case ImageSearchRoute.showImage:
-            let presenter = ImagePresenter<ImageViewController>()
-            let controller = ImageViewController()
-            controller.presenter = presenter
-            pushViewController(controller, animated: true)
+            pushViewController(ImageViewController.make(), animated: true)
             return true
         default: return false
         }

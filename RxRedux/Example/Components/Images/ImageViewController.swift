@@ -54,7 +54,7 @@ class ImageViewController: UIViewController {
             make.height.equalTo(0)
         }
         
-        titleLabel.numberOfLines = 2
+        titleLabel.numberOfLines = 0
         contentView.addSubview(titleLabel) { make in
             make.leading.trailing.equalToSuperview().inset(20)
             make.top.equalTo(imageView.snp.bottom).offset(20)
