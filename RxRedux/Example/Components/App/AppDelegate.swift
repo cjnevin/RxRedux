@@ -1,6 +1,7 @@
 import UIKit
+import RxSwift
 
-let router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
+var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
     ExternalLinkRouter()
 ])
 
@@ -19,7 +20,8 @@ typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-
+    let disposeBag = DisposeBag()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let tabBarController = TabBarController()
@@ -29,6 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         store.dispatch(AppLifecycleAction.launch(launchOptions))
+        
+        store.uniquelyObserve(\.networkState.isLoading)
+            .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
+            .subscribe(onNext: { (isLoading) in
+                application.isNetworkActivityIndicatorVisible = isLoading
+            })
+            .disposed(by: disposeBag)
         
         return true
     }

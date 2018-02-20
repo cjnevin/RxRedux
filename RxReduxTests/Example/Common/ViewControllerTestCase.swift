@@ -2,7 +2,7 @@ import Nimble
 import Nimble_Snapshots
 @testable import RxRedux
 
-func resetStore() {
+private func resetStore() {
     store = Store<AppState>(
         reducer: Reducers.reduce,
         state: AppState.initialState,

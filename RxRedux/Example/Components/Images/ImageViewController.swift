@@ -83,7 +83,7 @@ class ImageViewController: UIViewController {
 
 extension ImageViewController: ImageView {
     func setImageInfo(_ imageInfo: ImageInfo) {
-        ImageSearchAPI.downloadImage(imageInfo)
+        ImageApi.downloadImage(imageInfo)
             .done { [weak self] (image) in
                 DispatchQueue.main.async {
                     guard let `self` = self else {

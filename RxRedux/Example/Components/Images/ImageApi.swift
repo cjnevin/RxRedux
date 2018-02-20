@@ -2,22 +2,25 @@ import Malibu
 import When
 import UIKit
 
-class ImageSearchAPI {
-    static func search(for query: String) -> Promise<[ImageInfo]> {
-        let path: String = "https://api.flickr.com/services/feeds/photos_public.gne"
-        var parameters: [String: String] = [
-            "format": "json",
-            "nojsoncallback": "1",
-            "tag_mode": "all"
-        ]
-        if !query.isEmpty {
-            parameters["tags"] = query.replacingOccurrences(of: " ", with: ",")
+class ImageApi {
+    enum DownloadImageError: Swift.Error {
+        case invalid
+    }
+    
+    static func downloadImage(_ image: ImageInfo) -> Promise<UIImage> {
+        let response = api.images.request(.downloadImage(path: image.imageUrl))
+            .validate()
+            .thenInBackground { (response) -> UIImage in
+                guard let image = UIImage(data: response.data) else {
+                    throw DownloadImageError.invalid
+                }
+                return image
         }
-        let request = Request
-            .get(path, parameters: parameters,
-                 storePolicy: .offline,
-                 cachePolicy: .returnCacheDataElseLoad)
-        let response = Malibu.request(request)
+        return response
+    }
+    
+    static func search(for query: String) -> Promise<[ImageInfo]> {
+        let response = api.images.request(.search(query: query))
             .validate()
             .thenInBackground { (response) -> (ImageSearchResults) in
                 try JSONDecoder().decode(ImageSearchResults.self, from: response.data)
@@ -27,23 +30,30 @@ class ImageSearchAPI {
             }
         return response
     }
+}
+
+enum ImageRequest: RequestConvertible {
+    case search(query: String)
+    case downloadImage(path: String)
     
-    enum DownloadImageError: Swift.Error {
-        case invalid
-    }
+    static var baseUrl: URLStringConvertible? = nil
+    static var headers: [String : String] = [:]
     
-    static func downloadImage(_ image: ImageInfo) -> Promise<UIImage> {
-        let request = Request.get(image.imageUrl)
-        let promise = Malibu.request(request)
-            .validate()
-            .thenInBackground { (response) -> UIImage in
-                guard let image = UIImage(data: response.data) else {
-                    throw DownloadImageError.invalid
-                }
-                return image
+    var request: Request {
+        switch self {
+        case .search(query: let query):
+            var parameters: [String: String] = [
+                "format": "json",
+                "nojsoncallback": "1",
+                "tag_mode": "all"
+            ]
+            if !query.isEmpty {
+                parameters["tags"] = query.replacingOccurrences(of: " ", with: ",")
             }
-        
-        return promise
+            return Request.get("https://api.flickr.com/services/feeds/photos_public.gne", parameters: parameters)
+        case .downloadImage(path: let path):
+            return Request.get(path)
+        }
     }
 }
 

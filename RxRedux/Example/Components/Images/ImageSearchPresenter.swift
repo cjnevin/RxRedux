@@ -37,7 +37,7 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
             .distinctUntilChanged()
             .subscribe(onNext: { (text) in
                 isLoadingSubject.onNext(true)
-                store.dispatch(ImageSearchAction.getSearchResults(text))
+                store.dispatch(ImageSearchAction.search(for: text))
             }))
         
         disposeOnViewDetach(store.observe(\AppState.imageState.results)

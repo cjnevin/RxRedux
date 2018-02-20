@@ -18,12 +18,12 @@ class ImageSearchCollectionViewCell: UICollectionViewCell, Identifiable {
     }
     
     func setImage(_ image: ImageInfo) {
-        currentRequest = ImageSearchAPI.downloadImage(image)
-        currentRequest?.done({ [weak self] (image) in
+        currentRequest = ImageApi.downloadImage(image)
+        currentRequest?.done { [weak self] (image) in
             DispatchQueue.main.async {
                 self?.imageView.image = image
             }
-        })
+        }
     }
     
     override func prepareForReuse() {

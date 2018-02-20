@@ -1,5 +1,4 @@
-import Foundation
-import When
+import UIKit
 
 enum ImageSearchRoute: RouteAction {
     case showImage
@@ -7,36 +6,38 @@ enum ImageSearchRoute: RouteAction {
 
 enum ImageSearchAction: ActionType {
     case loading
+    case loaded([ImageInfo])
+    case loadFailed(Error)
     case selected(ImageInfo)
-    case results([ImageInfo])
-    case failure(Error)
     
     static func selectImage(_ imageInfo: ImageInfo) -> ActionType {
         store.dispatch(ImageSearchAction.selected(imageInfo))
         return ImageSearchRoute.showImage
     }
     
-    static func getSearchResults(_ query: String) -> ImageSearchAction {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        ImageSearchAPI.search(for: query)
+    static func search(for query: String) -> ImageSearchAction {
+        store.dispatch(NetworkAction.loading(true))
+        ImageApi.search(for: query)
             .then { (images) in
-                store.dispatch(ImageSearchAction.results(images))
+                store.dispatch(ImageSearchAction.loaded(images))
             }
             .fail { (error) in
-                store.dispatch(ImageSearchAction.failure(error))
+                store.dispatch(ImageSearchAction.loadFailed(error))
             }
             .always { _ in
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                store.dispatch(NetworkAction.loading(false))
             }
         return .loading
     }
 }
 
 extension Reducers {
-    static func reduce(_ state: ImageSearchState, _ action: ActionType) -> ImageSearchState {
+    static func reduce(_ state: ImageState, _ action: ActionType) -> ImageState {
         var state = state
         switch action {
-        case ImageSearchAction.results(let results):
+        case ImageSearchAction.loadFailed(_):
+            state.results = []
+        case ImageSearchAction.loaded(let results):
             state.results = results
         case ImageSearchAction.loading:
             state.results = []
@@ -49,7 +50,7 @@ extension Reducers {
     }
 }
 
-struct ImageSearchState {
+struct ImageState {
     var results: [ImageInfo]
     var selected: ImageInfo?
 }
