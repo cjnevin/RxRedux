@@ -1,6 +1,6 @@
 import UIKit
 
-extension ImageSearchViewController {
+private extension ImageSearchViewController {
     typealias Presenter = ImageSearchPresenter<ImageSearchViewController>
     
     static var defaultPresenter: Presenter {
@@ -20,7 +20,7 @@ extension ImageSearchViewController {
     }
 }
 
-extension ImageViewController {
+private extension ImageViewController {
     typealias Presenter = ImagePresenter<ImageViewController>
     
     static var defaultPresenter: Presenter {

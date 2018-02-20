@@ -1,6 +1,6 @@
 import UIKit
 
-extension CountViewController {
+private extension CountViewController {
     typealias Presenter = CountPresenter<CountViewController>
     
     static var `defaultPresenter`: Presenter {

@@ -1,6 +1,6 @@
 import UIKit
 
-extension StyleViewController {
+private extension StyleViewController {
     typealias Presenter = StylePresenter<StyleViewController>
     
     static var `defaultPresenter`: Presenter {

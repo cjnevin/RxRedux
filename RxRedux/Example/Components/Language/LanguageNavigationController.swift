@@ -1,6 +1,6 @@
 import UIKit
 
-extension LanguageViewController {
+private extension LanguageViewController {
     typealias Presenter = LanguagePresenter<LanguageViewController>
     
     static var `defaultPresenter`: Presenter {
