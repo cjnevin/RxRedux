@@ -6,21 +6,20 @@ enum ImageViewAccessibility: String {
     case scrollView
     case contentView
     case imageView
-    case title
-    case description
-    case tags
-    case author
-    case link
+    case titleLabel
+    case tagsLabel
+    case authorLabel
+    case linkButton
 }
 
 class ImageViewController: UIViewController {
     fileprivate lazy var scrollView = UIScrollView(ImageViewAccessibility.scrollView)
     fileprivate lazy var contentView = UIView(ImageViewAccessibility.contentView)
     fileprivate lazy var imageView = UIImageView(ImageViewAccessibility.imageView)
-    fileprivate lazy var titleLabel = UILabel(ImageViewAccessibility.title)
-    fileprivate lazy var tagsLabel = UILabel(ImageViewAccessibility.tags)
-    fileprivate lazy var authorLabel = UILabel(ImageViewAccessibility.author)
-    fileprivate lazy var linkButton = UIButton(ImageViewAccessibility.link)
+    fileprivate lazy var titleLabel = UILabel(ImageViewAccessibility.titleLabel)
+    fileprivate lazy var tagsLabel = UILabel(ImageViewAccessibility.tagsLabel)
+    fileprivate lazy var authorLabel = UILabel(ImageViewAccessibility.authorLabel)
+    fileprivate lazy var linkButton = UIButton(ImageViewAccessibility.linkButton)
     
     var presenter: ImagePresenter<ImageViewController>?
     

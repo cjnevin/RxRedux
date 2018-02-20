@@ -1,6 +1,6 @@
 import Malibu
 
-struct Api {
+class Api {
     let images: Networking<ImageRequest>
     
     init(images: Networking<ImageRequest>) {
