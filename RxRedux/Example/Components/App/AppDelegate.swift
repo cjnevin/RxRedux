@@ -15,6 +15,7 @@ var store = Store<AppState>(
         StyleMiddleware.create()
     ])
 
+// Used by AppReducer, avoids importing UIKit everywhere
 typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
 
 @UIApplicationMain
@@ -24,10 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let tabBarController = TabBarController()
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = tabBarController
+        window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
         store.dispatch(AppLifecycleAction.launch(launchOptions))
