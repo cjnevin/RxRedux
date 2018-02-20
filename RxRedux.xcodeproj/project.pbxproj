@@ -202,7 +202,6 @@
 				830E6F79203763FD00441057 /* Extensions */,
 				834A0EBC203AF519002A3FF1 /* Helpers */,
 				8304A1582033C07E00E8BCF1 /* Middleware */,
-				8304A1572033C07100E8BCF1 /* Redux */,
 				83B2B6C9203C98920042331B /* Routers */,
 			);
 			path = Common;
@@ -415,6 +414,25 @@
 			path = Routers;
 			sourceTree = "<group>";
 		};
+		83B2B6CE203CA10D0042331B /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				8341170220386BEA00399D2C /* Components */,
+				8304A1562033C05D00E8BCF1 /* Common */,
+				834117012038693500399D2C /* Resources */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		83B2B6CF203CA11A0042331B /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				8341170420386C9900399D2C /* Components */,
+				83C4039420375B5A00138C77 /* Common */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
 		83C4039420375B5A00138C77 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,9 +468,8 @@
 		83F9A31C2033A2A2002D4B5B /* RxRedux */ = {
 			isa = PBXGroup;
 			children = (
-				8341170220386BEA00399D2C /* Components */,
-				8304A1562033C05D00E8BCF1 /* Common */,
-				834117012038693500399D2C /* Resources */,
+				8304A1572033C07100E8BCF1 /* Redux */,
+				83B2B6CE203CA10D0042331B /* Example */,
 			);
 			path = RxRedux;
 			sourceTree = "<group>";
@@ -460,8 +477,7 @@
 		83F9A3312033A2A2002D4B5B /* RxReduxTests */ = {
 			isa = PBXGroup;
 			children = (
-				8341170420386C9900399D2C /* Components */,
-				83C4039420375B5A00138C77 /* Common */,
+				83B2B6CF203CA11A0042331B /* Example */,
 				8341170520386CB400399D2C /* Resources */,
 			);
 			path = RxReduxTests;
