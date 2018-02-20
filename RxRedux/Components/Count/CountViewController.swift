@@ -9,17 +9,14 @@ enum CountViewAccessibility: String {
 }
 
 class CountViewController: UIViewController {
-    fileprivate lazy var value = UILabel.value
-    fileprivate lazy var decrement = UIButton.decrement
-    fileprivate lazy var increment = UIButton.increment
+    lazy var value = UILabel.value
+    lazy var decrement = UIButton.decrement
+    lazy var increment = UIButton.increment
     
     var presenter: CountPresenter<CountViewController>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        edgesForExtendedLayout = .all
-        extendedLayoutIncludesOpaqueBars = false
-        navigationController?.navigationBar.isTranslucent = true
         render()
         presenter?.attachView(self)
     }
@@ -28,7 +25,7 @@ class CountViewController: UIViewController {
         presenter?.detachView()
     }
     
-    func render() {
+    private func render() {
         view.backgroundColor = .white
         
         let padding = CGFloat(20)

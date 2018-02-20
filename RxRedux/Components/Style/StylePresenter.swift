@@ -7,8 +7,8 @@ class StylePresenter<T: StyleView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(Observable
-            .combineLatest(store.observe(\.styleState.current),
-                           store.observeWithLanguageChange(\.styleState.list))
+            .combineLatest(store.uniquelyObserve(\.styleState.current),
+                           store.localizedObserve(\.styleState.list))
             .map { (args) -> [StyleCellViewModel] in
                 args.1.map { style in
                     StyleCellViewModel(style: style, isSelected: args.0 == style)
@@ -24,7 +24,7 @@ class StylePresenter<T: StyleView>: Presenter<T> {
     }
 }
 
-protocol StyleView: TitlableView, TabbableView {
+protocol StyleView: TitlableView, TabTitlableView {
     var selectedStyle: PublishSubject<StyleCellViewModel> { get }
     func setStyles(_ styles: [StyleCellViewModel])
 }

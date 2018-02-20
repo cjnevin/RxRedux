@@ -4,6 +4,12 @@
 "count.increment" = "Increment";
 "count.value" = "Count is now: %d";
 
+"image.search.title" = "Find an image";
+"image.search.tab.title" = "Search";
+"image.search.placeholder" = "Enter search term";
+
+"image.open.in.browser" = "Open in Browser";
+
 "language.title" = "Select Language";
 "language.tab.title" = "Language";
 "language.en" = "English";

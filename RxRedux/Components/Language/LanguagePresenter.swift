@@ -7,8 +7,8 @@ class LanguagePresenter<T: LanguageView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(Observable
-            .combineLatest(store.observe(\.languageState.current),
-                           store.observe(\.languageState.list))
+            .combineLatest(store.uniquelyObserve(\.languageState.current),
+                           store.uniquelyObserve(\.languageState.list))
             .map { current, list in
                 list.map { LanguageCellViewModel(language: $0, isSelected: current == $0) }
             }
@@ -22,7 +22,7 @@ class LanguagePresenter<T: LanguageView>: Presenter<T> {
     }
 }
 
-protocol LanguageView: TitlableView, TabbableView {
+protocol LanguageView: TitlableView, TabTitlableView {
     var selectedLanguage: PublishSubject<LanguageCellViewModel> { get }
     func setLanguages(_ languages: [LanguageCellViewModel])
 }

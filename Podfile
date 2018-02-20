@@ -10,12 +10,14 @@ target 'RxRedux' do
   pod 'Action'
   pod 'SnapKit'
   pod 'Localize-Swift'
+  pod 'Malibu'
 
   target 'RxReduxTests' do
     inherit! :search_paths
     # Pods for testing
     pod 'RxNimble'
     pod 'Nimble'
+    pod 'Nimble-Snapshots'
     pod 'FBSnapshotTestCase'
     pod 'KIF'
   end

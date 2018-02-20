@@ -4,6 +4,12 @@
 "count.increment" = "インクリメント";
 "count.value" = "カウントは今：%d";
 
+"image.search.title" = "画像を検索";
+"image.search.tab.title" = "サーチ";
+"image.search.placeholder" = "検索語を入力";
+
+"image.open.in.browser" = "ブラウザで開く";
+
 "language.title" = "言語を選択する";
 "language.tab.title" = "言語";
 "language.en" = "English";

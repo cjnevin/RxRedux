@@ -37,14 +37,26 @@ final class Store<StateType> {
         middlewares.append(contentsOf: middleware)
     }
     
-    func observe<T: Equatable>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
+    func observe<T>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
+        return stateSubject
+            .map { $0[keyPath: keyPath] }
+            .share(replay: 1, scope: .whileConnected)
+    }
+    
+    func observe<T>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
+        return stateSubject
+            .map { $0[keyPath: keyPath] }
+            .share(replay: 1, scope: .whileConnected)
+    }
+    
+    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
     }
     
-    func observe<T: Equatable>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
+    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged(==)

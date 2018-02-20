@@ -1,6 +1,6 @@
 import RxSwift
 
-class TabbablePresenter<T: TabbableView>: Presenter<T> {
+class LocalizableTabTitlePresenter<T: TabTitlableView>: Presenter<T> {
     private let localizationKey: String
     
     init(localizationKey: String) {
@@ -11,7 +11,7 @@ class TabbablePresenter<T: TabbableView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observe(\.languageState.current)
+            store.uniquelyObserve(\.languageState.current)
                 .map { [weak self] _ in self?.localizationKey.localized() ?? "" }
                 .subscribe(onNext: view.setTabTitle)
         )

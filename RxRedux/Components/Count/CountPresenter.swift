@@ -7,14 +7,14 @@ class CountPresenter<T: CountView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observe(\.languageState.current)
+            store.uniquelyObserve(\.languageState.current)
                 .subscribe(onNext: { (language) in
                     view.setDecrementText(CountText.decrement)
                     view.setIncrementText(CountText.increment)
                 }))
         
         disposeOnViewDetach(
-            store.observeWithLanguageChange(\.countState.counter)
+            store.localizedObserve(\.countState.counter)
                 .map { CountText.value($0) }
                 .subscribe(onNext: view.setCountText))
         
@@ -23,7 +23,7 @@ class CountPresenter<T: CountView>: Presenter<T> {
     }
 }
 
-protocol CountView: TitlableView, TabbableView {
+protocol CountView: TitlableView, TabTitlableView {
     func setCountText(_ text: String)
     func setDecrementText(_ text: String)
     func setDecrementAction(_ action: CocoaAction)
@@ -32,7 +32,6 @@ protocol CountView: TitlableView, TabbableView {
 }
 
 private enum CountText {
-    static var title: String { return "count.title".localized() }
     static var decrement: String { return "count.decrement".localized() }
     static var increment: String { return "count.increment".localized() }
     static let value: (Int) -> (String) = "count.value".localizedWithParameter

@@ -17,8 +17,8 @@ extension Reducers {
             state.current = newStyle
         case StyleAction.list(.loading):
             state.list = []
-        case StyleAction.list(.success(let newOptions)):
-            state.list = newOptions
+        case StyleAction.list(.complete(let newList)):
+            state.list = newList
         default:
             break
         }
@@ -31,17 +31,3 @@ struct StyleState {
     var list: [Style]
 }
 
-class Style: Equatable {
-    static func ==(lhs: Style, rhs: Style) -> Bool {
-        return lhs.name == rhs.name
-    }
-    
-    let name: String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
-    func apply() { }
-    func unapply() { }
-}

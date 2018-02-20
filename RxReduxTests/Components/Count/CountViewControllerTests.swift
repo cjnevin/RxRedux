@@ -1,41 +1,34 @@
-import FBSnapshotTestCase
+import Nimble
+import Nimble_Snapshots
 import KIF
 @testable import RxRedux
 
-class CountViewControllerTests: RxReduxTestCase {
-    var presenter: CountPresenter<CountViewController>!
-    var sut: CountViewController!
-    
+class CountViewControllerTests: ViewControllerTestCase {
     override func setUp() {
         super.setUp()
         recordMode = false
-        resetStore()
-        presenter = CountPresenter<CountViewController>()
-        sut = CountViewController()
-        sut.presenter = presenter
-        _ = sut.view
-        presenter.attachView(sut)
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-        resetStore()
-        sut = nil
-        presenter = nil
+        let countNavigationController = CountNavigationController()
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [countNavigationController]
+        window.rootViewController = tabBarController
     }
     
     func test_whenCountViewIsCreated_thenItAppearsAsExpected() {
-        FBSnapshotVerifyView(sut.view)
+        expectValidSnapshot()
     }
     
     func test_whenIncrementButtonIsTapped_thenCountValueIsChanged() {
         increment.tap()
-        FBSnapshotVerifyView(sut.view)
+        expectValidSnapshot()
     }
     
     func test_whenDecrementButtonIsTapped_thenCountValueIsChanged() {
         decrement.tap()
-        FBSnapshotVerifyView(sut.view)
+        expectValidSnapshot()
+    }
+    
+    func test_whenStyleIsSetToGreen_thenExpectItIsApplied() {
+        expectGreenStyle()
     }
     
     // MARK: Helpers

@@ -7,7 +7,7 @@ class CountReducerTests: XCTestCase {
     var sut: Store<CountState>!
     
     func test_whenIncrementAction_thenExpectCounterToIncrease() {
-        XCTAssertEqual(sut.state.counter, 0)
+        expect(self.sut.state.counter).to(equal(0))
         (1...5).forEach { expected in
             sut.dispatch(CountAction.increment)
             expect(self.sut.state.counter).to(equal(expected))
@@ -15,7 +15,7 @@ class CountReducerTests: XCTestCase {
     }
     
     func test_whenDecrementAction_thenExpectCounterToDecrease() {
-        XCTAssertEqual(sut.state.counter, 0)
+        expect(self.sut.state.counter).to(equal(0))
         (1...5).forEach { expected in
             sut.dispatch(CountAction.decrement)
             expect(self.sut.state.counter).to(equal(-expected))

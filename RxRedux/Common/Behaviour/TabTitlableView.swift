@@ -1,10 +1,10 @@
 import UIKit
 
-protocol TabbableView {
+protocol TabTitlableView {
     func setTabTitle(_ title: String)
 }
 
-extension TabbableView where Self: UIViewController {
+extension TabTitlableView where Self: UIViewController {
     func setTabTitle(_ title: String) {
         navigationController?.tabBarItem.title = title
     }
