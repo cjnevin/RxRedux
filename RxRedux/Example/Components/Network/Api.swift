@@ -1,7 +1,5 @@
 import Malibu
 
-var api: Api = Api(images: .init())
-
 struct Api {
     let images: Networking<ImageRequest>
     

@@ -1,6 +1,8 @@
 import UIKit
 import RxSwift
 
+var api: Api = Api(images: .init())
+
 var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
     ExternalLinkRouter()
 ])
