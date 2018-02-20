@@ -11,9 +11,13 @@ protocol Router {
 }
 
 class RoutingMiddleware<S, T: Store<S>> {
-    private var routers: [Router] = []
+    private var routers: [Router]
     
-    func add(router: Router) {
+    init(routers: [Router] = []) {
+        self.routers = routers
+    }
+    
+    func register(router: Router) {
         self.routers.append(router)
     }
     

@@ -8,7 +8,7 @@ class TabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         let imageSearch = ImageSearchNavigationController()
-        router.add(router: imageSearch)
+        router.register(router: imageSearch)
         
         viewControllers = [
             imageSearch,

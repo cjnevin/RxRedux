@@ -1,6 +1,8 @@
 import UIKit
 
-let router = RoutingMiddleware<AppState, Store<AppState>>()
+let router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
+    ExternalLinkRouter()
+])
 
 var store = Store<AppState>(
     reducer: Reducers.reduce,
@@ -21,8 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let tabBarController = TabBarController()
-        
-        router.add(router: ExternalLinkRouter())
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController

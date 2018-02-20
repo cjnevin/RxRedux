@@ -203,6 +203,7 @@
 				834A0EBC203AF519002A3FF1 /* Helpers */,
 				8304A1582033C07E00E8BCF1 /* Middleware */,
 				8304A1572033C07100E8BCF1 /* Redux */,
+				83B2B6C9203C98920042331B /* Routers */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -285,7 +286,6 @@
 			children = (
 				834117002038691F00399D2C /* App */,
 				834116FF203868F000399D2C /* Count */,
-				83B2B6C9203C98920042331B /* External */,
 				834A0EBF203B0482002A3FF1 /* Images */,
 				834117062038928B00399D2C /* Language */,
 				834117212038BC2D00399D2C /* Style */,
@@ -407,12 +407,12 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		83B2B6C9203C98920042331B /* External */ = {
+		83B2B6C9203C98920042331B /* Routers */ = {
 			isa = PBXGroup;
 			children = (
 				83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */,
 			);
-			path = External;
+			path = Routers;
 			sourceTree = "<group>";
 		};
 		83C4039420375B5A00138C77 /* Common */ = {
