@@ -27,4 +27,15 @@ class ImageSearchActionCreatorTests: ReduxTestCase {
             return
         }
     }
+    
+    func test_whenSearchActionWithNoQuery_thenExpectError() {
+        store.register(LoggingMiddleware.create())
+        expect(store.state.imageState.imagesError).to(beNil())
+        api.networking.fakeGET("https://api.flickr.com/services/feeds/photos_public.gne", response: nil, statusCode: 500)
+        store.dispatch(ImageSearchAction.search(for: ""))
+        waitUntil(timeout: 0.1) { (completion) in
+            expect(store.state.imageState.imagesError).toNot(beNil())
+            completion()
+        }
+    }
 }

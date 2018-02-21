@@ -55,7 +55,9 @@ class ImageApi {
                     }
                 }
             case .failure(let error):
-                completion(.failure(error.error))
+                DispatchQueue.main.async {
+                    completion(.failure(error.error))
+                }
             }
         }
     }
