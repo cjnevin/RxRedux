@@ -354,14 +354,8 @@
 		834117172038ABF500399D2C /* Behaviour */ = {
 			isa = PBXGroup;
 			children = (
-				8341170D203897E700399D2C /* Identifiable.swift */,
-				83B2B6CC203C9B910042331B /* LoadingView.swift */,
-				83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */,
-				83F9A3412033A3ED002D4B5B /* Presenter.swift */,
-				834117152038ABA400399D2C /* TabTitlableView.swift */,
-				8341171A2038AD6200399D2C /* LocalizableTabTitlePresenter.swift */,
-				834117132038AAD300399D2C /* TitlableView.swift */,
-				834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */,
+				83D7F6A9203D5ACA00E7D760 /* Presenter */,
+				83D7F6A8203D5ABB00E7D760 /* View */,
 			);
 			path = Behaviour;
 			sourceTree = "<group>";
@@ -471,6 +465,28 @@
 				83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		83D7F6A8203D5ABB00E7D760 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8341170D203897E700399D2C /* Identifiable.swift */,
+				83B2B6CC203C9B910042331B /* LoadingView.swift */,
+				83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */,
+				834117152038ABA400399D2C /* TabTitlableView.swift */,
+				834117132038AAD300399D2C /* TitlableView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		83D7F6A9203D5ACA00E7D760 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				83F9A3412033A3ED002D4B5B /* Presenter.swift */,
+				8341171A2038AD6200399D2C /* LocalizableTabTitlePresenter.swift */,
+				834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		83F9A3112033A2A2002D4B5B = {
