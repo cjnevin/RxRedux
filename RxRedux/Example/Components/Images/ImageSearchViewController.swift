@@ -50,8 +50,7 @@ class ImageSearchViewController: UIViewController, Searchable {
         
         view.addSubview(loadingView) { (make) in
             make.center.equalToSuperview()
-            make.width.equalTo(60)
-            make.height.equalTo(60)
+            make.width.height.equalTo(60)
         }
     }
 }
