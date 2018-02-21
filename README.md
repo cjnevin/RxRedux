@@ -124,7 +124,7 @@ The `View` implements the contract that the `Presenter` defines.
 
 The `View` is concerned with _how_ to present the data coming from the `Presenter`. This is where the `UIKit` imports are allowed and  also where we create our `NSAttributedString` objects.
 
-The `View` notifies the `Presenter` of UI interaction via `Observables` defined in the `View`'s contract.
+The `View` notifies the `Presenter` of UI interaction via `Observables` (or `Action`'s - the RxSwift kind) defined in the `View`'s contract.
 
 # Presenter<T>
 
