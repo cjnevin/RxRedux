@@ -16,17 +16,14 @@ enum ImageSearchAction: ActionType {
     }
     
     static func search(for query: String) -> ImageSearchAction {
-        store.dispatch(NetworkAction.loading(true))
-        ImageApi.search(for: query)
-            .then { (images) in
+        ImageApi.search(for: query) { result in
+            switch result {
+            case .success(let images):
                 store.dispatch(ImageSearchAction.loaded(images))
-            }
-            .fail { (error) in
+            case .failure(let error):
                 store.dispatch(ImageSearchAction.loadFailed(error))
             }
-            .always { _ in
-                store.dispatch(NetworkAction.loading(false))
-            }
+        }
         return .loading
     }
 }
@@ -35,12 +32,15 @@ extension Reducers {
     static func reduce(_ state: ImageState, _ action: ActionType) -> ImageState {
         var state = state
         switch action {
-        case ImageSearchAction.loadFailed(_):
-            state.results = []
+        case ImageSearchAction.loadFailed(let error):
+            state.images = []
+            state.imagesError = error
         case ImageSearchAction.loaded(let results):
-            state.results = results
+            state.images = results
+            state.imagesError = nil
         case ImageSearchAction.loading:
-            state.results = []
+            state.images = []
+            state.imagesError = nil
         case ImageSearchAction.selected(let imageInfo):
             state.selected = imageInfo
         default:
@@ -51,7 +51,8 @@ extension Reducers {
 }
 
 struct ImageState {
-    var results: [ImageInfo]
+    var images: [ImageInfo]
+    var imagesError: Error?
     var selected: ImageInfo?
 }
 

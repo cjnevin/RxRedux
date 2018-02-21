@@ -21,9 +21,9 @@ class ImageSearchReducerTests: XCTestCase {
     var sut: Store<ImageState>!
 
     func test_whenLoadingAction_thenExpectEmptyResults() {
-        expect(self.sut.state.results).toNot(beEmpty())
+        expect(self.sut.state.images).toNot(beEmpty())
         sut.dispatch(ImageSearchAction.loading)
-        expect(self.sut.state.results).to(beEmpty())
+        expect(self.sut.state.images).to(beEmpty())
     }
 
     func test_whenSelectedAction_thenExpectSelectedToNotBeNil() {
@@ -33,14 +33,14 @@ class ImageSearchReducerTests: XCTestCase {
     }
 
     func test_whenResultsAction_thenExpectResults() {
-        expect(self.sut.state.results).toNot(beEmpty())
+        expect(self.sut.state.images).toNot(beEmpty())
         sut.dispatch(ImageSearchAction.loaded([.fake(), .fake()]))
-        expect(self.sut.state.results.count).to(be(2))
+        expect(self.sut.state.images.count).to(be(2))
     }
 
     override func setUp() {
         super.setUp()
-        sut = Store<ImageState>(reducer: Reducers.reduce, state: ImageState(results: [.fake()], selected: nil))
+        sut = Store<ImageState>(reducer: Reducers.reduce, state: ImageState(images: [.fake()], imagesError: nil, selected: nil))
     }
 
     override func tearDown() {

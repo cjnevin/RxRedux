@@ -1,6 +1,7 @@
 import Foundation
 import Nimble
 import XCTest
+import Networking
 @testable import RxRedux
 
 class ImageRouterMock: Router {

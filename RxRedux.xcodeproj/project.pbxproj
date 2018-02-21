@@ -22,7 +22,6 @@
 		831D02B8203AB9EF00825ED1 /* StyleViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D02B7203AB9EF00825ED1 /* StyleViewControllerTests.swift */; };
 		831D02BA203ABA9400825ED1 /* StyleNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D02B9203ABA9400825ED1 /* StyleNavigationController.swift */; };
 		831D02BC203ABD4E00825ED1 /* StyleReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831D02BB203ABD4E00825ED1 /* StyleReducerTests.swift */; };
-		8320D46A203CD4AD0032AA3A /* NetworkReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320D469203CD4AD0032AA3A /* NetworkReducer.swift */; };
 		8320D46C203CD5F40032AA3A /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320D46B203CD5F40032AA3A /* Api.swift */; };
 		8320D46E203CE09E0032AA3A /* ImageSearchActionCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8320D46D203CE09E0032AA3A /* ImageSearchActionCreatorTests.swift */; };
 		834117082038929E00399D2C /* LanguageReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117072038929E00399D2C /* LanguageReducer.swift */; };
@@ -116,7 +115,6 @@
 		831D02B7203AB9EF00825ED1 /* StyleViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleViewControllerTests.swift; sourceTree = "<group>"; };
 		831D02B9203ABA9400825ED1 /* StyleNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleNavigationController.swift; sourceTree = "<group>"; };
 		831D02BB203ABD4E00825ED1 /* StyleReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleReducerTests.swift; sourceTree = "<group>"; };
-		8320D469203CD4AD0032AA3A /* NetworkReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReducer.swift; sourceTree = "<group>"; };
 		8320D46B203CD5F40032AA3A /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		8320D46D203CE09E0032AA3A /* ImageSearchActionCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchActionCreatorTests.swift; sourceTree = "<group>"; };
 		834117072038929E00399D2C /* LanguageReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageReducer.swift; sourceTree = "<group>"; };
@@ -208,6 +206,7 @@
 		8304A1562033C05D00E8BCF1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8320D468203CD49F0032AA3A /* Api */,
 				834117172038ABF500399D2C /* Behaviour */,
 				830E6F79203763FD00441057 /* Extensions */,
 				834A0EBC203AF519002A3FF1 /* Helpers */,
@@ -258,13 +257,12 @@
 			path = Style;
 			sourceTree = "<group>";
 		};
-		8320D468203CD49F0032AA3A /* Network */ = {
+		8320D468203CD49F0032AA3A /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				8320D46B203CD5F40032AA3A /* Api.swift */,
-				8320D469203CD4AD0032AA3A /* NetworkReducer.swift */,
 			);
-			path = Network;
+			path = Api;
 			sourceTree = "<group>";
 		};
 		834116FF203868F000399D2C /* Count */ = {
@@ -306,7 +304,6 @@
 				834116FF203868F000399D2C /* Count */,
 				834A0EBF203B0482002A3FF1 /* Images */,
 				834117062038928B00399D2C /* Language */,
-				8320D468203CD49F0032AA3A /* Network */,
 				834117212038BC2D00399D2C /* Style */,
 			);
 			path = Components;
@@ -749,21 +746,19 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Localize-Swift/Localize_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/Malibu/Malibu.framework",
+				"${BUILT_PRODUCTS_DIR}/Networking/Networking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/When/When.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Action.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localize_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Malibu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Networking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/When.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -828,7 +823,6 @@
 				834A0EBE203AF526002A3FF1 /* Progress.swift in Sources */,
 				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
 				8341171220389E0300399D2C /* LanguageMiddleware.swift in Sources */,
-				8320D46A203CD4AD0032AA3A /* NetworkReducer.swift in Sources */,
 				834A0ECD203C3E7D002A3FF1 /* TabBarController.swift in Sources */,
 				834A0ED3203C55F1002A3FF1 /* ImageApi.swift in Sources */,
 				834A0EC9203B54D0002A3FF1 /* ImageSearchCollectionViewCell.swift in Sources */,

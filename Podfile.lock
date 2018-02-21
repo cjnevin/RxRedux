@@ -11,8 +11,7 @@ PODS:
     - KIF/Core (= 3.6.0)
   - KIF/Core (3.6.0)
   - Localize-Swift (2.0.0)
-  - Malibu (6.1.0):
-    - When (~> 3.0)
+  - Networking (4.1.1)
   - Nimble (7.0.3)
   - Nimble-Snapshots (6.3.0):
     - Nimble-Snapshots/Core (= 6.3.0)
@@ -29,16 +28,13 @@ PODS:
     - RxSwift (~> 4.0)
   - RxSwift (4.1.1)
   - SnapKit (4.0.0)
-  - When (3.0.1):
-    - When/Core (= 3.0.1)
-  - When/Core (3.0.1)
 
 DEPENDENCIES:
   - Action
   - FBSnapshotTestCase
   - KIF
   - Localize-Swift
-  - Malibu
+  - Networking
   - Nimble
   - Nimble-Snapshots
   - RxNimble
@@ -50,7 +46,7 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   KIF: bd770edd8ce49bc7308501e4871e58a02d137be3
   Localize-Swift: c798ec9286494866f7068f85f7c71283ac5bdab4
-  Malibu: 6680701159263de2d2f452c7446448613fd0f736
+  Networking: ffde5754883907f90f9f751e183eba4a75dc4b89
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   RxBlocking: 22e7d7b86a1c0c42164a30d64f56f97128b4ffab
@@ -58,8 +54,7 @@ SPEC CHECKSUMS:
   RxNimble: e5a34bf3b18d85406fc2a6e2cbc73aa2b4a858f0
   RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
-  When: 16bfc341fe8962197765d090ee17e8e18c9ceaa1
 
-PODFILE CHECKSUM: c448e7be31fa0f67445fa476e45a53cac2daf9fa
+PODFILE CHECKSUM: 0dd7f6858ce053bc4fc2d5b141d085e1feae269e
 
 COCOAPODS: 1.4.0

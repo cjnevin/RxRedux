@@ -1,58 +1,62 @@
-import Malibu
-import When
 import UIKit
+
+enum Result<T> {
+    case success(T)
+    case failure(Error)
+}
 
 class ImageApi {
     enum DownloadImageError: Swift.Error {
         case invalid
     }
     
-    static func downloadImage(_ image: ImageInfo) -> Promise<UIImage> {
-        let response = api.images.request(.downloadImage(path: image.imageUrl))
-            .validate()
-            .thenInBackground { (response) -> UIImage in
-                guard let image = UIImage(data: response.data) else {
-                    throw DownloadImageError.invalid
-                }
-                return image
+    enum SearchError: Swift.Error {
+        case parseFailed
+    }
+    
+    static func cancelImageDownload(at path: String) {
+        api.networking.cancelGET(path)
+    }
+    
+    static func downloadImage(at path: String, completion: @escaping (Result<UIImage>) -> ()) {
+        api.networking.downloadImage(path) { (result) in
+            switch result {
+            case .success(let response):
+                completion(.success(response.image))
+            case .failure(let error):
+                completion(.failure(error.error))
+            }
         }
-        return response
     }
     
-    static func search(for query: String) -> Promise<[ImageInfo]> {
-        let response = api.images.request(.search(query: query))
-            .validate()
-            .thenInBackground { (response) -> (ImageSearchResults) in
-                try JSONDecoder().decode(ImageSearchResults.self, from: response.data)
+    static func search(for query: String, completion: @escaping (Result<[ImageInfo]>) -> ()) {
+        var parameters: [String: String] = [
+            "format": "json",
+            "nojsoncallback": "1",
+            "tag_mode": "all"
+        ]
+        if !query.isEmpty {
+            parameters["tags"] = query.replacingOccurrences(of: " ", with: ",")
+        }
+        api.networking.get("https://api.flickr.com/services/feeds/photos_public.gne", parameters: parameters) { (result) in
+            switch result {
+            case .success(let response):
+                DispatchQueue.global(qos: .background).async {
+                    do {
+                        let results = try JSONDecoder().decode(ImageSearchResults.self, from: response.data)
+                        let images = results.items.map(ImageInfo.convert)
+                        DispatchQueue.main.async {
+                            completion(.success(images))
+                        }
+                    } catch {
+                        DispatchQueue.main.async {
+                            completion(.failure(SearchError.parseFailed))
+                        }
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(error.error))
             }
-            .thenInBackground { (results) -> ([ImageInfo]) in
-                results.items.map(ImageInfo.convert)
-            }
-        return response
-    }
-}
-
-enum ImageRequest: RequestConvertible {
-    case search(query: String)
-    case downloadImage(path: String)
-    
-    static var baseUrl: URLStringConvertible? = nil
-    static var headers: [String : String] = [:]
-    
-    var request: Request {
-        switch self {
-        case .search(query: let query):
-            var parameters: [String: String] = [
-                "format": "json",
-                "nojsoncallback": "1",
-                "tag_mode": "all"
-            ]
-            if !query.isEmpty {
-                parameters["tags"] = query.replacingOccurrences(of: " ", with: ",")
-            }
-            return Request.get("https://api.flickr.com/services/feeds/photos_public.gne", parameters: parameters)
-        case .downloadImage(path: let path):
-            return Request.get(path)
         }
     }
 }

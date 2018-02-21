@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 
-var api: Api = Api(images: .init())
+var api: Api = Api()
 
 var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
     ExternalLinkRouter()
@@ -32,13 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         store.dispatch(AppLifecycleAction.launch(launchOptions))
-        
-        store.uniquelyObserve(\.networkState.isLoading)
-            .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
-            .subscribe(onNext: { (isLoading) in
-                application.isNetworkActivityIndicatorVisible = isLoading
-            })
-            .disposed(by: disposeBag)
         
         return true
     }

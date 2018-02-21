@@ -82,19 +82,18 @@ class ImageViewController: UIViewController {
 
 extension ImageViewController: ImageView {
     func setImageInfo(_ imageInfo: ImageInfo) {
-        ImageApi.downloadImage(imageInfo)
-            .done { [weak self] (image) in
-                DispatchQueue.main.async {
-                    guard let `self` = self else {
-                        return
-                    }
-                    let screenWidth = UIScreen.main.bounds.width
-                    let adjustedHeight = screenWidth * (image.size.height / image.size.width)
-                    self.imageView.image = image
-                    self.imageView.snp.updateConstraints ({ (make) in
-                        make.height.equalTo(adjustedHeight)
-                    })
+        ImageApi.downloadImage(at: imageInfo.imageUrl) { [weak self] (result) in
+            if case .success(let image) = result {
+                guard let `self` = self else {
+                    return
                 }
+                let screenWidth = UIScreen.main.bounds.width
+                let adjustedHeight = screenWidth * (image.size.height / image.size.width)
+                self.imageView.image = image
+                self.imageView.snp.updateConstraints ({ (make) in
+                    make.height.equalTo(adjustedHeight)
+                })
+            }
         }
         
         titleLabel.text = imageInfo.title

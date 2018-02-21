@@ -1,5 +1,4 @@
 import UIKit
-import When
 
 enum ImageSearchCellAccessibility: String {
     case title
@@ -8,7 +7,7 @@ enum ImageSearchCellAccessibility: String {
 
 class ImageSearchCollectionViewCell: UICollectionViewCell, Identifiable {
     private lazy var imageView = UIImageView.make()
-    private var currentRequest: Promise<UIImage>?
+    private var currentPath: String?
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
@@ -18,9 +17,9 @@ class ImageSearchCollectionViewCell: UICollectionViewCell, Identifiable {
     }
     
     func setImage(_ image: ImageInfo) {
-        currentRequest = ImageApi.downloadImage(image)
-        currentRequest?.done { [weak self] (image) in
-            DispatchQueue.main.async {
+        currentPath = image.imageUrl
+        ImageApi.downloadImage(at: image.imageUrl) { [weak self] (result) in
+            if case .success(let image) = result {
                 self?.imageView.image = image
             }
         }
@@ -28,7 +27,9 @@ class ImageSearchCollectionViewCell: UICollectionViewCell, Identifiable {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        currentRequest?.cancel()
+        if let currentPath = currentPath {
+            ImageApi.cancelImageDownload(at: currentPath)
+        }
         imageView.image = nil
     }
 }

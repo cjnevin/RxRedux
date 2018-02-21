@@ -10,7 +10,7 @@ target 'RxRedux' do
   pod 'Action'
   pod 'SnapKit'
   pod 'Localize-Swift'
-  pod 'Malibu'
+  pod 'Networking'
 
   target 'RxReduxTests' do
     inherit! :search_paths

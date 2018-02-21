@@ -40,9 +40,9 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
                 store.dispatch(ImageSearchAction.search(for: text))
             }))
         
-        disposeOnViewDetach(store.observe(\AppState.imageState.results)
-            .subscribe(onNext: { (results) in
-                view.setImages(results)
+        disposeOnViewDetach(store.observe(\AppState.imageState.images)
+            .subscribe(onNext: { (images) in
+                view.setImages(images)
                 isLoadingSubject.onNext(false)
             }))
     }
