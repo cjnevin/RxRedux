@@ -4,7 +4,6 @@ import Nimble_Snapshots
 
 private func resetStore() {
     store = Store<AppState>(
-        reducer: Reducers.reduce,
         state: AppState.initialState,
         middlewares: [
             StyleMiddleware.create(manager: StyleManager(userDefaults: MockUserDefaults()))

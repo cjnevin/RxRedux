@@ -1,19 +1,64 @@
 import Foundation
 
-struct SignInState {
-    var signedInUser: SignedInUser?
+struct SignInState: StateType {
+    private(set) var signedInUser: SignedInUser?
     
-    var isSignedIn = false
-    var isSigningIn = false
-    var isSigningOut = false
+    private(set) var isSignedIn = false
+    private(set) var isSigningIn = false
+    private(set) var isSigningOut = false
     
-    var serverError: String?
+    private(set) var serverError: String?
     
-    var email: String?
-    var emailEditedOnce = false
+    private(set) var email: String?
+    private(set) var emailEditedOnce = false
     
-    var password: String?
-    var passwordEditedOnce = false
+    private(set) var password: String?
+    private(set) var passwordEditedOnce = false
+
+    mutating func reduce(_ action: ActionType) {
+        switch action {
+        case let signInAction as SignInFormAction:
+            reduce(signInAction)
+        case let signOutAction as SignOutFormAction:
+            reduce(signOutAction)
+        default:
+            break
+        }
+    }
+    
+    private mutating func reduce(_ action: SignInFormAction) {
+        switch action {
+        case .request:
+            isSigningIn = true
+            serverError = nil
+        case .handleSuccess(let user):
+            signedInUser = user
+            isSigningIn = false
+            isSignedIn = true
+        case .handleError(let error):
+            isSigningIn = false
+            serverError = error.localizedDescription
+        case .touchEmail:
+            emailEditedOnce = true
+        case .updateEmail(let newEmail):
+            email = newEmail
+        case .touchPassword:
+            passwordEditedOnce = true
+        case .updatePassword(let newPassword):
+            password = newPassword
+        }
+    }
+    
+    private mutating func reduce(_ action: SignOutFormAction) {
+        switch action {
+        case .request:
+            isSigningOut = true
+        case .handleSuccess:
+            signedInUser = nil
+            isSignedIn = false
+            isSigningOut = false
+        }
+    }
 }
 
 extension SignInState {

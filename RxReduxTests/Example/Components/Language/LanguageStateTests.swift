@@ -19,7 +19,7 @@ class LanguageManagerMock: LanguageManaging {
     }
 }
 
-class LanguageReducerTests: XCTestCase {
+class LanguageStateTests: XCTestCase {
     var sut: Store<LanguageState>!
     var manager: LanguageManagerMock!
     
@@ -37,7 +37,7 @@ class LanguageReducerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = Store<LanguageState>(reducer: Reducers.reduce, state: LanguageState(current: "", list: []))
+        sut = Store<LanguageState>(state: LanguageState(current: "", list: []))
         manager = LanguageManagerMock()
         sut.register(LanguageMiddleware.create(manager: manager))
     }

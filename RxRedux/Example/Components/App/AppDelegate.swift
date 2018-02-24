@@ -8,7 +8,6 @@ var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
 ])
 
 var store = Store<AppState>(
-    reducer: Reducers.reduce,
     state: AppState.initialState,
     middlewares: [
         LanguageMiddleware.create(),

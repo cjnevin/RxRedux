@@ -1,16 +1,14 @@
 import RxSwift
 
-final class Store<StateType> {
-    typealias MiddlewareType = Middleware<Store<StateType>>
+final class Store<State: StateType> {
+    typealias MiddlewareType = Middleware<Store<State>>
     
-    private(set) var state: StateType
+    private(set) var state: State
     
-    private let reducer: Reducer<StateType>
-    private let stateSubject: BehaviorSubject<StateType>
+    private let stateSubject: BehaviorSubject<State>
     private var middlewares: [MiddlewareType]
     
-    init(reducer: @escaping Reducer<StateType>, state: StateType, middlewares: [MiddlewareType] = []) {
-        self.reducer = reducer
+    init(state: State, middlewares: [MiddlewareType] = []) {
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)
         self.middlewares = middlewares
@@ -28,7 +26,7 @@ final class Store<StateType> {
     }
     
     private func dispatchInternal(_ action: ActionType) {
-        state = reducer(state, action)
+        state.reduce(action)
         stateSubject.onNext(state)
     }
     
@@ -37,26 +35,26 @@ final class Store<StateType> {
         middlewares.append(contentsOf: middleware)
     }
     
-    func observe<T>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
+    func observe<T>(_ keyPath: KeyPath<State, T>) -> Observable<T> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .share(replay: 1, scope: .whileConnected)
     }
     
-    func observe<T>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
+    func observe<T>(_ keyPath: KeyPath<State, [T]>) -> Observable<[T]> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .share(replay: 1, scope: .whileConnected)
     }
     
-    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<StateType, T>) -> Observable<T> {
+    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<State, T>) -> Observable<T> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged()
             .share(replay: 1, scope: .whileConnected)
     }
     
-    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<StateType, [T]>) -> Observable<[T]> {
+    func uniquelyObserve<T: Equatable>(_ keyPath: KeyPath<State, [T]>) -> Observable<[T]> {
         return stateSubject
             .map { $0[keyPath: keyPath] }
             .distinctUntilChanged(==)

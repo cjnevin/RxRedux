@@ -1,5 +1,27 @@
 import UIKit
 
+struct ImageState: StateType {
+    private(set) var images: [ImageInfo]
+    private(set) var imagesError: Error?
+    private(set) var selected: ImageInfo?
+
+    mutating func reduce(_ action: ActionType) {
+        switch action {
+        case ImageSearchAction.loadFailed(let error):
+            imagesError = error
+        case ImageSearchAction.loaded(let results):
+            images = results
+        case ImageSearchAction.loading:
+            images = []
+            imagesError = nil
+        case ImageSearchAction.selected(let imageInfo):
+            selected = imageInfo
+        default:
+            break
+        }
+    }
+}
+
 enum ImageSearchRoute: RouteAction {
     case showImage
 }
@@ -9,12 +31,12 @@ enum ImageSearchAction: ActionType {
     case loaded([ImageInfo])
     case loadFailed(Error)
     case selected(ImageInfo)
-    
+
     static func selectImage(_ imageInfo: ImageInfo) -> ActionType {
         store.dispatch(ImageSearchAction.selected(imageInfo))
         return ImageSearchRoute.showImage
     }
-    
+
     static func search(for query: String) -> ImageSearchAction {
         ImageApi.search(for: query) { result in
             switch result {
@@ -26,34 +48,6 @@ enum ImageSearchAction: ActionType {
         }
         return .loading
     }
-}
-
-extension Reducers {
-    static func reduce(_ state: ImageState, _ action: ActionType) -> ImageState {
-        var state = state
-        switch action {
-        case ImageSearchAction.loadFailed(let error):
-            state.images = []
-            state.imagesError = error
-        case ImageSearchAction.loaded(let results):
-            state.images = results
-            state.imagesError = nil
-        case ImageSearchAction.loading:
-            state.images = []
-            state.imagesError = nil
-        case ImageSearchAction.selected(let imageInfo):
-            state.selected = imageInfo
-        default:
-            break
-        }
-        return state
-    }
-}
-
-struct ImageState {
-    var images: [ImageInfo]
-    var imagesError: Error?
-    var selected: ImageInfo?
 }
 
 struct ImageInfo {

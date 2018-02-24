@@ -9,24 +9,20 @@ enum LanguageAction: ActionType {
     }
 }
 
-extension Reducers {
-    static func reduce(_ state: LanguageState, _ action: ActionType) -> LanguageState {
-        var state = state
+struct LanguageState: StateType {
+    private(set) var current: String
+    private(set) var list: [String]
+    
+    mutating func reduce(_ action: ActionType) {
         switch action {
         case LanguageAction.set(let newLanguage):
-            state.current = newLanguage
+            current = newLanguage
         case LanguageAction.list(.loading):
-            state.list = []
+            list = []
         case LanguageAction.list(.complete(let newList)):
-            state.list = newList
+            list = newList
         default:
             break
         }
-        return state
     }
-}
-
-struct LanguageState {
-    var current: String
-    var list: [String]
 }

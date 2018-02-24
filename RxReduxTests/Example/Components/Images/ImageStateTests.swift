@@ -17,7 +17,7 @@ extension ImageInfo {
     }
 }
 
-class ImageSearchReducerTests: XCTestCase {
+class ImageStateTests: XCTestCase {
     var sut: Store<ImageState>!
 
     func test_whenLoadingAction_thenExpectEmptyResults() {
@@ -40,7 +40,7 @@ class ImageSearchReducerTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = Store<ImageState>(reducer: Reducers.reduce, state: ImageState(images: [.fake()], imagesError: nil, selected: nil))
+        sut = Store<ImageState>(state: ImageState(images: [.fake()], imagesError: nil, selected: nil))
     }
 
     override func tearDown() {

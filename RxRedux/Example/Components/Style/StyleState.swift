@@ -9,25 +9,20 @@ enum StyleAction: ActionType {
     }
 }
 
-extension Reducers {
-    static func reduce(_ state: StyleState, _ action: ActionType) -> StyleState {
-        var state = state
+struct StyleState: StateType {
+    private(set) var current: Style
+    private(set) var list: [Style]
+    
+    mutating func reduce(_ action: ActionType) {
         switch action {
         case StyleAction.set(let newStyle):
-            state.current = newStyle
+            current = newStyle
         case StyleAction.list(.loading):
-            state.list = []
+            list = []
         case StyleAction.list(.complete(let newList)):
-            state.list = newList
+            list = newList
         default:
             break
         }
-        return state
     }
 }
-
-struct StyleState {
-    var current: Style
-    var list: [Style]
-}
-

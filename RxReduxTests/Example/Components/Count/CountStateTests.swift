@@ -3,7 +3,7 @@ import Nimble
 import XCTest
 @testable import RxRedux
 
-class CountReducerTests: XCTestCase {
+class CountStateTests: XCTestCase {
     var sut: Store<CountState>!
     
     func test_whenIncrementAction_thenExpectCounterToIncrease() {
@@ -24,7 +24,7 @@ class CountReducerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        sut = Store<CountState>(reducer: Reducers.reduce, state: CountState(counter: 0))
+        sut = Store<CountState>(state: CountState(counter: 0))
     }
     
     override func tearDown() {

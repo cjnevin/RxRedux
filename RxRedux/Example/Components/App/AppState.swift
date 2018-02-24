@@ -1,23 +1,11 @@
 import Foundation
 
-enum Reducers {
-    static func reduce(_ state: AppState, _ action: ActionType) -> AppState {
-        return AppState(
-            countState: reduce(state.countState, action),
-            imageState: reduce(state.imageState, action),
-            languageState: reduce(state.languageState, action),
-            signInState: reduce(state.signInState, action),
-            styleState: reduce(state.styleState, action)
-        )
-    }
-}
-
-struct AppState {
-    let countState: CountState
-    let imageState: ImageState
-    let languageState: LanguageState
-    let signInState: SignInState
-    let styleState: StyleState
+struct AppState: StateType {
+    private(set) var countState: CountState
+    private(set) var imageState: ImageState
+    private(set) var languageState: LanguageState
+    private(set) var signInState: SignInState
+    private(set) var styleState: StyleState
     
     static var initialState: AppState {
         return AppState(
@@ -26,6 +14,14 @@ struct AppState {
             languageState: LanguageState(current: "", list: []),
             signInState: SignInState(),
             styleState: StyleState(current: Style(name: ""), list: []))
+    }
+    
+    mutating func reduce(_ action: ActionType) {
+        countState.reduce(action)
+        imageState.reduce(action)
+        languageState.reduce(action)
+        signInState.reduce(action)
+        styleState.reduce(action)
     }
 }
 
