@@ -50,7 +50,7 @@ class StyleTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: StyleTableViewCell = tableView.dequeueReusableCell(at: indexPath)
+        let cell: StyleTableViewCell = tableView[indexPath]
         cell.setStyle(styles[indexPath.row])
         return cell
     }

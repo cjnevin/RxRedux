@@ -11,6 +11,10 @@ extension Identifiable {
 }
 
 extension UICollectionView {
+    subscript<T: Identifiable>(_ indexPath: IndexPath) -> T {
+        return dequeueReusableCell(at: indexPath)
+    }
+    
     func register(_ cellClass: Identifiable.Type) {
         register(cellClass, forCellWithReuseIdentifier: cellClass.identifier)
     }
@@ -21,6 +25,10 @@ extension UICollectionView {
 }
 
 extension UITableView {
+    subscript<T: Identifiable>(_ indexPath: IndexPath) -> T {
+        return dequeueReusableCell(at: indexPath)
+    }
+    
     func register(_ cellClass: Identifiable.Type) {
         register(cellClass, forCellReuseIdentifier: cellClass.identifier)
     }

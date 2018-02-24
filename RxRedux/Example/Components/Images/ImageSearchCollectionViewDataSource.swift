@@ -22,7 +22,7 @@ class ImageSearchCollectionViewDataSource: NSObject, UICollectionViewDataSource 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: ImageSearchCollectionViewCell = collectionView.dequeueReusableCell(at: indexPath)
+        let cell: ImageSearchCollectionViewCell = collectionView[indexPath]
         cell.setImage(images[indexPath.row])
         return cell
     }

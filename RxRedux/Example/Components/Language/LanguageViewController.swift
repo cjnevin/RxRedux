@@ -50,7 +50,7 @@ class LanguageTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: LanguageTableViewCell = tableView.dequeueReusableCell(at: indexPath)
+        let cell: LanguageTableViewCell = tableView[indexPath]
         cell.setLanguage(languages[indexPath.row])
         return cell
     }
