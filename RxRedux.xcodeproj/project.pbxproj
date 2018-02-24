@@ -72,6 +72,17 @@
 		83C4038D20370DB900138C77 /* CountReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038C20370DB900138C77 /* CountReducer.swift */; };
 		83C4038F2037316D00138C77 /* XCTestCase+KIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */; };
 		83C4039320374B6300138C77 /* ViewControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4039220374B6300138C77 /* ViewControllerTestCase.swift */; };
+		83D7F6B520418D9C00E7D760 /* SignInActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6AF20418D9C00E7D760 /* SignInActions.swift */; };
+		83D7F6B620418D9C00E7D760 /* SignInState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B020418D9C00E7D760 /* SignInState.swift */; };
+		83D7F6B720418D9C00E7D760 /* SignInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B120418D9C00E7D760 /* SignInError.swift */; };
+		83D7F6B820418D9C00E7D760 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B220418D9C00E7D760 /* SignInViewModel.swift */; };
+		83D7F6B920418D9C00E7D760 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B320418D9C00E7D760 /* SignInViewController.swift */; };
+		83D7F6BA20418D9C00E7D760 /* SignInReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B420418D9C00E7D760 /* SignInReducer.swift */; };
+		83D7F6C020418F5C00E7D760 /* SignedInUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6BF20418F5C00E7D760 /* SignedInUser.swift */; };
+		83D7F6C22041C1E900E7D760 /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6C12041C1E900E7D760 /* SignInNavigationController.swift */; };
+		83D7F6C82041CAEB00E7D760 /* LocalizableTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6C72041CAEB00E7D760 /* LocalizableTitle.swift */; };
+		83D7F6CA2041CE1200E7D760 /* LocalizablePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6C92041CE1200E7D760 /* LocalizablePlaceholder.swift */; };
+		83D7F6CC2041D36100E7D760 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6CB2041D36100E7D760 /* Localizable.swift */; };
 		83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */; };
 		83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A31F2033A2A2002D4B5B /* CountViewController.swift */; };
 		83F9A3252033A2A2002D4B5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3242033A2A2002D4B5B /* Assets.xcassets */; };
@@ -167,6 +178,17 @@
 		83C4038C20370DB900138C77 /* CountReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountReducer.swift; sourceTree = "<group>"; };
 		83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+KIF.swift"; sourceTree = "<group>"; };
 		83C4039220374B6300138C77 /* ViewControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTestCase.swift; sourceTree = "<group>"; };
+		83D7F6AF20418D9C00E7D760 /* SignInActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInActions.swift; sourceTree = "<group>"; };
+		83D7F6B020418D9C00E7D760 /* SignInState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInState.swift; sourceTree = "<group>"; };
+		83D7F6B120418D9C00E7D760 /* SignInError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInError.swift; sourceTree = "<group>"; };
+		83D7F6B220418D9C00E7D760 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		83D7F6B320418D9C00E7D760 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		83D7F6B420418D9C00E7D760 /* SignInReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInReducer.swift; sourceTree = "<group>"; };
+		83D7F6BF20418F5C00E7D760 /* SignedInUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignedInUser.swift; sourceTree = "<group>"; };
+		83D7F6C12041C1E900E7D760 /* SignInNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationController.swift; sourceTree = "<group>"; };
+		83D7F6C72041CAEB00E7D760 /* LocalizableTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableTitle.swift; sourceTree = "<group>"; };
+		83D7F6C92041CE1200E7D760 /* LocalizablePlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizablePlaceholder.swift; sourceTree = "<group>"; };
+		83D7F6CB2041D36100E7D760 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		83F9A31A2033A2A2002D4B5B /* RxRedux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxRedux.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F9A31F2033A2A2002D4B5B /* CountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +326,7 @@
 				834116FF203868F000399D2C /* Count */,
 				834A0EBF203B0482002A3FF1 /* Images */,
 				834117062038928B00399D2C /* Language */,
+				83D7F6AE20418D9C00E7D760 /* SignIn */,
 				834117212038BC2D00399D2C /* Style */,
 			);
 			path = Components;
@@ -471,6 +494,9 @@
 			isa = PBXGroup;
 			children = (
 				8341170D203897E700399D2C /* Identifiable.swift */,
+				83D7F6CB2041D36100E7D760 /* Localizable.swift */,
+				83D7F6C92041CE1200E7D760 /* LocalizablePlaceholder.swift */,
+				83D7F6C72041CAEB00E7D760 /* LocalizableTitle.swift */,
 				83B2B6CC203C9B910042331B /* LoadingView.swift */,
 				83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */,
 				834117152038ABA400399D2C /* TabTitlableView.swift */,
@@ -487,6 +513,21 @@
 				834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		83D7F6AE20418D9C00E7D760 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				83D7F6BF20418F5C00E7D760 /* SignedInUser.swift */,
+				83D7F6AF20418D9C00E7D760 /* SignInActions.swift */,
+				83D7F6B020418D9C00E7D760 /* SignInState.swift */,
+				83D7F6B120418D9C00E7D760 /* SignInError.swift */,
+				83D7F6B220418D9C00E7D760 /* SignInViewModel.swift */,
+				83D7F6B320418D9C00E7D760 /* SignInViewController.swift */,
+				83D7F6C12041C1E900E7D760 /* SignInNavigationController.swift */,
+				83D7F6B420418D9C00E7D760 /* SignInReducer.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		83F9A3112033A2A2002D4B5B = {
@@ -788,6 +829,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D7F6C22041C1E900E7D760 /* SignInNavigationController.swift in Sources */,
 				834A0EDB203C685F002A3FF1 /* UIColor+RGB.swift in Sources */,
 				8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */,
 				834A0ED7203C6823002A3FF1 /* GreenStyle.swift in Sources */,
@@ -795,6 +837,8 @@
 				834117142038AAD300399D2C /* TitlableView.swift in Sources */,
 				834117232038BC2D00399D2C /* StyleViewController.swift in Sources */,
 				83B2B6C6203C92F50042331B /* ExternalLinkRouter.swift in Sources */,
+				83D7F6B520418D9C00E7D760 /* SignInActions.swift in Sources */,
+				83D7F6B920418D9C00E7D760 /* SignInViewController.swift in Sources */,
 				834117252038BC8B00399D2C /* StylePresenter.swift in Sources */,
 				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
 				834A0EDD203C6878002A3FF1 /* Style.swift in Sources */,
@@ -802,10 +846,12 @@
 				834117162038ABA400399D2C /* TabTitlableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				834A0EE3203C6EAF002A3FF1 /* RoutingMiddleware.swift in Sources */,
+				83D7F6BA20418D9C00E7D760 /* SignInReducer.swift in Sources */,
 				834A0EC3203B05BA002A3FF1 /* ImageSearchNavigationController.swift in Sources */,
 				831D02BA203ABA9400825ED1 /* StyleNavigationController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountReducer.swift in Sources */,
 				8341172F2038DB6400399D2C /* Store+Language.swift in Sources */,
+				83D7F6CC2041D36100E7D760 /* Localizable.swift in Sources */,
 				83F9A3402033A2E1002D4B5B /* Reducer.swift in Sources */,
 				834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */,
 				831D02B5203AAAE200825ED1 /* LanguageNavigationController.swift in Sources */,
@@ -820,13 +866,16 @@
 				834A0EC7203B189B002A3FF1 /* ImageSearchReducer.swift in Sources */,
 				8341170A2038955C00399D2C /* LanguagePresenter.swift in Sources */,
 				834A0EE7203C7174002A3FF1 /* ImagePresenter.swift in Sources */,
+				83D7F6B820418D9C00E7D760 /* SignInViewModel.swift in Sources */,
 				834A0EDF203C68B2002A3FF1 /* StyleManager.swift in Sources */,
 				83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */,
 				83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */,
 				8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */,
+				83D7F6C020418F5C00E7D760 /* SignedInUser.swift in Sources */,
 				83B2B6CD203C9B910042331B /* LoadingView.swift in Sources */,
 				8341170E203897E700399D2C /* Identifiable.swift in Sources */,
 				834A0EE5203C716C002A3FF1 /* ImageViewController.swift in Sources */,
+				83D7F6C82041CAEB00E7D760 /* LocalizableTitle.swift in Sources */,
 				8341171B2038AD6200399D2C /* LocalizableTabTitlePresenter.swift in Sources */,
 				83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */,
 				831D02B1203AA4E500825ED1 /* CountNavigationController.swift in Sources */,
@@ -835,9 +884,12 @@
 				834A0EBB203AC25F002A3FF1 /* StyleMiddleware.swift in Sources */,
 				830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */,
 				834A0EC5203B05F5002A3FF1 /* ImageSearchPresenter.swift in Sources */,
+				83D7F6B720418D9C00E7D760 /* SignInError.swift in Sources */,
 				8341170C2038971500399D2C /* LanguageViewController.swift in Sources */,
+				83D7F6CA2041CE1200E7D760 /* LocalizablePlaceholder.swift in Sources */,
 				834A0EBE203AF526002A3FF1 /* Progress.swift in Sources */,
 				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
+				83D7F6B620418D9C00E7D760 /* SignInState.swift in Sources */,
 				8341171220389E0300399D2C /* LanguageMiddleware.swift in Sources */,
 				834A0ECD203C3E7D002A3FF1 /* TabBarController.swift in Sources */,
 				834A0ED3203C55F1002A3FF1 /* ImageApi.swift in Sources */,

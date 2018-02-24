@@ -24,3 +24,20 @@ class Style: Equatable {
         }
     }
 }
+
+extension Style {
+    func applyCommonStyling() {
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+        UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = UIColor.clear
+        
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().titleTextAttributes =
+            [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().largeTitleTextAttributes =
+            [NSAttributedStringKey.foregroundColor: UIColor.white]
+        
+        UITabBar.appearance().isTranslucent = false
+    }
+}

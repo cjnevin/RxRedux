@@ -20,3 +20,11 @@
 "style.title" = "Sélectionnez un style";
 "style.blue" = "Bleu nuit";
 "style.green" = "Vert émeraude";
+
+"sign.in.title" = "Connexion";
+"sign.in.tab.title" = "Connexion";
+"sign.in.button" = "Connexion";
+"sign.in.password.placeholder" = "Mot de passe";
+"sign.in.password.invalid" = "Mot de passe trop court";
+"sign.in.email.invalid" = "Le courrier électronique est dans un format invalide";
+"sign.in.email.placeholder" = "Email";

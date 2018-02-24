@@ -6,6 +6,7 @@ enum Reducers {
             countState: reduce(state.countState, action),
             imageState: reduce(state.imageState, action),
             languageState: reduce(state.languageState, action),
+            signInState: reduce(state.signInState, action),
             styleState: reduce(state.styleState, action)
         )
     }
@@ -15,6 +16,7 @@ struct AppState {
     let countState: CountState
     let imageState: ImageState
     let languageState: LanguageState
+    let signInState: SignInState
     let styleState: StyleState
     
     static var initialState: AppState {
@@ -22,6 +24,7 @@ struct AppState {
             countState: CountState(counter: 0),
             imageState: ImageState(images: [], imagesError: nil, selected: nil),
             languageState: LanguageState(current: "", list: []),
+            signInState: SignInState(),
             styleState: StyleState(current: Style(name: ""), list: []))
     }
 }

@@ -14,7 +14,8 @@ class TabBarController: UITabBarController {
             imageSearch,
             CountNavigationController(),
             StyleNavigationController(),
-            LanguageNavigationController()]
+            LanguageNavigationController(),
+            SignInNavigationController()]
         delegate = self
     }
     

@@ -20,3 +20,11 @@
 "style.title" = "スタイルを選択";
 "style.blue" = "ミッドナイトブルー";
 "style.green" = "エメラルドグリーン";
+
+"sign.in.title" = "サインイン";
+"sign.in.tab.title" = "サインイン";
+"sign.in.button" = "サインイン";
+"sign.in.password.placeholder" = "パスワード";
+"sign.in.password.invalid" = "パスワードが短すぎます";
+"sign.in.email.invalid" = "メールは無効な形式です";
+"sign.in.email.placeholder" = "Eメール";

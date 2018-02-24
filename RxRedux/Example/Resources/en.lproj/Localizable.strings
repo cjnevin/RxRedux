@@ -20,3 +20,14 @@
 "style.title" = "Select Style";
 "style.blue" = "Midnight";
 "style.green" = "Emerald";
+
+"sign.in.title" = "Sign In";
+"sign.in.tab.title" = "Sign In";
+"sign.in.button" = "Sign In";
+"sign.in.password.placeholder" = "Password";
+"sign.in.password.invalid" = "Password too short";
+"sign.in.email.invalid" = "Email is in an invalid format";
+"sign.in.email.placeholder" = "Email";
+
+"sign.out.title" = "Account";
+"sign.out.button" = "Sign Out";
