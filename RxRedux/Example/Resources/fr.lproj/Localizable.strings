@@ -28,3 +28,6 @@
 "sign.in.password.invalid" = "Mot de passe trop court";
 "sign.in.email.invalid" = "Le courrier électronique est dans un format invalide";
 "sign.in.email.placeholder" = "Email";
+
+"sign.out.title" = "Compte";
+"sign.out.button" = "Déconnexion";

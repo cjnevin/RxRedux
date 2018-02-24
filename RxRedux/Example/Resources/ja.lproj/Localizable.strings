@@ -28,3 +28,6 @@
 "sign.in.password.invalid" = "パスワードが短すぎます";
 "sign.in.email.invalid" = "メールは無効な形式です";
 "sign.in.email.placeholder" = "Eメール";
+
+"sign.out.title" = "アカウント";
+"sign.out.button" = "サインアウト";
