@@ -74,15 +74,19 @@ func toggleSwitch(_ on: Bool) -> ActionType {
 
 **Remember:** `Actions` only describe the fact that something happened, but don't describe _how_ the application's `State` changes.
 
+Each `State` object must define a mutating function as shown below:
+
 ```
-func reduce(_ state: State, action: ActionType) -> State {
-    var state = state
-    switch action {
-    case CountAction.increment: state.counter += 1
-    case CountAction.decrement: state.counter -= 1
-    default: break
+struct CountState: StateType {
+    var counter: Int = 0
+
+    mutating func reduce(_ action: ActionType) {
+        switch action {
+        case CountAction.increment: counter += 1
+        case CountAction.decrement: counter -= 1
+        default: break
+        }
     }
-    return state
 }
 ```
 
@@ -99,12 +103,6 @@ The `State` is a representation of state for a given context. The context could 
 The `State` object is immutable, it is a representation of the _current_ state.
 
 In Redux there is only one application `State`. However, inside that object there might be other `SubState` objects that are updated by `Reducers`.
-
-```
-struct State {
-    var counter: Int
-}
-```
 
 # Store
 
