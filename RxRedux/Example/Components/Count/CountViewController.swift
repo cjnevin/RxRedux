@@ -29,7 +29,7 @@ class CountViewController: UIViewController {
         view.backgroundColor = .white
         
         let padding = CGFloat(20)
-        let buttonHeight = CGFloat(40)
+        let buttonHeight = CGFloat(60)
         
         view.addSubview(value) { make in
             make.leading.trailing.top.equalTo(view.safeAreaLayoutGuide).inset(padding)

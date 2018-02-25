@@ -128,7 +128,7 @@ extension SignInViewController {
         
         button.snp.makeConstraints { (make) in
             make.top.equalTo(containerView.snp.bottom)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.height.equalTo(60)
         }
     }
