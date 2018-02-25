@@ -10,6 +10,7 @@ class ImagePresenter<T: ImageView>: Presenter<T> {
             .observe(\.imageState.selected)
             .filter { $0 != nil }
             .map { $0! }
+            .distinctUntilChanged()
             .subscribe(onNext: { imageInfo in
                 view.setTitle(ImageText.formatTitle(imageInfo.title))
                 view.setImageInfo(imageInfo)

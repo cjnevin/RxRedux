@@ -50,7 +50,18 @@ enum ImageSearchAction: ActionType {
     }
 }
 
-struct ImageInfo: Codable {
+struct ImageInfo: Codable, Equatable {
+    static func ==(lhs: ImageInfo, rhs: ImageInfo) -> Bool {
+        return lhs.author == rhs.author &&
+            lhs.description == rhs.description &&
+            lhs.title == rhs.title &&
+            lhs.link == rhs.link &&
+            lhs.imageUrl == rhs.imageUrl &&
+            lhs.tags == rhs.tags &&
+            lhs.datePublished == rhs.datePublished &&
+            lhs.dateTaken == rhs.dateTaken
+    }
+    
     let author: String
     let description: String
     let title: String
