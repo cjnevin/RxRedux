@@ -8,7 +8,7 @@ var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
 ])
 
 var store = Store<AppState>(
-    state: AppState.initialState,
+    state: AppState(),
     middlewares: [
         LanguageMiddleware.create(),
         LoggingMiddleware.create(),

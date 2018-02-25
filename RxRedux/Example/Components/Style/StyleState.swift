@@ -10,8 +10,8 @@ enum StyleAction: ActionType {
 }
 
 struct StyleState: StateType {
-    private(set) var current: Style
-    private(set) var list: [Style]
+    private(set) var current: Style = Style(name: "")
+    private(set) var list: [Style] = []
     
     mutating func reduce(_ action: ActionType) {
         switch action {

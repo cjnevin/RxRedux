@@ -11,7 +11,7 @@ class StylePresenter<T: StyleView>: Presenter<T> {
                            store.localizedObserve(\.styleState.list))
             .map { (args) -> [StyleCellViewModel] in
                 args.1.map { style in
-                    StyleCellViewModel(style: style, isSelected: args.0 == style)
+                    StyleCellViewModel(style: style, isSelected: style == args.0)
                 }
             }
             .subscribe(onNext: view.setStyles))

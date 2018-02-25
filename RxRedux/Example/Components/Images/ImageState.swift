@@ -1,9 +1,9 @@
 import UIKit
 
 struct ImageState: StateType {
-    private(set) var images: [ImageInfo]
-    private(set) var imagesError: Error?
-    private(set) var selected: ImageInfo?
+    private(set) var images: [ImageInfo] = []
+    private(set) var imagesError: Error? = nil
+    private(set) var selected: ImageInfo? = nil
 
     mutating func reduce(_ action: ActionType) {
         switch action {

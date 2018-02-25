@@ -7,13 +7,12 @@ struct AppState: StateType {
     private(set) var signInState: SignInState
     private(set) var styleState: StyleState
     
-    static var initialState: AppState {
-        return AppState(
-            countState: CountState(counter: 0),
-            imageState: ImageState(images: [], imagesError: nil, selected: nil),
-            languageState: LanguageState(current: "", list: []),
-            signInState: SignInState(),
-            styleState: StyleState(current: Style(name: ""), list: []))
+    init() {
+        countState = CountState()
+        imageState = ImageState()
+        languageState = LanguageState()
+        signInState = SignInState()
+        styleState = StyleState()
     }
     
     mutating func reduce(_ action: ActionType) {

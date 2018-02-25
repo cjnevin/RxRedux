@@ -10,8 +10,8 @@ enum LanguageAction: ActionType {
 }
 
 struct LanguageState: StateType {
-    private(set) var current: String
-    private(set) var list: [String]
+    private(set) var current: String = ""
+    private(set) var list: [String] = []
     
     mutating func reduce(_ action: ActionType) {
         switch action {
