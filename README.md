@@ -77,7 +77,7 @@ func toggleSwitch(_ on: Bool) -> ActionType {
 Each `State` object must define a mutating function as shown below:
 
 ```
-struct CounterState {
+struct CountState {
     var counter: Int = 0
 
     mutating func reduce(_ action: ActionType) {
