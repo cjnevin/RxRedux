@@ -12,15 +12,15 @@ struct SignInViewModel {
     let hideEmailError: Bool
     let hidePasswordError: Bool
     
-    let isLoading: Bool
+    let isLoadingShown: Bool
+    
     let isFormValid: Bool
-    let isSignInEnabled: Bool
-    let isSignOutEnabled: Bool
     let isSignInShown: Bool
     let isSignOutShown: Bool
     let isEmailShown: Bool
     let isPasswordShown: Bool
     let isNameShown: Bool
+    let isButtonEnabled: Bool
     
     init?(state: SignInState) {
         email = state.email ?? ""
@@ -38,14 +38,18 @@ struct SignInViewModel {
         hidePasswordError = state.isPasswordValid ? true : state.passwordEditedOnce ? false : true
         hideServerError = state.serverError == nil
         
-        isLoading = state.isSigningIn || state.isSigningOut
+        isLoadingShown = state.isSigningIn || state.isSigningOut
         isFormValid = state.isFormValid
-        isSignInEnabled = isFormValid && !state.isSigningIn
         isSignInShown = !state.isSignedIn
         isSignOutShown = state.isSignedIn
-        isSignOutEnabled = state.isSignedIn && !state.isSigningOut
         isEmailShown = !state.isSignedIn && !state.isSigningIn
         isPasswordShown = isEmailShown
         isNameShown = state.isSignedIn && !state.isSigningOut
+        
+        if isSignInShown {
+            isButtonEnabled = isFormValid && !state.isSigningIn
+        } else {
+            isButtonEnabled = state.isSignedIn && !state.isSigningOut
+        }
     }
 }

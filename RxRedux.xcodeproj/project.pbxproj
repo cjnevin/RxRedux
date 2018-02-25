@@ -61,6 +61,8 @@
 		834A0EE5203C716C002A3FF1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE4203C716C002A3FF1 /* ImageViewController.swift */; };
 		834A0EE7203C7174002A3FF1 /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */; };
 		834A0EE9203C7E09002A3FF1 /* LocalizableTitlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */; };
+		834E31E12041F90400143C21 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E02041F90400143C21 /* SignInView.swift */; };
+		834E31E32041FEE400143C21 /* SignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E22041FEE400143C21 /* SignedInView.swift */; };
 		83B2B6C6203C92F50042331B /* ExternalLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */; };
 		83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */; };
 		83B2B6CD203C9B910042331B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CC203C9B910042331B /* LoadingView.swift */; };
@@ -165,6 +167,8 @@
 		834A0EE4203C716C002A3FF1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenter.swift; sourceTree = "<group>"; };
 		834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableTitlePresenter.swift; sourceTree = "<group>"; };
+		834E31E02041F90400143C21 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		834E31E22041FEE400143C21 /* SignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInView.swift; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkRouter.swift; sourceTree = "<group>"; };
 		83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadIndicatingView.swift; sourceTree = "<group>"; };
@@ -519,10 +523,12 @@
 				83D7F6BF20418F5C00E7D760 /* SignedInUser.swift */,
 				83D7F6AF20418D9C00E7D760 /* SignInActions.swift */,
 				83D7F6B120418D9C00E7D760 /* SignInError.swift */,
-				83D7F6B220418D9C00E7D760 /* SignInViewModel.swift */,
-				83D7F6B320418D9C00E7D760 /* SignInViewController.swift */,
 				83D7F6C12041C1E900E7D760 /* SignInNavigationController.swift */,
 				83D7F6B020418D9C00E7D760 /* SignInState.swift */,
+				83D7F6B320418D9C00E7D760 /* SignInViewController.swift */,
+				83D7F6B220418D9C00E7D760 /* SignInViewModel.swift */,
+				834E31E02041F90400143C21 /* SignInView.swift */,
+				834E31E22041FEE400143C21 /* SignedInView.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -839,6 +845,7 @@
 				834117252038BC8B00399D2C /* StylePresenter.swift in Sources */,
 				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
 				834A0EDD203C6878002A3FF1 /* Style.swift in Sources */,
+				834E31E32041FEE400143C21 /* SignedInView.swift in Sources */,
 				834117292038BCE100399D2C /* StyleState.swift in Sources */,
 				834117162038ABA400399D2C /* TabTitlableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
@@ -874,6 +881,7 @@
 				83D7F6C82041CAEB00E7D760 /* LocalizableTitle.swift in Sources */,
 				8341171B2038AD6200399D2C /* LocalizableTabTitlePresenter.swift in Sources */,
 				83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */,
+				834E31E12041F90400143C21 /* SignInView.swift in Sources */,
 				831D02B1203AA4E500825ED1 /* CountNavigationController.swift in Sources */,
 				83F9A3462033A77A002D4B5B /* ActionType.swift in Sources */,
 				830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */,
