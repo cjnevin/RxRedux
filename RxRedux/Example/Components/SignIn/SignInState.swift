@@ -1,6 +1,6 @@
 import Foundation
 
-struct SignInState: StateType {
+struct SignInState: StateType, Codable {
     private(set) var signedInUser: SignedInUser?
     
     private(set) var isSignedIn = false

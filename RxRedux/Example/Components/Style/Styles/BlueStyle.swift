@@ -1,13 +1,7 @@
 import UIKit
 
-class BlueStyle: Style {
-    init() {
-        super.init(name: "Blue")
-    }
-    
-    override func apply() {
-        applyCommonStyling()
-        
+class BlueStyle: StyleApplier {
+    func apply() {
         UIButton.appearance().tintColor = UIColor.rgb(11, 42, 62)
         UIButton.appearance().setTitleColor(UIColor.rgb(174, 219, 245), for: .normal)
         UIButton.appearance().backgroundColor = UIColor.rgb(5, 32, 60)

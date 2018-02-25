@@ -10,10 +10,6 @@ class LanguageManagerMock: LanguageManaging {
     }
     
     let currentSpy = Spy("en")
-    func current() -> String {
-        return currentSpy.get()!
-    }
-    
     func set(language: String) {
         currentSpy.set(language)
     }

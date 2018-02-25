@@ -1,6 +1,6 @@
 import Foundation
 
-struct AppState: StateType {
+struct AppState: StateType, Codable {
     private(set) var countState: CountState
     private(set) var imageState: ImageState
     private(set) var languageState: LanguageState
@@ -27,6 +27,8 @@ struct AppState: StateType {
 enum AppLifecycleAction: ActionType {
     /// didFinishLaunchingWithOptions
     case launch([LaunchOptionsKey: Any]?)
+    /// didFinishLaunchingWithOptions after screens are ready
+    case ready
     /// applicationDidEnterBackground
     case background
     /// applicationWillEnterForeground

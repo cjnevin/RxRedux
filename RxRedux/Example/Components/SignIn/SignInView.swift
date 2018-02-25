@@ -151,7 +151,7 @@ class SignInView: UIView {
                 .subscribe(onNext: { [weak self] _ in
                     self?.passwordTextField.becomeFirstResponder()
                 }),
-            emailTextField.rx.text
+            emailTextField.rx.text.skip(1)
                 .subscribe(onNext: { (text) in
                     store.dispatch(SignInFormAction.updateEmail(text ?? ""))
                 })
@@ -168,7 +168,7 @@ class SignInView: UIView {
                 .subscribe(onNext: { [weak self] _ in
                     self?.passwordTextField.resignFirstResponder()
                 }),
-            passwordTextField.rx.text
+            passwordTextField.rx.text.skip(1)
                 .subscribe(onNext: { (text) in
                     store.dispatch(SignInFormAction.updatePassword(text ?? ""))
                 })

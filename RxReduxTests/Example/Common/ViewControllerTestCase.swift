@@ -6,7 +6,7 @@ private func resetStore() {
     store = Store<AppState>(
         state: AppState(),
         middlewares: [
-            StyleMiddleware.create(manager: StyleManager(userDefaults: MockUserDefaults()))
+            StyleMiddleware.create()
         ])
 }
 
@@ -52,8 +52,8 @@ class ViewControllerTestCase: XCTestCase {
     }
     
     func expectGreenStyle(_ name: String = #function, file: FileString = #file, line: UInt = #line) {
-        store.dispatch(StyleAction.set(GreenStyle()))
+        store.dispatch(StyleAction.set(Style(styleType: .green)))
         expectValidSnapshot(name, file: file, line: line)
-        store.dispatch(StyleAction.set(BlueStyle()))
+        store.dispatch(StyleAction.set(Style(styleType: .blue)))
     }
 }

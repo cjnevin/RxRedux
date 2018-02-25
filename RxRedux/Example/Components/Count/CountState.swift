@@ -5,7 +5,7 @@ enum CountAction: ActionType {
     case decrement
 }
 
-struct CountState: StateType {
+struct CountState: StateType, Codable {
     private(set) var counter: Int = 0
     
     mutating func reduce(_ action: ActionType) {

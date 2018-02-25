@@ -1,6 +1,6 @@
 import Foundation
 
-struct SignedInUser: Equatable {
+struct SignedInUser: Equatable, Codable {
     static func ==(lhs: SignedInUser, rhs: SignedInUser) -> Bool {
         return lhs.id == rhs.id &&
             lhs.firstName == rhs.firstName &&

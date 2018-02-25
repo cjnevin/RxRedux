@@ -30,6 +30,11 @@ final class Store<State: StateType> {
         stateSubject.onNext(state)
     }
     
+    func replace(_ state: State) {
+        self.state = state
+        stateSubject.onNext(state)
+    }
+    
     func register(_ middleware: MiddlewareType...) {
         precondition(Thread.isMainThread)
         middlewares.append(contentsOf: middleware)

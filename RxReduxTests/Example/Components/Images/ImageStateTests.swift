@@ -40,7 +40,8 @@ class ImageStateTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = Store<ImageState>(state: ImageState(images: [.fake()], imagesError: nil, selected: nil))
+        sut = Store<ImageState>(state: ImageState())
+        sut.dispatch(ImageSearchAction.loaded([.fake()]))
     }
 
     override func tearDown() {

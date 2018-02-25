@@ -6,7 +6,7 @@ private func resetStore() {
     store = Store<AppState>(
         state: AppState(),
         middlewares: [
-            StyleMiddleware.create(manager: StyleManager(userDefaults: MockUserDefaults()))
+            StyleMiddleware.create()
         ])
 }
 

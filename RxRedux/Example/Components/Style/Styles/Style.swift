@@ -1,19 +1,47 @@
 import UIKit
 
-class Style: Equatable {
-    static func ==(lhs: Style, rhs: Style) -> Bool {
-        return lhs.name == rhs.name
-    }
-    
-    let name: String
-    
-    init(name: String) {
-        self.name = name
-    }
-    
-    func apply() { fatalError("Must override") }
+protocol StyleApplier {
+    func apply()
+}
 
-    func refresh() {
+enum StyleType: String, Codable {
+    case blue = "Blue"
+    case green = "Green"
+    
+    var applier: StyleApplier {
+        switch self {
+        case .blue: return BlueStyle()
+        case .green: return GreenStyle()
+        }
+    }
+}
+
+class Style: Equatable, Codable {
+    static func ==(lhs: Style, rhs: Style) -> Bool {
+        return lhs.styleType == rhs.styleType
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case styleType
+    }
+    
+    private let styleType: StyleType
+    
+    var name: String {
+        return styleType.rawValue
+    }
+    
+    init(styleType: StyleType) {
+        self.styleType = styleType
+    }
+    
+    func apply() {
+        applyCommonStyling()
+        styleType.applier.apply()
+        refresh()
+    }
+
+    private func refresh() {
         for window in UIApplication.shared.windows {
             for view in window.subviews {
                 view.removeFromSuperview()
@@ -26,7 +54,7 @@ class Style: Equatable {
 }
 
 extension Style {
-    func applyCommonStyling() {
+    private func applyCommonStyling() {
         UIApplication.shared.statusBarStyle = .lightContent
         
         UIButton.appearance(whenContainedInInstancesOf: [UITableViewCell.self]).backgroundColor = UIColor.clear

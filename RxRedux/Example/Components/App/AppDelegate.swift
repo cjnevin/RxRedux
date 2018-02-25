@@ -13,7 +13,8 @@ var store = Store<AppState>(
         LanguageMiddleware.create(),
         LoggingMiddleware.create(),
         router.create(),
-        StyleMiddleware.create()
+        StyleMiddleware.create(),
+        PersistenceMiddleware.create()
     ])
 
 // Used by AppReducer, avoids importing UIKit everywhere
@@ -26,11 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        store.dispatch(AppLifecycleAction.launch(launchOptions))
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
-        store.dispatch(AppLifecycleAction.launch(launchOptions))
+        store.dispatch(AppLifecycleAction.ready)
         
         return true
     }

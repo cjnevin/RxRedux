@@ -9,7 +9,7 @@ enum LanguageAction: ActionType {
     }
 }
 
-struct LanguageState: StateType {
+struct LanguageState: StateType, Codable {
     private(set) var current: String = ""
     private(set) var list: [String] = []
     

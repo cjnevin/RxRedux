@@ -1,11 +1,7 @@
 import UIKit
 
-class GreenStyle: Style {
-    init() {
-        super.init(name: "Green")
-    }
-    
-    override func apply() {
+class GreenStyle: StyleApplier {
+    func apply() {
         UIButton.appearance().tintColor = UIColor.rgb(79, 176, 112)
         UIButton.appearance().setTitleColor(UIColor.rgb(222, 247, 229), for: .normal)
         UIButton.appearance().backgroundColor = UIColor.rgb(56, 113, 66)

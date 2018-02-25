@@ -56,13 +56,13 @@
 		834A0ED9203C6839002A3FF1 /* BlueStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0ED8203C6839002A3FF1 /* BlueStyle.swift */; };
 		834A0EDB203C685F002A3FF1 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EDA203C685F002A3FF1 /* UIColor+RGB.swift */; };
 		834A0EDD203C6878002A3FF1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EDC203C6878002A3FF1 /* Style.swift */; };
-		834A0EDF203C68B2002A3FF1 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EDE203C68B2002A3FF1 /* StyleManager.swift */; };
 		834A0EE3203C6EAF002A3FF1 /* RoutingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */; };
 		834A0EE5203C716C002A3FF1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE4203C716C002A3FF1 /* ImageViewController.swift */; };
 		834A0EE7203C7174002A3FF1 /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */; };
 		834A0EE9203C7E09002A3FF1 /* LocalizableTitlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */; };
 		834E31E12041F90400143C21 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E02041F90400143C21 /* SignInView.swift */; };
 		834E31E32041FEE400143C21 /* SignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E22041FEE400143C21 /* SignedInView.swift */; };
+		834E31E52042B9CC00143C21 /* PersistenceMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */; };
 		83B2B6C6203C92F50042331B /* ExternalLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */; };
 		83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */; };
 		83B2B6CD203C9B910042331B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CC203C9B910042331B /* LoadingView.swift */; };
@@ -162,13 +162,13 @@
 		834A0ED8203C6839002A3FF1 /* BlueStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueStyle.swift; sourceTree = "<group>"; };
 		834A0EDA203C685F002A3FF1 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		834A0EDC203C6878002A3FF1 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		834A0EDE203C68B2002A3FF1 /* StyleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 		834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingMiddleware.swift; sourceTree = "<group>"; };
 		834A0EE4203C716C002A3FF1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenter.swift; sourceTree = "<group>"; };
 		834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableTitlePresenter.swift; sourceTree = "<group>"; };
 		834E31E02041F90400143C21 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		834E31E22041FEE400143C21 /* SignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInView.swift; sourceTree = "<group>"; };
+		834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceMiddleware.swift; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkRouter.swift; sourceTree = "<group>"; };
 		83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadIndicatingView.swift; sourceTree = "<group>"; };
@@ -256,6 +256,7 @@
 			children = (
 				8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */,
 				834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */,
+				834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */,
 			);
 			path = Middleware;
 			sourceTree = "<group>";
@@ -389,7 +390,6 @@
 			isa = PBXGroup;
 			children = (
 				834A0EE0203C68D5002A3FF1 /* Styles */,
-				834A0EDE203C68B2002A3FF1 /* StyleManager.swift */,
 				834A0EBA203AC25F002A3FF1 /* StyleMiddleware.swift */,
 				834117242038BC8B00399D2C /* StylePresenter.swift */,
 				834117282038BCE100399D2C /* StyleState.swift */,
@@ -870,9 +870,9 @@
 				8341170A2038955C00399D2C /* LanguagePresenter.swift in Sources */,
 				834A0EE7203C7174002A3FF1 /* ImagePresenter.swift in Sources */,
 				83D7F6B820418D9C00E7D760 /* SignInViewModel.swift in Sources */,
-				834A0EDF203C68B2002A3FF1 /* StyleManager.swift in Sources */,
 				83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */,
 				83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */,
+				834E31E52042B9CC00143C21 /* PersistenceMiddleware.swift in Sources */,
 				8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */,
 				83D7F6C020418F5C00E7D760 /* SignedInUser.swift in Sources */,
 				83B2B6CD203C9B910042331B /* LoadingView.swift in Sources */,

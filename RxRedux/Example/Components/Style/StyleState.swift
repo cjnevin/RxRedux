@@ -9,8 +9,8 @@ enum StyleAction: ActionType {
     }
 }
 
-struct StyleState: StateType {
-    private(set) var current: Style = Style(name: "")
+struct StyleState: StateType, Codable {
+    private(set) var current: Style = Style(styleType: .blue)
     private(set) var list: [Style] = []
     
     mutating func reduce(_ action: ActionType) {

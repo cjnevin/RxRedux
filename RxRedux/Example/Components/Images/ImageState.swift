@@ -1,19 +1,19 @@
 import UIKit
 
-struct ImageState: StateType {
+struct ImageState: StateType, Codable {
     private(set) var images: [ImageInfo] = []
-    private(set) var imagesError: Error? = nil
+    private(set) var errorMessage: String? = nil
     private(set) var selected: ImageInfo? = nil
 
     mutating func reduce(_ action: ActionType) {
         switch action {
         case ImageSearchAction.loadFailed(let error):
-            imagesError = error
+            errorMessage = error.localizedDescription
         case ImageSearchAction.loaded(let results):
             images = results
         case ImageSearchAction.loading:
             images = []
-            imagesError = nil
+            errorMessage = nil
         case ImageSearchAction.selected(let imageInfo):
             selected = imageInfo
         default:
@@ -50,7 +50,7 @@ enum ImageSearchAction: ActionType {
     }
 }
 
-struct ImageInfo {
+struct ImageInfo: Codable {
     let author: String
     let description: String
     let title: String

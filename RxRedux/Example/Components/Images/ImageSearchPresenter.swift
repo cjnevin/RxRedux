@@ -32,7 +32,6 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
             }))
         
         disposeOnViewDetach(view.searchText
-            .startWith("")
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { (text) in

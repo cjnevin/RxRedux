@@ -22,7 +22,7 @@ class LanguageViewControllerTests: ViewControllerTestCase {
     }
     
     func test_whenEnglishCellIsTapped_thenLanguageValueIsChanged() {
-        store.dispatch(AppLifecycleAction.launch(nil))
+        store.dispatch(AppLifecycleAction.ready)
         tester().waitForView(withAccessibilityLabel: "en")
         frenchCell.tap() // Change language first
         englishCell.tap()
@@ -30,13 +30,13 @@ class LanguageViewControllerTests: ViewControllerTestCase {
     }
     
     func test_whenFrenchCellIsTapped_thenLanguageValueIsChanged() {
-        store.dispatch(AppLifecycleAction.launch(nil))
+        store.dispatch(AppLifecycleAction.ready)
         frenchCell.tap()
         expectValidSnapshot()
     }
     
     func test_whenJapaneseCellIsTapped_thenLanguageValueIsChanged() {
-        store.dispatch(AppLifecycleAction.launch(nil))
+        store.dispatch(AppLifecycleAction.ready)
         japaneseCell.tap()
         expectValidSnapshot()
     }
