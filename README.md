@@ -105,8 +105,10 @@ The `State` object is immutable, it is a representation of the _current_ state.
 In Redux there is only one application `State`. However, inside that object there might be other `SubState` objects that are updated by `Reducers`.
 
 ```
-struct State {
-    var counter: Int
+struct CountState: StateType {
+    var counter: Int = 0
+    
+    mutating func reduce(_ action: ActionType) { ... }
 }
 ```
 
