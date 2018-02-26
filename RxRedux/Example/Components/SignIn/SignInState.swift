@@ -1,6 +1,14 @@
 import Foundation
 
-struct SignInState: StateType, Codable {
+struct SignInState: StateType, Equatable, Codable {
+    static func ==(lhs: SignInState, rhs: SignInState) -> Bool {
+        let encoder = JSONEncoder()
+        guard let left = try? encoder.encode(lhs), let right = try? encoder.encode(rhs) else {
+            return false
+        }
+        return left.elementsEqual(right)
+    }
+    
     private(set) var signedInUser: SignedInUser?
     
     private(set) var isSignedIn = false
@@ -17,6 +25,9 @@ struct SignInState: StateType, Codable {
 
     mutating func reduce(_ action: ActionType) {
         switch action {
+        case AppLifecycleAction.ready:
+            isSigningIn = false
+            isSigningOut = false
         case let signInAction as SignInFormAction:
             reduce(signInAction)
         case let signOutAction as SignOutFormAction:
