@@ -7,7 +7,7 @@ enum PersistenceAction: ActionType {
 private let persistenceOperationQueue: OperationQueue = {
     let operationQueue = OperationQueue()
     operationQueue.maxConcurrentOperationCount = 1
-    operationQueue.qualityOfService = .background
+    operationQueue.qualityOfService = .userInitiated
     return operationQueue
 }()
 
@@ -24,16 +24,16 @@ enum PersistenceMiddleware<S, T: Store<S>> {
                         }
                     }
                     next(action)
+                    let state = store.state
                     persistenceOperationQueue.cancelAllOperations()
                     persistenceOperationQueue.addOperation {
-                        if let state = store.state as? AppState {
+                        if let state = state as? AppState {
                             let jsonEncoder = JSONEncoder()
                             guard let encoded = try? jsonEncoder.encode(state) else {
                                 debugPrint("Invalid JSON, cannot persist")
                                 return
                             }
                             userDefaults.setValue(encoded, forKey: "state")
-                            userDefaults.synchronize()
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 import UIKit
 
 struct ImageState: StateType, Codable {
+    private(set) var isLoading: Bool = false
     private(set) var images: [ImageInfo] = []
     private(set) var errorMessage: String? = nil
     private(set) var selected: ImageInfo? = nil
@@ -8,14 +9,19 @@ struct ImageState: StateType, Codable {
 
     mutating func reduce(_ action: ActionType) {
         switch action {
+        case AppLifecycleAction.ready:
+            isLoading = false
         case ImageSearchAction.loadFailed(let error):
             errorMessage = error.localizedDescription
+            isLoading = false
         case ImageSearchAction.loaded(let searchTerm, let results):
             images = results
             query = searchTerm
+            isLoading = false
         case ImageSearchAction.loading:
             images = []
             errorMessage = nil
+            isLoading = true
         case ImageSearchAction.selected(let imageInfo):
             selected = imageInfo
         default:

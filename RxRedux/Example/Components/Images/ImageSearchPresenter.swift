@@ -5,15 +5,14 @@ import RxSwift
 class ImageSearchPresenter<T: SearchView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
-        let isLoadingSubject = PublishSubject<Bool>()
         
-        disposeOnViewDetach(isLoadingSubject
+        disposeOnViewDetach(store.uniquelyObserve(\.imageState.isLoading)
             .filter({ $0 })
             .subscribe(onNext: { _ in
                 view.showLoadingIndicator()
             }))
         
-        disposeOnViewDetach(isLoadingSubject
+        disposeOnViewDetach(store.uniquelyObserve(\.imageState.isLoading)
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .filter({ !$0 })
             .subscribe(onNext: { _ in
@@ -35,7 +34,6 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { (text) in
-                isLoadingSubject.onNext(true)
                 store.dispatch(ImageSearchAction.search(for: text))
             }))
         
@@ -48,7 +46,6 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
         disposeOnViewDetach(store.uniquelyObserve(\.imageState.images)
             .subscribe(onNext: { (images) in
                 view.setImages(images)
-                isLoadingSubject.onNext(false)
             }))
     }
 }

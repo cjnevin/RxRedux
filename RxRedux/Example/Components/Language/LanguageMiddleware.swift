@@ -2,11 +2,16 @@ import Foundation
 import Localize_Swift
 
 protocol LanguageManaging {
+    func systemLanguage() -> String
     func list() -> [String]
     func set(language: String)
 }
 
 class LanguageManager: LanguageManaging {
+    func systemLanguage() -> String {
+        return Localize.defaultLanguage()
+    }
+    
     func list() -> [String] {
         return Localize.availableLanguages(true)
     }
@@ -24,7 +29,11 @@ enum LanguageMiddleware<S, T: Store<S>> {
                     switch action {
                     case AppLifecycleAction.ready:
                         if let state = store.state as? AppState {
-                            store.dispatch(LanguageAction.set(state.languageState.current))
+                            if manager.list().contains(state.languageState.current) {
+                                store.dispatch(LanguageAction.set(state.languageState.current))
+                            } else {
+                                store.dispatch(LanguageAction.set(manager.systemLanguage()))
+                            }
                         }
                         next(action)
                     case LanguageAction.list(.loading):
