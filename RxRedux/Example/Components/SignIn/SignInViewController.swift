@@ -96,9 +96,6 @@ extension SignInViewController: SignInContainerType {
             self.signInView.updateAlpha()
             self.signedInView.updateAlpha()
             
-            self.signInView.alpha = viewModel.isSignOutShown ? 0 : 1
-            self.signedInView.alpha = viewModel.isSignInShown ? 0 : 1
-            
             self.view.layoutIfNeeded()
         })
     }

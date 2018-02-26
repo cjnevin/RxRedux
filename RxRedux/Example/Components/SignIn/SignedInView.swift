@@ -28,6 +28,7 @@ class SignedInView: UIView {
     func updateAlpha() {
         guard let viewModel = viewModel else { return }
         
+        alpha = viewModel.isSignInShown ? 0 : 1
         nameLabel.alpha = viewModel.isNameShown ? 1 : 0
         genderSegmentedControl.alpha = viewModel.isGenderSelectionShown ? 1 : 0
     }

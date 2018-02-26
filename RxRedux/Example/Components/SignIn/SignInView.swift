@@ -57,6 +57,7 @@ class SignInView: UIView {
     func updateAlpha() {
         guard let viewModel = viewModel else { return }
         
+        alpha = viewModel.isSignOutShown ? 0 : 1
         emailTextField.alpha = viewModel.isEmailShown ? 1 : 0
         passwordTextField.alpha = viewModel.isPasswordShown ? 1 : 0
     }
