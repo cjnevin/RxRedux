@@ -73,6 +73,10 @@ extension ImageSearchViewController: SearchView {
         dataSource.images = images
     }
     
+    func setInitialSearchText(_ searchText: String) {
+        navigationItem.searchController?.searchBar.text = searchText
+    }
+    
     func setPlaceholderText(_ text: String) {
         navigationItem.searchController?.searchBar.placeholder = text
     }

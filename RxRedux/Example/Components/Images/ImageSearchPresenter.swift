@@ -39,7 +39,13 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
                 store.dispatch(ImageSearchAction.search(for: text))
             }))
         
-        disposeOnViewDetach(store.uniquelyObserve(\AppState.imageState.images)
+        disposeOnViewDetach(store.uniquelyObserve(\.imageState.query)
+            .take(1)
+            .subscribe(onNext: { (query) in
+                view.setInitialSearchText(query)
+            }))
+        
+        disposeOnViewDetach(store.uniquelyObserve(\.imageState.images)
             .subscribe(onNext: { (images) in
                 view.setImages(images)
                 isLoadingSubject.onNext(false)
@@ -50,6 +56,7 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
 protocol SearchView: TabTitlableView, TitlableView, LoadIndicatingView {
     var searchText: PublishSubject<String> { get }
     var selectedImage: PublishSubject<ImageInfo> { get }
+    func setInitialSearchText(_ searchText: String)
     func setImages(_ images: [ImageInfo])
     func setPlaceholderText(_ text: String)
 }

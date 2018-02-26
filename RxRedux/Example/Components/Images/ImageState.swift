@@ -4,13 +4,15 @@ struct ImageState: StateType, Codable {
     private(set) var images: [ImageInfo] = []
     private(set) var errorMessage: String? = nil
     private(set) var selected: ImageInfo? = nil
+    private(set) var query: String = ""
 
     mutating func reduce(_ action: ActionType) {
         switch action {
         case ImageSearchAction.loadFailed(let error):
             errorMessage = error.localizedDescription
-        case ImageSearchAction.loaded(let results):
+        case ImageSearchAction.loaded(let searchTerm, let results):
             images = results
+            query = searchTerm
         case ImageSearchAction.loading:
             images = []
             errorMessage = nil
@@ -28,7 +30,7 @@ enum ImageSearchRoute: RouteAction {
 
 enum ImageSearchAction: ActionType {
     case loading
-    case loaded([ImageInfo])
+    case loaded(String, [ImageInfo])
     case loadFailed(Error)
     case selected(ImageInfo)
 
@@ -41,7 +43,7 @@ enum ImageSearchAction: ActionType {
         ImageApi.search(for: query) { result in
             switch result {
             case .success(let images):
-                store.dispatch(ImageSearchAction.loaded(images))
+                store.dispatch(ImageSearchAction.loaded(query, images))
             case .failure(let error):
                 store.dispatch(ImageSearchAction.loadFailed(error))
             }
