@@ -6,6 +6,8 @@ struct AppState: StateType, Codable {
     private(set) var languageState: LanguageState
     private(set) var signInState: SignInState
     private(set) var styleState: StyleState
+    /// Version for persistence layer to handle older JSON payloads
+    private let version: Int = 1
     
     init() {
         countState = CountState()
