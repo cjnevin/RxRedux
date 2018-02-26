@@ -15,7 +15,6 @@ private extension ImageSearchViewController {
     static func make(presenter: Presenter = defaultPresenter) -> ImageSearchViewController {
         let imageSearchViewController = ImageSearchViewController()
         imageSearchViewController.presenter = presenter
-        _ = imageSearchViewController.view
         return imageSearchViewController
     }
 }
@@ -57,6 +56,8 @@ class ImageSearchNavigationController: UINavigationController, Router {
         
         tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "search-empty"), selectedImage: #imageLiteral(resourceName: "search-filled"))
         tabBarItem.accessibilityLabel = "Search Tab"
+        
+        _ = rootViewController.view
     }
     
     // Must be overridden or we get:
