@@ -1,5 +1,9 @@
 import RxSwift
 
+enum StoreAction: ActionType {
+    case initialized
+}
+
 final class Store<State: StateType> {
     typealias MiddlewareType = Middleware<Store<State>>
     
@@ -12,6 +16,7 @@ final class Store<State: StateType> {
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)
         self.middlewares = middlewares
+        self.dispatch(StoreAction.initialized)
     }
     
     deinit {
