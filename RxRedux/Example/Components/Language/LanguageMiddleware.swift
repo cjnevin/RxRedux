@@ -18,13 +18,15 @@ class LanguageManager: LanguageManaging {
 
 enum LanguageMiddleware<S, T: Store<S>> {
     static func create(manager: LanguageManaging = LanguageManager()) -> (T) -> DispatchCreator {
-        return { _ in
+        return { store in
             return { next in
                 return { action in
                     switch action {
                     case AppLifecycleAction.ready:
+                        if let state = store.state as? AppState {
+                            store.dispatch(LanguageAction.set(state.languageState.current))
+                        }
                         next(action)
-                        store.dispatch(LanguageAction.set(store.state.languageState.current))
                     case LanguageAction.list(.loading):
                         next(action)
                         store.dispatch(LanguageAction.list(.complete(manager.list())))

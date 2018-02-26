@@ -24,7 +24,12 @@ final class Store<State: StateType> {
     }
     
     func dispatch(_ action: ActionType) {
-        precondition(Thread.isMainThread)
+        if !Thread.isMainThread {
+            DispatchQueue.main.async { [weak self] in
+                self?.dispatch(action)
+            }
+            return
+        }
         middlewares.reduce(dispatchInternal, { dispatch, middleware in
             middleware(self)(dispatch)
         })(action)

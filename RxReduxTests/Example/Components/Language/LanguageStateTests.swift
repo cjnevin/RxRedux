@@ -28,7 +28,7 @@ class LanguageStateTests: XCTestCase {
     func test_whenGetListAction_thenExpectWhatManagerContains() {
         expect(self.sut.state.list).to(equal([]))
         sut.dispatch(LanguageAction.getList())
-        expect(self.sut.state.list).to(equal(["en"]))
+        expect(self.sut.state.list).toEventually(equal(["en"]))
     }
     
     override func setUp() {

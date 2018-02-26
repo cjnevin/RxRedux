@@ -34,14 +34,16 @@ class ImageStateTests: XCTestCase {
 
     func test_whenResultsAction_thenExpectResults() {
         expect(self.sut.state.images).toNot(beEmpty())
-        sut.dispatch(ImageSearchAction.loaded([.fake(), .fake()]))
+        expect(self.sut.state.query).to(equal("test"))
+        sut.dispatch(ImageSearchAction.loaded("testTwo", [.fake(), .fake()]))
         expect(self.sut.state.images.count).to(be(2))
+        expect(self.sut.state.query).to(equal("testTwo"))
     }
 
     override func setUp() {
         super.setUp()
         sut = Store<ImageState>(state: ImageState())
-        sut.dispatch(ImageSearchAction.loaded([.fake()]))
+        sut.dispatch(ImageSearchAction.loaded("test", [.fake()]))
     }
 
     override func tearDown() {
