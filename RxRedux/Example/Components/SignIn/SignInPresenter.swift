@@ -66,7 +66,8 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                         view.setButtonTitle("sign.out.button".localized())
                     } else {
                         view.setButtonAction(CocoaAction() {
-                            .just(store.dispatch(signIn()))
+                            view.dismissKeyboard()
+                            return .just(store.dispatch(signIn()))
                         })
                         view.setTabTitle("sign.in.tab.title".localized())
                         view.setTitle("sign.in.title".localized())

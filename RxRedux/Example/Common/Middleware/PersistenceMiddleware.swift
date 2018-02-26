@@ -11,6 +11,8 @@ private let persistenceOperationQueue: OperationQueue = {
     return operationQueue
 }()
 
+private let persistenceKey = "Store.AppState"
+
 enum PersistenceMiddleware<S, T: Store<S>> {
     static func create(_ userDefaults: UserDefaults = .standard) -> (T) -> DispatchCreator {
         return { store in
@@ -18,14 +20,13 @@ enum PersistenceMiddleware<S, T: Store<S>> {
                 return { action in
                     if case StoreAction.initialized = action {
                         let decoder = JSONDecoder()
-                        if let data = userDefaults.value(forKey: "state") as? Data,
+                        if let data = userDefaults.value(forKey: persistenceKey) as? Data,
                             let appState = try? decoder.decode(AppState.self, from: data) {
                             store.dispatch(PersistenceAction.replaceState(appState))
                         }
                     }
                     next(action)
                     let state = store.state
-                    persistenceOperationQueue.cancelAllOperations()
                     persistenceOperationQueue.addOperation {
                         if let state = state as? AppState {
                             let jsonEncoder = JSONEncoder()
@@ -33,7 +34,10 @@ enum PersistenceMiddleware<S, T: Store<S>> {
                                 debugPrint("Invalid JSON, cannot persist")
                                 return
                             }
-                            userDefaults.setValue(encoded, forKey: "state")
+                            // Note: User Defaults synchronizes automatically at regular intervals.
+                            // However, sometimes if you kill the app prematurely it won't have written yet.
+                            // User defaults should be avoided in practice.
+                            userDefaults.setValue(encoded, forKey: persistenceKey)
                         }
                     }
                 }
