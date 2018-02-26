@@ -29,5 +29,9 @@
 "sign.in.email.invalid" = "メールは無効な形式です";
 "sign.in.email.placeholder" = "Eメール";
 
+"sign.out.tab.title" = "アカウント";
 "sign.out.title" = "アカウント";
 "sign.out.button" = "サインアウト";
+
+"account.gender.male" = "男性";
+"account.gender.female" = "女性";

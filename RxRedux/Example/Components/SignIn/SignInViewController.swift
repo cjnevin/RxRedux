@@ -1,23 +1,84 @@
 import UIKit
 import SnapKit
 import RxSwift
+import Action
 
-class SignInViewController: UIViewController, LocalizableTitle {
+class SignInOutButton: UIButton { }
+
+struct MaleTabIcon: TabIcon {
+    let image: UIImage = #imageLiteral(resourceName: "account-male-empty")
+    let selectedImage: UIImage = #imageLiteral(resourceName: "account-male-filled")
+}
+
+struct FemaleTabIcon: TabIcon {
+    let image: UIImage = #imageLiteral(resourceName: "account-female-empty")
+    let selectedImage: UIImage = #imageLiteral(resourceName: "account-female-filled")
+}
+
+struct SignInTabIcon: TabIcon {
+    let image: UIImage = #imageLiteral(resourceName: "sign-in-empty")
+    let selectedImage: UIImage = #imageLiteral(resourceName: "sign-in-filled")
+}
+
+extension SignedInUser.Gender {
+    var tabIcon: TabIcon {
+        switch self {
+        case .male: return MaleTabIcon()
+        case .female: return FemaleTabIcon()
+        }
+    }
+}
+
+class SignInViewController: UIViewController {
     private lazy var containerView = UIView()
     private lazy var signInView = SignInView()
     private lazy var signedInView = SignedInView()
     private lazy var loadingView = LoadingView(SignInAccessibility.loading)
-    private lazy var button = SignInButton(SignInAccessibility.signInOutButton)
-    private lazy var disposable = SingleAssignmentDisposable()
+    private lazy var button = SignInOutButton(SignInAccessibility.signInOutButton)
     
-    private func updateState(with viewModel: SignInViewModel) {
+    var presenter: SignInPresenter<SignInViewController>? 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        layout()
+        presenter?.attachView(self)
+    }
+    
+    deinit {
+        presenter?.detachView()
+    }
+}
+
+extension SignInViewController: SignInContainerType {
+    func selectedGender() -> Observable<Int> {
+        return signedInView.selectedGender()
+    }
+    
+    func setGenders(_ genders: [String]) {
+        signedInView.setGenders(genders)
+    }
+    
+    func setSelectedGender(_ selected: Int) {
+        signedInView.setSelectedGender(selected)
+    }
+    
+    func setButtonAction(_ action: CocoaAction) {
+        button.rx.action = action
+    }
+    
+    func setButtonTitle(_ title: String) {
+        button.setTitle(title, for: .normal)
+    }
+    
+    func setViewModel(_ viewModel: SignInViewModel) {
         signInView.viewModel = viewModel
         signedInView.viewModel = viewModel
         button.isEnabled = viewModel.isButtonEnabled
         
         view.bringSubview(toFront: viewModel.isSignInShown ? signInView : signedInView)
         view.layoutIfNeeded()
-
+        
         signInView.updateLayout()
         
         containerView.snp.remakeConstraints { (make) in
@@ -42,70 +103,58 @@ class SignInViewController: UIViewController, LocalizableTitle {
         })
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        layout()
-        bind()
+    func beganEditingPassword() -> Observable<Void> {
+        return signInView.beganEditingPassword()
+    }
+    
+    func beganEditingEmail() -> Observable<Void> {
+        return signInView.beganEditingEmail()
+    }
+    
+    func editedPassword() -> Observable<String?> {
+        return signInView.editedPassword()
+    }
+    
+    func editedEmail() -> Observable<String?> {
+        return signInView.editedEmail()
+    }
+    
+    func endedEditingPassword() -> Observable<Void> {
+        return signInView.endedEditingPassword()
+    }
+    
+    func endedEditingEmail() -> Observable<Void> {
+        return signInView.endedEditingEmail()
+    }
+    
+    func setEmailError(_ text: String) {
+        signInView.setEmailError(text)
+    }
+    
+    func setPasswordError(_ text: String) {
+        signInView.setPasswordError(text)
+    }
+    
+    func setEmailPlaceholder(_ text: String) {
+        signInView.setEmailPlaceholder(text)
+    }
+    
+    func setPasswordPlaceholder(_ text: String) {
+        signInView.setPasswordPlaceholder(text)
+    }
+    
+    func selectPassword() {
+        signInView.selectPassword()
+    }
+    
+    func dismissKeyboard() {
+        signInView.dismissKeyboard()
     }
 }
 
-// MARK: - Binding
+// MARK: - Layout
 
 extension SignInViewController {
-    private func bind() {
-        disposable.setDisposable(CompositeDisposable(disposables: [
-            bindState(),
-            bindButton(),
-            bindButtonTitle(),
-            bindTitle()
-        ]))
-    }
-    
-    private func bindTitle() -> Disposable {
-        return store.uniquelyObserve(\.signInState.isSignedIn)
-            .map { $0 ? "sign.out.title" : "sign.in.title" }
-            .flatMap({ [weak self] (localizationKey) in
-                return Observable<String>.create { _ in
-                    self?.setTitle(localizationKey) ?? Disposables.create()
-                }
-            }).subscribe()
-    }
-    
-    private func bindButtonTitle() -> Disposable {
-        return store.uniquelyObserve(\.signInState.isSignedIn)
-            .map { $0 ? "sign.out.button" : "sign.in.button" }
-            .flatMap({ [weak self] (localizationKey) in
-                return Observable<String>.create { _ in
-                    self?.button.setTitle(localizationKey) ?? Disposables.create()
-                }
-            }).subscribe()
-    }
-    
-    private func bindButton() -> Disposable {
-        return button.rx.tap
-            .withLatestFrom(store.observe(\.signInState.isSignedIn))
-            .subscribe(onNext: { [weak self] isSignedIn in
-                if isSignedIn {
-                    store.dispatch(signOut())
-                } else {
-                    _ = self?.signInView.resignFirstResponder()
-                    store.dispatch(signIn())
-                }
-            })
-    }
-    
-    private func bindState() -> Disposable {
-        return store.observe(\.signInState)
-            .map(SignInViewModel.init)
-            .filter { $0 != nil }
-            .map { $0! }
-            .subscribe(onNext: { [weak self] (viewModel) in
-                self?.updateState(with: viewModel)
-            })
-    }
-    
     private func layout() {
         [containerView, button].forEach(view.addSubview)
         [signedInView, signInView, loadingView].forEach(containerView.addSubview)

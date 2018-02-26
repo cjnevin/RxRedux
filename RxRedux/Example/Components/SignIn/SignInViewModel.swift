@@ -20,9 +20,10 @@ struct SignInViewModel {
     let isEmailShown: Bool
     let isPasswordShown: Bool
     let isNameShown: Bool
+    let isGenderSelectionShown: Bool
     let isButtonEnabled: Bool
     
-    init?(state: SignInState) {
+    init(state: SignInState) {
         email = state.email ?? ""
         password = state.password ?? ""
         
@@ -45,6 +46,7 @@ struct SignInViewModel {
         isEmailShown = !state.isSignedIn && !state.isSigningIn
         isPasswordShown = isEmailShown
         isNameShown = state.isSignedIn && !state.isSigningOut
+        isGenderSelectionShown = isNameShown
         
         if isSignInShown {
             isButtonEnabled = isFormValid && !state.isSigningIn

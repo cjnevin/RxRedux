@@ -6,7 +6,7 @@ func signIn() -> ActionType {
             if drand48() > 0.5 {
                 store.dispatch(SignInFormAction.handleError(SignInError.incorrectCredentials))
             } else {
-                store.dispatch(SignInFormAction.handleSuccess(SignedInUser(id: 1, firstName: "John", lastName: "Smith")))
+                store.dispatch(SignInFormAction.handleSuccess(SignedInUser(id: 1, firstName: "John", lastName: "Smith", gender: nil)))
             }
         }
     }
@@ -37,4 +37,9 @@ enum SignInFormAction: ActionType {
 enum SignOutFormAction: ActionType {
     case request
     case handleSuccess
+}
+
+enum AccountGenderAction: ActionType {
+    case setMale
+    case setFemale
 }

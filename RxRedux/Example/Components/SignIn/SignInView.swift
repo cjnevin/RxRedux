@@ -13,9 +13,8 @@ enum SignInAccessibility: String {
 }
 
 class SignInErrorLabel: UILabel { }
-class SignInLocalizableErrorLabel: SignInErrorLabel, LocalizableTitle { }
-class SignInButton: UIButton, LocalizableTitle { }
-class SignInEmailField: UITextField, LocalizablePlaceholder {
+class SignInLocalizableErrorLabel: SignInErrorLabel { }
+class SignInEmailField: UITextField {
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         keyboardType = .emailAddress
@@ -24,7 +23,7 @@ class SignInEmailField: UITextField, LocalizablePlaceholder {
         autocapitalizationType = .none
     }
 }
-class SignInPasswordField: UITextField, LocalizablePlaceholder {
+class SignInPasswordField: UITextField {
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         isSecureTextEntry = true
@@ -41,13 +40,10 @@ class SignInView: UIView {
     private lazy var emailTextField = SignInEmailField(SignInAccessibility.email)
     private lazy var passwordInvalidLabel = SignInLocalizableErrorLabel(SignInAccessibility.passwordInvalid)
     private lazy var passwordTextField = SignInPasswordField(SignInAccessibility.password)
-    private lazy var disposable = SingleAssignmentDisposable()
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        disposable = SingleAssignmentDisposable()
         layout()
-        bind()
     }
     
     var viewModel: SignInViewModel? {
@@ -85,12 +81,6 @@ class SignInView: UIView {
         }
     }
     
-    override func resignFirstResponder() -> Bool {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        return true
-    }
-    
     private func layout() {
         [formInvalidLabel,
          emailInvalidLabel, emailTextField,
@@ -123,55 +113,55 @@ class SignInView: UIView {
             make.bottom.equalTo(snp.bottom).inset(20)
         }
     }
-    
-    private func bind() {
-        disposable.setDisposable(CompositeDisposable(disposables: [
-            bindEmailField(),
-            bindPasswordField(),
-            bindStaticLocalizedText(),
-        ]))
+}
+
+extension SignInView: SignInViewType {
+    func beganEditingPassword() -> Observable<Void> {
+        return passwordTextField.rx.controlEvent(.editingDidBegin).take(1)
     }
     
-    private func bindStaticLocalizedText() -> Disposable {
-        return CompositeDisposable(disposables: [
-            emailInvalidLabel.setTitle("sign.in.email.invalid"),
-            emailTextField.setPlaceholder("sign.in.email.placeholder"),
-            passwordInvalidLabel.setTitle("sign.in.password.invalid"),
-            passwordTextField.setPlaceholder("sign.in.password.placeholder"),
-        ])
+    func beganEditingEmail() -> Observable<Void> {
+        return emailTextField.rx.controlEvent(.editingDidBegin).take(1)
     }
     
-    private func bindEmailField() -> Disposable {
-        return CompositeDisposable(disposables: [
-            emailTextField.rx.controlEvent(.editingDidBegin).take(1)
-                .subscribe(onNext: {
-                    store.dispatch(SignInFormAction.touchEmail)
-                }),
-            emailTextField.rx.controlEvent(.editingDidEnd)
-                .subscribe(onNext: { [weak self] _ in
-                    self?.passwordTextField.becomeFirstResponder()
-                }),
-            emailTextField.rx.text.skip(1)
-                .subscribe(onNext: { (text) in
-                    store.dispatch(SignInFormAction.updateEmail(text ?? ""))
-                })
-            ])
+    func endedEditingEmail() -> Observable<Void> {
+        return emailTextField.rx.controlEvent(.editingDidEnd).asObservable()
     }
     
-    private func bindPasswordField() -> Disposable {
-        return CompositeDisposable(disposables: [
-            passwordTextField.rx.controlEvent(.editingDidBegin).take(1)
-                .subscribe(onNext: {
-                    store.dispatch(SignInFormAction.touchPassword)
-                }),
-            passwordTextField.rx.controlEvent(.editingDidEnd)
-                .subscribe(onNext: { [weak self] _ in
-                    self?.passwordTextField.resignFirstResponder()
-                }),
-            passwordTextField.rx.text.skip(1)
-                .subscribe(onNext: { (text) in
-                    store.dispatch(SignInFormAction.updatePassword(text ?? ""))
-                })
-            ])
+    func endedEditingPassword() -> Observable<Void> {
+        return passwordTextField.rx.controlEvent(.editingDidEnd).asObservable()
+    }
+    
+    func editedPassword() -> Observable<String?> {
+        return passwordTextField.rx.text.skip(1)
+    }
+    
+    func editedEmail() -> Observable<String?> {
+        return emailTextField.rx.text.skip(1)
+    }
+    
+    func setEmailError(_ text: String) {
+        emailInvalidLabel.text = text
+    }
+    
+    func setPasswordError(_ text: String) {
+        passwordInvalidLabel.text = text
+    }
+    
+    func setEmailPlaceholder(_ text: String) {
+        emailTextField.placeholder = text
+    }
+    
+    func setPasswordPlaceholder(_ text: String) {
+        passwordTextField.placeholder = text
+    }
+    
+    func selectPassword() {
+        passwordTextField.becomeFirstResponder()
+    }
+    
+    func dismissKeyboard() {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
     }
 }

@@ -29,5 +29,9 @@
 "sign.in.email.invalid" = "Email is in an invalid format";
 "sign.in.email.placeholder" = "Email";
 
+"sign.out.tab.title" = "Account";
 "sign.out.title" = "Account";
 "sign.out.button" = "Sign Out";
+
+"account.gender.male" = "Male";
+"account.gender.female" = "Female";

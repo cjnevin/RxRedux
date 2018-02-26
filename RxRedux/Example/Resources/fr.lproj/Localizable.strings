@@ -29,5 +29,9 @@
 "sign.in.email.invalid" = "Le courrier électronique est dans un format invalide";
 "sign.in.email.placeholder" = "Email";
 
+"sign.out.tab.title" = "Compte";
 "sign.out.title" = "Compte";
 "sign.out.button" = "Déconnexion";
+
+"account.gender.male" = "Homme";
+"account.gender.female" = "Femme";

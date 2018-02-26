@@ -28,12 +28,23 @@ struct SignInState: StateType, Equatable, Codable {
         case AppLifecycleAction.ready:
             isSigningIn = false
             isSigningOut = false
+        case let genderAction as AccountGenderAction:
+            reduce(genderAction)
         case let signInAction as SignInFormAction:
             reduce(signInAction)
         case let signOutAction as SignOutFormAction:
             reduce(signOutAction)
         default:
             break
+        }
+    }
+    
+    private mutating func reduce(_ action: AccountGenderAction) {
+        switch action {
+        case .setMale:
+            signedInUser?.gender = .male
+        case .setFemale:
+            signedInUser?.gender = .female
         }
     }
     

@@ -1,20 +1,18 @@
 import UIKit
-import RxSwift
 
 extension SignInViewController {
     static func make() -> SignInViewController {
-        return SignInViewController(nibName: nil, bundle: nil)
+        let viewController = SignInViewController(nibName: nil, bundle: nil)
+        viewController.presenter = .init()
+        return viewController
     }
 }
 
 class SignInNavigationController: UINavigationController {
-    private let disposable = SingleAssignmentDisposable()
-    
     override init(rootViewController: UIViewController = SignInViewController.make()) {
         super.init(rootViewController: rootViewController)
         tabBarItem = UITabBarItem(title: "", image: #imageLiteral(resourceName: "sign-in-empty"), selectedImage: #imageLiteral(resourceName: "sign-in-filled"))
         tabBarItem.accessibilityLabel = "Sign In Tab"
-        disposable.setDisposable(tabBarItem.setTitle("sign.in.tab.title"))
         _ = rootViewController.view
     }
     
