@@ -31,8 +31,8 @@ extension SignedInUser.Gender {
 
 class SignInViewController: UIViewController {
     private lazy var containerView = UIView()
-    private lazy var signInView = SignInView()
-    private lazy var signedInView = SignedInView()
+    private lazy var signInView = SignInView(SignInAccessibility.signInContainer)
+    private lazy var signedInView = SignedInView(AccountAccessibility.accountContainer)
     private lazy var loadingView = LoadingView(SignInAccessibility.loading)
     private lazy var button = SignInOutButton(SignInAccessibility.signInOutButton)
     
@@ -76,7 +76,6 @@ extension SignInViewController: SignInContainerType {
         signedInView.viewModel = viewModel
         button.isEnabled = viewModel.isButtonEnabled
         
-        view.bringSubview(toFront: viewModel.isSignInShown ? signInView : signedInView)
         view.layoutIfNeeded()
         
         signInView.updateLayout()

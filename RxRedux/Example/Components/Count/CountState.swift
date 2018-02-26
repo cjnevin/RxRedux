@@ -5,7 +5,11 @@ enum CountAction: ActionType {
     case decrement
 }
 
-struct CountState: StateType, Codable {
+struct CountState: StateType, Equatable, Codable {
+    static func ==(lhs: CountState, rhs: CountState) -> Bool {
+        return lhs.counter == rhs.counter
+    }
+    
     private(set) var counter: Int = 0
     
     mutating func reduce(_ action: ActionType) {

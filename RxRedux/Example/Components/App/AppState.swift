@@ -1,6 +1,13 @@
 import Foundation
 
-struct AppState: StateType, Codable {
+struct AppState: StateType, Equatable, Codable {
+    static func ==(lhs: AppState, rhs: AppState) -> Bool {
+        return lhs.countState == rhs.countState &&
+            lhs.imageState == rhs.imageState &&
+            lhs.languageState == rhs.languageState &&
+            lhs.styleState == rhs.styleState
+    }
+    
     private(set) var countState: CountState
     private(set) var imageState: ImageState
     private(set) var languageState: LanguageState

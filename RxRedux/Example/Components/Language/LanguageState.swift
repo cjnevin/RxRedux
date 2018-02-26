@@ -9,7 +9,12 @@ enum LanguageAction: ActionType {
     }
 }
 
-struct LanguageState: StateType, Codable {
+struct LanguageState: StateType, Equatable, Codable {
+    static func ==(lhs: LanguageState, rhs: LanguageState) -> Bool {
+        return lhs.current == rhs.current &&
+            lhs.list == rhs.list
+    }
+    
     private(set) var current: String = ""
     private(set) var list: [String] = []
     

@@ -3,6 +3,7 @@ import RxSwift
 import SnapKit
 
 enum SignInAccessibility: String {
+    case signInContainer
     case formInvalid
     case emailInvalid
     case email

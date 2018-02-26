@@ -4,13 +4,14 @@ import SnapKit
 import Action
 
 enum AccountAccessibility: String {
+    case accountContainer
     case name
+    case genderSelection
 }
 
 class AccountNameLabel: UILabel { }
 
 class SignedInView: UIView {
-    
     private lazy var nameLabel = AccountNameLabel(AccountAccessibility.name)
     private lazy var genderSegmentedControl = UISegmentedControl()
     

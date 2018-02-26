@@ -9,7 +9,12 @@ enum StyleAction: ActionType {
     }
 }
 
-struct StyleState: StateType, Codable {
+struct StyleState: StateType, Equatable, Codable {
+    static func ==(lhs: StyleState, rhs: StyleState) -> Bool {
+        return lhs.current == rhs.current &&
+            lhs.list == rhs.list
+    }
+    
     private(set) var current: Style = Style(styleType: .blue)
     private(set) var list: [Style] = []
     

@@ -44,7 +44,6 @@ enum LanguageMiddleware<S, T: Store<S>> {
                         next(action)
                     default:
                         next(action)
-                        break
                     }
                 }
             }
