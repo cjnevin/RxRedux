@@ -9,7 +9,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
         let genders = [SignedInUser.Gender.male,
                        SignedInUser.Gender.female]
         
-        let genderObservable = store.uniquelyObserve(\AppState.signInState)
+        let genderObservable = store.observe(\AppState.signInState)
             .filter { $0.isSignedIn }
             .map { ($0.signedInUser?.gender ?? .male) }
             .distinctUntilChanged()
@@ -74,7 +74,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                     }
                 }),
             
-            store.uniquelyObserve(\.signInState)
+            store.observe(\.signInState)
                 .map(SignInViewModel.init)
                 .subscribe(onNext: view.setViewModel),
             
@@ -97,7 +97,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                 .map { $0.tabIcon }
                 .subscribe(onNext: view.setTabIcon),
             
-            store.uniquelyObserve(\.signInState.isSignedIn)
+            store.observe(\.signInState.isSignedIn)
                 .filter { !$0 }
                 .subscribe(onNext: { (_) in
                     view.setTabIcon(SignInTabIcon())

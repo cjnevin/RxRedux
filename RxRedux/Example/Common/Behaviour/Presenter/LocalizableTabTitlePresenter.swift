@@ -11,7 +11,7 @@ class LocalizableTabTitlePresenter<T: TabTitlableView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.uniquelyObserve(\.languageState.current)
+            store.observe(\.languageState.current)
                 .map { [weak self] _ in self?.localizationKey.localized() ?? "" }
                 .subscribe(onNext: view.setTabTitle)
         )

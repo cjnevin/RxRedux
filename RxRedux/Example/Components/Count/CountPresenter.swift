@@ -7,7 +7,7 @@ class CountPresenter<T: CountView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.uniquelyObserve(\.languageState.current)
+            store.observe(\.languageState.current)
                 .subscribe(onNext: { (language) in
                     view.setDecrementText(CountText.decrement)
                     view.setIncrementText(CountText.increment)

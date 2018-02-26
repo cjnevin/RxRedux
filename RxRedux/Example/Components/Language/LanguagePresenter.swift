@@ -7,8 +7,8 @@ class LanguagePresenter<T: LanguageView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(Observable
-            .combineLatest(store.uniquelyObserve(\.languageState.current),
-                           store.uniquelyObserve(\.languageState.list))
+            .combineLatest(store.observe(\.languageState.current),
+                           store.observe(\.languageState.list))
             .map { current, list in
                 list.map { LanguageCellViewModel(language: $0, isSelected: current == $0) }
             }

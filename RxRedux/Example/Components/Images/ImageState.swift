@@ -1,6 +1,14 @@
 import UIKit
 
-struct ImageState: StateType, Codable {
+struct ImageState: StateType, Equatable, Codable {
+    static func ==(lhs: ImageState, rhs: ImageState) -> Bool {
+        let encoder = JSONEncoder()
+        guard let left = try? encoder.encode(lhs), let right = try? encoder.encode(rhs) else {
+            return false
+        }
+        return left.elementsEqual(right)
+    }
+    
     private(set) var isLoading: Bool = false
     private(set) var images: [ImageInfo] = []
     private(set) var errorMessage: String? = nil

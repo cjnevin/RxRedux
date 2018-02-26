@@ -7,7 +7,8 @@ class ImagePresenter<T: ImageView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(store
-            .observe(\.imageState.selected)
+            .observe(\.imageState)
+            .map { $0.selected }
             .filter { $0 != nil }
             .map { $0! }
             .distinctUntilChanged()

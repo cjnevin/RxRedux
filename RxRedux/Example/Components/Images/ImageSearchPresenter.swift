@@ -6,13 +6,13 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
         
-        disposeOnViewDetach(store.uniquelyObserve(\.imageState.isLoading)
+        disposeOnViewDetach(store.observe(\.imageState.isLoading)
             .filter({ $0 })
             .subscribe(onNext: { _ in
                 view.showLoadingIndicator()
             }))
         
-        disposeOnViewDetach(store.uniquelyObserve(\.imageState.isLoading)
+        disposeOnViewDetach(store.observe(\.imageState.isLoading)
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .filter({ !$0 })
             .subscribe(onNext: { _ in
@@ -20,7 +20,7 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
             }))
         
         disposeOnViewDetach(store
-            .uniquelyObserve(\.languageState.current)
+            .observe(\.languageState.current)
             .subscribe(onNext: { _ in
                 view.setPlaceholderText(SearchText.placeholder)
             }))
@@ -37,13 +37,13 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
                 store.dispatch(ImageSearchAction.search(for: text))
             }))
         
-        disposeOnViewDetach(store.uniquelyObserve(\.imageState.query)
+        disposeOnViewDetach(store.observe(\.imageState.query)
             .take(1)
             .subscribe(onNext: { (query) in
                 view.setInitialSearchText(query)
             }))
         
-        disposeOnViewDetach(store.uniquelyObserve(\.imageState.images)
+        disposeOnViewDetach(store.observe(\.imageState.images)
             .subscribe(onNext: { (images) in
                 view.setImages(images)
             }))
