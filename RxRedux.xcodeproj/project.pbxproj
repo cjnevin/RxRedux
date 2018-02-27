@@ -75,6 +75,7 @@
 		83C4038D20370DB900138C77 /* CountState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038C20370DB900138C77 /* CountState.swift */; };
 		83C4038F2037316D00138C77 /* XCTestCase+KIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */; };
 		83C4039320374B6300138C77 /* ViewControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C4039220374B6300138C77 /* ViewControllerTestCase.swift */; };
+		83D489292045E4FF00F4FE8E /* SignInStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D489282045E4FF00F4FE8E /* SignInStateTests.swift */; };
 		83D7F6B520418D9C00E7D760 /* SignInActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6AF20418D9C00E7D760 /* SignInActions.swift */; };
 		83D7F6B620418D9C00E7D760 /* SignInState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B020418D9C00E7D760 /* SignInState.swift */; };
 		83D7F6B720418D9C00E7D760 /* SignInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D7F6B120418D9C00E7D760 /* SignInError.swift */; };
@@ -181,6 +182,7 @@
 		83C4038C20370DB900138C77 /* CountState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountState.swift; sourceTree = "<group>"; };
 		83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+KIF.swift"; sourceTree = "<group>"; };
 		83C4039220374B6300138C77 /* ViewControllerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTestCase.swift; sourceTree = "<group>"; };
+		83D489282045E4FF00F4FE8E /* SignInStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInStateTests.swift; sourceTree = "<group>"; };
 		83D7F6AF20418D9C00E7D760 /* SignInActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInActions.swift; sourceTree = "<group>"; };
 		83D7F6B020418D9C00E7D760 /* SignInState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInState.swift; sourceTree = "<group>"; };
 		83D7F6B120418D9C00E7D760 /* SignInError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInError.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 		8341170420386C9900399D2C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				83D489272045E4F100F4FE8E /* SignIn */,
 				8341170320386C9500399D2C /* Count */,
 				83B2B6D0203CB89B0042331B /* Images */,
 				83411732203A7E8400399D2C /* Language */,
@@ -488,6 +491,14 @@
 				83C4038E2037316D00138C77 /* XCTestCase+KIF.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		83D489272045E4F100F4FE8E /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				83D489282045E4FF00F4FE8E /* SignInStateTests.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		83D7F6A8203D5ABB00E7D760 /* View */ = {
@@ -911,6 +922,7 @@
 				83B2B6D2203CB8B60042331B /* ImageStateTests.swift in Sources */,
 				831D02B3203AA97300825ED1 /* MockUserDefaults.swift in Sources */,
 				831D02B8203AB9EF00825ED1 /* StyleViewControllerTests.swift in Sources */,
+				83D489292045E4FF00F4FE8E /* SignInStateTests.swift in Sources */,
 				83C4039320374B6300138C77 /* ViewControllerTestCase.swift in Sources */,
 				83411738203A834400399D2C /* LanguageViewControllerTests.swift in Sources */,
 				83B2B6D4203CBC0E0042331B /* ReducerTestCase.swift in Sources */,

@@ -4,6 +4,10 @@ import XCTest
 @testable import RxRedux
 
 class LanguageManagerMock: LanguageManaging {
+    func systemLanguage() -> String {
+        return currentSpy.get()!
+    }
+
     let listMock = Mock(["en"])
     func list() -> [String] {
         return listMock.execute()
