@@ -74,7 +74,7 @@ extension SignInViewController: SignInContainerType {
     func setViewModel(_ viewModel: SignInViewModel) {
         signInView.viewModel = viewModel
         signedInView.viewModel = viewModel
-        button.isEnabled = viewModel.isButtonEnabled
+        button.isUserInteractionEnabled = viewModel.isButtonEnabled
         
         view.layoutIfNeeded()
         
