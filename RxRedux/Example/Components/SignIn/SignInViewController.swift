@@ -20,7 +20,7 @@ struct SignInTabIcon: TabIcon {
     let selectedImage: UIImage = #imageLiteral(resourceName: "sign-in-filled")
 }
 
-extension SignedInUser.Gender {
+extension Gender {
     var tabIcon: TabIcon {
         switch self {
         case .male: return MaleTabIcon()
@@ -31,10 +31,10 @@ extension SignedInUser.Gender {
 
 class SignInViewController: UIViewController {
     private lazy var containerView = UIView()
-    private lazy var signInView = SignInView(SignInAccessibility.signInContainer)
-    private lazy var signedInView = SignedInView(AccountAccessibility.accountContainer)
+    lazy var signInView = SignInView(SignInAccessibility.signInContainer)
+    lazy var signedInView = SignedInView(AccountAccessibility.accountContainer)
     private lazy var loadingView = LoadingView(SignInAccessibility.loading)
-    private lazy var button = SignInOutButton(SignInAccessibility.signInOutButton)
+    lazy var button = SignInOutButton(SignInAccessibility.signInOutButton)
     
     var presenter: SignInPresenter<SignInViewController>? 
     
@@ -50,25 +50,9 @@ class SignInViewController: UIViewController {
     }
 }
 
-extension SignInViewController: SignInContainerType {
-    func selectedGender() -> Observable<Int> {
-        return signedInView.selectedGender()
-    }
-    
-    func setGenders(_ genders: [String]) {
-        signedInView.setGenders(genders)
-    }
-    
-    func setSelectedGender(_ selected: Int) {
-        signedInView.setSelectedGender(selected)
-    }
-    
-    func setButtonAction(_ action: CocoaAction) {
-        button.rx.action = action
-    }
-    
-    func setButtonTitle(_ title: String) {
-        button.setTitle(title, for: .normal)
+extension SignInViewController: SignInContainerComponent {
+    var tabItem: UITabBarItem {
+        return navigationController!.tabBarItem
     }
     
     func setViewModel(_ viewModel: SignInViewModel) {
@@ -97,54 +81,6 @@ extension SignInViewController: SignInContainerType {
             
             self.view.layoutIfNeeded()
         })
-    }
-    
-    func beganEditingPassword() -> Observable<Void> {
-        return signInView.beganEditingPassword()
-    }
-    
-    func beganEditingEmail() -> Observable<Void> {
-        return signInView.beganEditingEmail()
-    }
-    
-    func editedPassword() -> Observable<String?> {
-        return signInView.editedPassword()
-    }
-    
-    func editedEmail() -> Observable<String?> {
-        return signInView.editedEmail()
-    }
-    
-    func endedEditingPassword() -> Observable<Void> {
-        return signInView.endedEditingPassword()
-    }
-    
-    func endedEditingEmail() -> Observable<Void> {
-        return signInView.endedEditingEmail()
-    }
-    
-    func setEmailError(_ text: String) {
-        signInView.setEmailError(text)
-    }
-    
-    func setPasswordError(_ text: String) {
-        signInView.setPasswordError(text)
-    }
-    
-    func setEmailPlaceholder(_ text: String) {
-        signInView.setEmailPlaceholder(text)
-    }
-    
-    func setPasswordPlaceholder(_ text: String) {
-        signInView.setPasswordPlaceholder(text)
-    }
-    
-    func selectPassword() {
-        signInView.selectPassword()
-    }
-    
-    func dismissKeyboard() {
-        signInView.dismissKeyboard()
     }
 }
 

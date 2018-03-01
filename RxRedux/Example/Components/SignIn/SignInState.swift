@@ -41,10 +41,7 @@ struct SignInState: StateType, Equatable, Codable {
     
     private mutating func reduce(_ action: AccountGenderAction) {
         switch action {
-        case .setMale:
-            signedInUser?.gender = .male
-        case .setFemale:
-            signedInUser?.gender = .female
+        case .setGender(let gender): signedInUser?.gender = gender
         }
     }
     

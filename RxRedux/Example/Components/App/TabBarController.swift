@@ -11,8 +11,8 @@ class TabBarController: UITabBarController {
         router.register(router: imageSearch)
         
         viewControllers = [
-            imageSearch,
             CountNavigationController(),
+            imageSearch,
             StyleNavigationController(),
             LanguageNavigationController(),
             SignInNavigationController()]

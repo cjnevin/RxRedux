@@ -44,14 +44,14 @@ extension SignInState {
 
 class SignInStateTests: XCTestCase {
     func test_whenSetFemaleIsReduced_thenExpectFemaleSignedInUser() {
-        var signInState = SignInState.fake(signedInUser: SignedInUser.fake(gender: SignedInUser.Gender.male))
-        signInState.reduce(AccountGenderAction.setFemale)
+        var signInState = SignInState.fake(signedInUser: SignedInUser.fake(gender: Gender.male))
+        signInState.reduce(AccountGenderAction.setGender(.female))
         expect(signInState.signedInUser!.gender).to(equal(SignedInUser.Gender.female))
     }
     
     func test_whenSetMaleIsReduced_thenExpectMaleSignedInUser() {
-        var signInState = SignInState.fake(signedInUser: SignedInUser.fake(gender: SignedInUser.Gender.female))
-        signInState.reduce(AccountGenderAction.setMale)
+        var signInState = SignInState.fake(signedInUser: SignedInUser.fake(gender: Gender.female))
+        signInState.reduce(AccountGenderAction.setGender(.male))
         expect(signInState.signedInUser!.gender).to(equal(SignedInUser.Gender.male))
     }
     

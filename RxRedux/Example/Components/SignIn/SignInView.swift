@@ -1,6 +1,8 @@
 import UIKit
 import RxSwift
+import RxCocoa
 import SnapKit
+import Action
 
 enum SignInAccessibility: String {
     case signInContainer
@@ -15,38 +17,21 @@ enum SignInAccessibility: String {
 
 class SignInErrorLabel: UILabel { }
 class SignInLocalizableErrorLabel: SignInErrorLabel { }
-class SignInEmailField: UITextField {
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        keyboardType = .emailAddress
-        returnKeyType = .next
-        autocorrectionType = .no
-        autocapitalizationType = .none
-    }
-}
-class SignInPasswordField: UITextField {
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        isSecureTextEntry = true
-        keyboardType = .default
-        returnKeyType = .send
-        autocorrectionType = .no
-        autocapitalizationType = .none
-    }
-}
+class SignInEmailField: UITextField, EmailTextFieldComponent { }
+class SignInPasswordField: UITextField, PasswordTextFieldComponent { }
 
-class SignInView: UIView {
+class SignInView: UIView, SignInComponent {
     private lazy var formInvalidLabel = SignInErrorLabel(SignInAccessibility.formInvalid)
-    private lazy var emailInvalidLabel = SignInLocalizableErrorLabel(SignInAccessibility.emailInvalid)
-    private lazy var emailTextField = SignInEmailField(SignInAccessibility.email)
-    private lazy var passwordInvalidLabel = SignInLocalizableErrorLabel(SignInAccessibility.passwordInvalid)
-    private lazy var passwordTextField = SignInPasswordField(SignInAccessibility.password)
+    lazy var emailErrorLabel = SignInLocalizableErrorLabel(SignInAccessibility.emailInvalid)
+    lazy var emailTextField = SignInEmailField(SignInAccessibility.email)
+    lazy var passwordErrorLabel = SignInLocalizableErrorLabel(SignInAccessibility.passwordInvalid)
+    lazy var passwordTextField = SignInPasswordField(SignInAccessibility.password)
     
     override func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         layout()
     }
-    
+
     var viewModel: SignInViewModel? {
         didSet {
             emailTextField.text = viewModel?.email
@@ -67,26 +52,26 @@ class SignInView: UIView {
         guard let viewModel = viewModel else { return }
         
         emailTextField.snp.updateConstraints { (make) in
-            make.top.equalTo(formInvalidLabel.snp.bottom).offset(viewModel.isLoadingShown ? 0 : 20)
+            make.top.equalTo(formInvalidLabel.snp.bottom).offset(viewModel.serverError == nil ? 0 : 20)
         }
         passwordTextField.snp.updateConstraints { (make) in
-            make.top.equalTo(emailInvalidLabel.snp.bottom).offset(viewModel.isLoadingShown ? 0 : 20)
+            make.top.equalTo(emailErrorLabel.snp.bottom).offset(viewModel.isLoadingShown ? 0 : 20)
         }
         formInvalidLabel.snp.updateConstraints { make in
             make.height.equalTo(viewModel.hideServerError ? 0 : 30)
         }
-        emailInvalidLabel.snp.updateConstraints { make in
+        emailErrorLabel.snp.updateConstraints { make in
             make.height.equalTo(viewModel.hideEmailError ? 0 : 30)
         }
-        passwordInvalidLabel.snp.updateConstraints { make in
+        passwordErrorLabel.snp.updateConstraints { make in
             make.height.equalTo(viewModel.hidePasswordError ? 0 : 30)
         }
     }
     
     private func layout() {
         [formInvalidLabel,
-         emailInvalidLabel, emailTextField,
-         passwordInvalidLabel, passwordTextField].forEach(addSubview)
+         emailErrorLabel, emailTextField,
+         passwordErrorLabel, passwordTextField].forEach(addSubview)
         
         // Sign in ...
         formInvalidLabel.snp.makeConstraints { (make) in
@@ -98,72 +83,21 @@ class SignInView: UIView {
             make.height.equalTo(44)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-        emailInvalidLabel.snp.makeConstraints { (make) in
+        emailErrorLabel.snp.makeConstraints { (make) in
             make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(0)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         passwordTextField.snp.makeConstraints { (make) in
-            make.top.equalTo(emailInvalidLabel.snp.bottom).offset(20)
+            make.top.equalTo(emailErrorLabel.snp.bottom).offset(20)
             make.height.equalTo(44)
             make.leading.trailing.equalToSuperview().inset(20)
         }
-        passwordInvalidLabel.snp.makeConstraints { (make) in
+        passwordErrorLabel.snp.makeConstraints { (make) in
             make.top.equalTo(passwordTextField.snp.bottom)
             make.height.equalTo(0)
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(snp.bottom).inset(20)
         }
-    }
-}
-
-extension SignInView: SignInViewType {
-    func beganEditingPassword() -> Observable<Void> {
-        return passwordTextField.rx.controlEvent(.editingDidBegin).take(1)
-    }
-    
-    func beganEditingEmail() -> Observable<Void> {
-        return emailTextField.rx.controlEvent(.editingDidBegin).take(1)
-    }
-    
-    func endedEditingEmail() -> Observable<Void> {
-        return emailTextField.rx.controlEvent(.editingDidEnd).asObservable()
-    }
-    
-    func endedEditingPassword() -> Observable<Void> {
-        return passwordTextField.rx.controlEvent(.editingDidEnd).asObservable()
-    }
-    
-    func editedPassword() -> Observable<String?> {
-        return passwordTextField.rx.text.skip(1)
-    }
-    
-    func editedEmail() -> Observable<String?> {
-        return emailTextField.rx.text.skip(1)
-    }
-    
-    func setEmailError(_ text: String) {
-        emailInvalidLabel.text = text
-    }
-    
-    func setPasswordError(_ text: String) {
-        passwordInvalidLabel.text = text
-    }
-    
-    func setEmailPlaceholder(_ text: String) {
-        emailTextField.placeholder = text
-    }
-    
-    func setPasswordPlaceholder(_ text: String) {
-        passwordTextField.placeholder = text
-    }
-    
-    func selectPassword() {
-        passwordTextField.becomeFirstResponder()
-    }
-    
-    func dismissKeyboard() {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
     }
 }

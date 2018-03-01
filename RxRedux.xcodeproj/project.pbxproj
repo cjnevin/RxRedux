@@ -63,6 +63,8 @@
 		834E31E12041F90400143C21 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E02041F90400143C21 /* SignInView.swift */; };
 		834E31E32041FEE400143C21 /* SignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E22041FEE400143C21 /* SignedInView.swift */; };
 		834E31E52042B9CC00143C21 /* PersistenceMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */; };
+		83A6179C20486E1200760C67 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6179B20486E1200760C67 /* Component.swift */; };
+		83A6179E20486E8F00760C67 /* Component+UIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A6179D20486E8F00760C67 /* Component+UIKit.swift */; };
 		83AE3BBD204395F400BBFAE1 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE3BBC204395F400BBFAE1 /* SignInPresenter.swift */; };
 		83B2B6C6203C92F50042331B /* ExternalLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */; };
 		83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */; };
@@ -170,6 +172,8 @@
 		834E31E22041FEE400143C21 /* SignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInView.swift; sourceTree = "<group>"; };
 		834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceMiddleware.swift; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
+		83A6179B20486E1200760C67 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		83A6179D20486E8F00760C67 /* Component+UIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Component+UIKit.swift"; sourceTree = "<group>"; };
 		83AE3BBC204395F400BBFAE1 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkRouter.swift; sourceTree = "<group>"; };
 		83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadIndicatingView.swift; sourceTree = "<group>"; };
@@ -504,6 +508,8 @@
 		83D7F6A8203D5ABB00E7D760 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				83A6179B20486E1200760C67 /* Component.swift */,
+				83A6179D20486E8F00760C67 /* Component+UIKit.swift */,
 				8341170D203897E700399D2C /* Identifiable.swift */,
 				83B2B6CC203C9B910042331B /* LoadingView.swift */,
 				83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */,
@@ -860,6 +866,7 @@
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
 				834A0EE3203C6EAF002A3FF1 /* RoutingMiddleware.swift in Sources */,
 				834A0EC3203B05BA002A3FF1 /* ImageSearchNavigationController.swift in Sources */,
+				83A6179C20486E1200760C67 /* Component.swift in Sources */,
 				831D02BA203ABA9400825ED1 /* StyleNavigationController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountState.swift in Sources */,
 				8341172F2038DB6400399D2C /* Store+Language.swift in Sources */,
@@ -895,6 +902,7 @@
 				830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */,
 				834A0EBB203AC25F002A3FF1 /* StyleMiddleware.swift in Sources */,
 				830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */,
+				83A6179E20486E8F00760C67 /* Component+UIKit.swift in Sources */,
 				834A0EC5203B05F5002A3FF1 /* ImageSearchPresenter.swift in Sources */,
 				83D7F6B720418D9C00E7D760 /* SignInError.swift in Sources */,
 				8341170C2038971500399D2C /* LanguageViewController.swift in Sources */,

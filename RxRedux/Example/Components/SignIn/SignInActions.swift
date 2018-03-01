@@ -40,6 +40,5 @@ enum SignOutFormAction: ActionType {
 }
 
 enum AccountGenderAction: ActionType {
-    case setMale
-    case setFemale
+    case setGender(Gender)
 }
