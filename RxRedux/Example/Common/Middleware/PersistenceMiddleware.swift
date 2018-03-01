@@ -1,14 +1,5 @@
 import Foundation
 
-private let persistenceOperationQueue: OperationQueue = {
-    let operationQueue = OperationQueue()
-    operationQueue.maxConcurrentOperationCount = 1
-    operationQueue.qualityOfService = .userInitiated
-    return operationQueue
-}()
-
-private let persistenceKey = "Store.AppState"
-
 func getAppState(_ userDefaults: UserDefaults = .standard) -> AppState {
     let decoder = JSONDecoder()
     if let data = userDefaults.value(forKey: persistenceKey) as? Data,
@@ -17,6 +8,15 @@ func getAppState(_ userDefaults: UserDefaults = .standard) -> AppState {
     }
     return AppState()
 }
+
+private let persistenceOperationQueue: OperationQueue = {
+    let operationQueue = OperationQueue()
+    operationQueue.maxConcurrentOperationCount = 1
+    operationQueue.qualityOfService = .userInitiated
+    return operationQueue
+}()
+
+private let persistenceKey = "Store.AppState"
 
 enum PersistenceMiddleware {
     static func create(_ userDefaults: UserDefaults = .standard) -> (AppState) -> DispatchCreator {
@@ -32,7 +32,6 @@ enum PersistenceMiddleware {
                         }
                         // Note: User Defaults synchronizes automatically at regular intervals.
                         // However, sometimes if you kill the app prematurely it won't have written yet.
-                        // User defaults should be avoided in practice.
                         userDefaults.setValue(encoded, forKey: persistenceKey)
                     }
                 }
