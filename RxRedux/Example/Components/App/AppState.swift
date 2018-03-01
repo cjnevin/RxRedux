@@ -25,15 +25,11 @@ struct AppState: StateType, Equatable, Codable {
     }
     
     mutating func reduce(_ action: ActionType) {
-        if case PersistenceAction.replaceState(let state) = action {
-            self = state
-        } else {
-            countState.reduce(action)
-            imageState.reduce(action)
-            languageState.reduce(action)
-            signInState.reduce(action)
-            styleState.reduce(action)
-        }
+        countState.reduce(action)
+        imageState.reduce(action)
+        languageState.reduce(action)
+        signInState.reduce(action)
+        styleState.reduce(action)
     }
 }
 

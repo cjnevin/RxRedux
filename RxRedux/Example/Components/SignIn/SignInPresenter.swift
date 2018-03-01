@@ -3,7 +3,7 @@ import RxSwift
 import Action
 
 class SignInPresenter<T: SignInContainerType>: Presenter<T> {
-    override func attachView(_ view: T) {
+     override func attachView(_ view: T) {
         super.attachView(view)
         
         let genders = [SignedInUser.Gender.male,
@@ -13,7 +13,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
             .filter { $0.isSignedIn }
             .map { ($0.signedInUser?.gender ?? .male) }
             .distinctUntilChanged()
-        
+
         let disposables = [
             view.beganEditingEmail()
                 .subscribe(onNext: {

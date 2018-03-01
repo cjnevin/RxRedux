@@ -1,18 +1,18 @@
 import Foundation
 
-enum StyleMiddleware<S, T: Store<S>> {
+enum StyleMiddleware {
     static func list() -> [Style] {
         return [Style(styleType: .blue),
                 Style(styleType: .green)]
     }
     
-    static func create() -> (T) -> DispatchCreator {
-        return { _ in
+    static func create() -> (AppState) -> DispatchCreator {
+        return { state in
             return { next in
                 return { action in
                     switch action {
                     case AppLifecycleAction.ready:
-                        let style = store.state.styleState.current
+                        let style = state.styleState.current
                         store.dispatch(StyleAction.set(style))
                         next(action)
                     case StyleAction.list(.loading):

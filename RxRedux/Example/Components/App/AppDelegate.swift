@@ -3,12 +3,12 @@ import RxSwift
 
 var api: Api = Api()
 
-var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
+var router = RoutingMiddleware<AppState>(routers: [
     ExternalLinkRouter()
 ])
 
 var store = Store<AppState>(
-    state: AppState(),
+    state: getAppState(),
     middlewares: [
         LanguageMiddleware.create(),
         LoggingMiddleware.create(),

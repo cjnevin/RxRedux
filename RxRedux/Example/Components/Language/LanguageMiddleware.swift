@@ -21,19 +21,17 @@ class LanguageManager: LanguageManaging {
     }
 }
 
-enum LanguageMiddleware<S, T: Store<S>> {
-    static func create(manager: LanguageManaging = LanguageManager()) -> (T) -> DispatchCreator {
-        return { store in
+enum LanguageMiddleware {
+    static func create(manager: LanguageManaging = LanguageManager()) -> (AppState) -> DispatchCreator {
+        return { state in
             return { next in
                 return { action in
                     switch action {
                     case AppLifecycleAction.ready:
-                        if let state = store.state as? AppState {
-                            if manager.list().contains(state.languageState.current) {
-                                store.dispatch(LanguageAction.set(state.languageState.current))
-                            } else {
-                                store.dispatch(LanguageAction.set(manager.systemLanguage()))
-                            }
+                        if manager.list().contains(state.languageState.current) {
+                            store.dispatch(LanguageAction.set(state.languageState.current))
+                        } else {
+                            store.dispatch(LanguageAction.set(manager.systemLanguage()))
                         }
                         next(action)
                     case LanguageAction.list(.loading):

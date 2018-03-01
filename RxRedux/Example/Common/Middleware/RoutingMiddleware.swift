@@ -10,7 +10,7 @@ protocol Router {
     func handle(route: RouteAction) -> Bool
 }
 
-class RoutingMiddleware<S, T: Store<S>> {
+class RoutingMiddleware<State> {
     private var routers: [Router]
     
     init(routers: [Router] = []) {
@@ -21,8 +21,8 @@ class RoutingMiddleware<S, T: Store<S>> {
         self.routers.append(router)
     }
     
-    func create() -> (T) -> DispatchCreator {
-        return { store in
+    func create() -> (State) -> DispatchCreator {
+        return { state in
             return { next in
                 return { [weak self] action in
                     defer {

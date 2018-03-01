@@ -1,43 +1,33 @@
 import RxSwift
 
-enum StoreAction: ActionType {
-    case initialized
-}
-
 final class Store<State: StateType> {
-    typealias MiddlewareType = Middleware<Store<State>>
+    typealias MiddlewareType = Middleware<State>
     
-    private(set) var state: State
-    
+    private var state: State
     private let stateSubject: BehaviorSubject<State>
+    
     private var middlewares: [MiddlewareType]
     
     init(state: State, middlewares: [MiddlewareType] = []) {
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)
         self.middlewares = middlewares
-        self.dispatch(StoreAction.initialized)
     }
     
     deinit {
         stateSubject.onCompleted()
     }
     
-    func dispatch(_ action: ActionType) {
-        if !Thread.isMainThread {
-            DispatchQueue.main.async { [weak self] in
-                self?.dispatch(action)
-            }
-            return
-        }
-        middlewares.reduce(dispatchInternal, { dispatch, middleware in
-            middleware(self)(dispatch)
-        })(action)
-    }
-    
-    private func dispatchInternal(_ action: ActionType) {
+    private func _dispatch(_ action: ActionType) {
         state.reduce(action)
         stateSubject.onNext(state)
+    }
+    
+    func dispatch(_ action: ActionType) {
+        precondition(Thread.isMainThread)
+        middlewares.reduce(_dispatch, { dispatch, middleware in
+            middleware(state)(dispatch)
+        })(action)
     }
     
     func register(_ middleware: MiddlewareType...) {
