@@ -9,7 +9,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
         let genders = [SignedInUser.Gender.male,
                        SignedInUser.Gender.female]
         
-        let genderObservable = store.observe(\AppState.signInState)
+        let genderObservable = state.listen(\.signInState)
             .filter { $0.isSignedIn }
             .map { ($0.signedInUser?.gender ?? .male) }
             .distinctUntilChanged()
@@ -17,22 +17,22 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
         let disposables = [
             view.beganEditingEmail()
                 .subscribe(onNext: {
-                    store.dispatch(SignInFormAction.touchEmail)
+                    fire.onNext(SignInFormAction.touchEmail)
                 }),
             
             view.beganEditingPassword()
                 .subscribe(onNext: {
-                    store.dispatch(SignInFormAction.touchPassword)
+                    fire.onNext(SignInFormAction.touchPassword)
                 }),
             
             view.editedEmail()
                 .subscribe(onNext: { (text) in
-                    store.dispatch(SignInFormAction.updateEmail(text ?? ""))
+                    fire.onNext(SignInFormAction.updateEmail(text ?? ""))
                 }),
             
             view.editedPassword()
                 .subscribe(onNext: { (text) in
-                    store.dispatch(SignInFormAction.updatePassword(text ?? ""))
+                    fire.onNext(SignInFormAction.updatePassword(text ?? ""))
                 }),
             
             view.endedEditingEmail()
@@ -43,10 +43,10 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
             view.endedEditingPassword()
                 .subscribe(onNext: { (_) in
                     view.dismissKeyboard()
-                    store.dispatch(signIn())
+                    fire.onNext(signIn())
                 }),
             
-            store.localizedObserve()
+            state.localized()
                 .subscribe(onNext: { _ in
                     view.setGenders(genders.map { "account.gender.\($0.rawValue)".localized() })
                     view.setEmailError("sign.in.email.invalid".localized())
@@ -55,11 +55,11 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                     view.setPasswordPlaceholder("sign.in.password.placeholder".localized())
                 }),
             
-            store.localizedObserve(\.signInState.isSignedIn)
+            state.localizedListen(\.signInState.isSignedIn)
                 .subscribe(onNext: { (isSignedIn) in
                     if isSignedIn {
                         view.setButtonAction(CocoaAction() {
-                            .just(store.dispatch(signOut()))
+                            .just(fire.onNext(signOut()))
                         })
                         view.setTabTitle("sign.out.tab.title".localized())
                         view.setTitle("sign.out.title".localized())
@@ -67,7 +67,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                     } else {
                         view.setButtonAction(CocoaAction() {
                             view.dismissKeyboard()
-                            return .just(store.dispatch(signIn()))
+                            return .just(fire.onNext(signIn()))
                         })
                         view.setTabTitle("sign.in.tab.title".localized())
                         view.setTitle("sign.in.title".localized())
@@ -75,20 +75,20 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                     }
                 }),
             
-            store.observe(\.signInState)
+            state.listen(\.signInState)
                 .map(SignInViewModel.init)
                 .subscribe(onNext: view.setViewModel),
             
             view.selectedGender()
                 .subscribe(onNext: { (index) in
                     if genders[index] == .male {
-                        store.dispatch(AccountGenderAction.setMale)
+                        fire.onNext(AccountGenderAction.setMale)
                     } else {
-                        store.dispatch(AccountGenderAction.setFemale)
+                        fire.onNext(AccountGenderAction.setFemale)
                     }
                 }),
             
-            Observable.combineLatest(store.localizedObserve(), genderObservable)
+            Observable.combineLatest(state.localized(), genderObservable)
                 .map { genders.index(of: $1) ?? 0 }
                 .subscribe(onNext: { (index) in
                     view.setSelectedGender(index)
@@ -98,7 +98,7 @@ class SignInPresenter<T: SignInContainerType>: Presenter<T> {
                 .map { $0.tabIcon }
                 .subscribe(onNext: view.setTabIcon),
             
-            store.observe(\.signInState.isSignedIn)
+            state.listen(\.signInState.isSignedIn)
                 .filter { !$0 }
                 .subscribe(onNext: { (_) in
                     view.setTabIcon(SignInTabIcon())

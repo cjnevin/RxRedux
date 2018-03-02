@@ -4,9 +4,9 @@ func signIn() -> ActionType {
     DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2) {
         DispatchQueue.main.async {
             if drand48() > 0.5 {
-                store.dispatch(SignInFormAction.handleError(SignInError.incorrectCredentials))
+                fire.onNext(SignInFormAction.handleError(SignInError.incorrectCredentials))
             } else {
-                store.dispatch(SignInFormAction.handleSuccess(SignedInUser(id: 1, firstName: "John", lastName: "Smith", gender: nil)))
+                fire.onNext(SignInFormAction.handleSuccess(SignedInUser(id: 1, firstName: "John", lastName: "Smith", gender: nil)))
             }
         }
     }
@@ -16,7 +16,7 @@ func signIn() -> ActionType {
 func signOut() -> ActionType {
     DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 2) {
         DispatchQueue.main.async {
-            store.dispatch(SignOutFormAction.handleSuccess)
+            fire.onNext(SignOutFormAction.handleSuccess)
         }
     }
     return SignOutFormAction.request

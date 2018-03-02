@@ -14,22 +14,22 @@ class StyleViewControllerTests: ViewControllerTestCase {
     }
     
     func test_whenAppIsLaunched_thenExpectBlueIsSelected() {
-        store.dispatch(AppLifecycleAction.ready)
+        fire.onNext(AppLifecycleAction.ready)
         expectValidSnapshot()
     }
     
     func test_whenBlueCellIsTapped_thenStyleValueIsChanged() {
-        store.dispatch(AppLifecycleAction.ready)
-        store.dispatch(StyleAction.set(Style(styleType: .green)))
+        fire.onNext(AppLifecycleAction.ready)
+        fire.onNext(StyleAction.set(Style(styleType: .green)))
         blueCell.tap()
         expectValidSnapshot()
     }
     
     func test_whenGreenCellIsTapped_thenStyleValueIsChanged() {
-        store.dispatch(AppLifecycleAction.ready)
+        fire.onNext(AppLifecycleAction.ready)
         greenCell.tap()
         expectValidSnapshot()
-        store.dispatch(StyleAction.set(Style(styleType: .blue)))
+        fire.onNext(StyleAction.set(Style(styleType: .blue)))
     }
     
     // MARK: Helpers

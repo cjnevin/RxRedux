@@ -10,7 +10,7 @@
 		557EEE09CB8E3028CFBB6008 /* Pods_RxReduxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FEAEF41EA1F430FBF861D12 /* Pods_RxReduxTests.framework */; };
 		60230DF1083D915FC5E3B71E /* Pods_RxRedux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56EF77FB77CC13EA1756BB2 /* Pods_RxRedux.framework */; };
 		8304A1552033B71100E8BCF1 /* CountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304A1542033B71100E8BCF1 /* CountPresenter.swift */; };
-		8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */; };
+		8304A15A2033C08C00E8BCF1 /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304A1592033C08C00E8BCF1 /* ActionLogger.swift */; };
 		830E6F76203760AC00441057 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 830E6F78203760AC00441057 /* Localizable.strings */; };
 		830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F7A2037641200441057 /* UIView+Accessibility.swift */; };
 		830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830E6F7E2037834300441057 /* UIView+SnapKit.swift */; };
@@ -29,7 +29,7 @@
 		8341170C2038971500399D2C /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170B2038971500399D2C /* LanguageViewController.swift */; };
 		8341170E203897E700399D2C /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170D203897E700399D2C /* Identifiable.swift */; };
 		834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341170F2038980800399D2C /* LanguageTableViewCell.swift */; };
-		8341171220389E0300399D2C /* LanguageMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171120389E0300399D2C /* LanguageMiddleware.swift */; };
+		8341171220389E0300399D2C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171120389E0300399D2C /* LanguageManager.swift */; };
 		834117142038AAD300399D2C /* TitlableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117132038AAD300399D2C /* TitlableView.swift */; };
 		834117162038ABA400399D2C /* TabTitlableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117152038ABA400399D2C /* TabTitlableView.swift */; };
 		8341171B2038AD6200399D2C /* LocalizableTabTitlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341171A2038AD6200399D2C /* LocalizableTabTitlePresenter.swift */; };
@@ -37,12 +37,11 @@
 		834117252038BC8B00399D2C /* StylePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117242038BC8B00399D2C /* StylePresenter.swift */; };
 		834117272038BCBB00399D2C /* StyleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117262038BCBB00399D2C /* StyleTableViewCell.swift */; };
 		834117292038BCE100399D2C /* StyleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834117282038BCE100399D2C /* StyleState.swift */; };
-		8341172F2038DB6400399D2C /* Store+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8341172E2038DB6400399D2C /* Store+Language.swift */; };
 		83411731203A7E8000399D2C /* LanguageStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83411730203A7E8000399D2C /* LanguageStateTests.swift */; };
 		83411735203A7FFF00399D2C /* Spy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83411733203A7FFF00399D2C /* Spy.swift */; };
 		83411736203A7FFF00399D2C /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83411734203A7FFF00399D2C /* Mock.swift */; };
 		83411738203A834400399D2C /* LanguageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83411737203A834400399D2C /* LanguageViewControllerTests.swift */; };
-		834A0EBB203AC25F002A3FF1 /* StyleMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EBA203AC25F002A3FF1 /* StyleMiddleware.swift */; };
+		834A0EBB203AC25F002A3FF1 /* StyleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EBA203AC25F002A3FF1 /* StyleManager.swift */; };
 		834A0EBE203AF526002A3FF1 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EBD203AF526002A3FF1 /* Progress.swift */; };
 		834A0EC1203B0497002A3FF1 /* ImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EC0203B0497002A3FF1 /* ImageSearchViewController.swift */; };
 		834A0EC3203B05BA002A3FF1 /* ImageSearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EC2203B05BA002A3FF1 /* ImageSearchNavigationController.swift */; };
@@ -56,13 +55,13 @@
 		834A0ED9203C6839002A3FF1 /* BlueStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0ED8203C6839002A3FF1 /* BlueStyle.swift */; };
 		834A0EDB203C685F002A3FF1 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EDA203C685F002A3FF1 /* UIColor+RGB.swift */; };
 		834A0EDD203C6878002A3FF1 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EDC203C6878002A3FF1 /* Style.swift */; };
-		834A0EE3203C6EAF002A3FF1 /* RoutingMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */; };
+		834A0EE3203C6EAF002A3FF1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE2203C6EAF002A3FF1 /* AppCoordinator.swift */; };
 		834A0EE5203C716C002A3FF1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE4203C716C002A3FF1 /* ImageViewController.swift */; };
 		834A0EE7203C7174002A3FF1 /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */; };
 		834A0EE9203C7E09002A3FF1 /* LocalizableTitlePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */; };
 		834E31E12041F90400143C21 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E02041F90400143C21 /* SignInView.swift */; };
 		834E31E32041FEE400143C21 /* SignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E22041FEE400143C21 /* SignedInView.swift */; };
-		834E31E52042B9CC00143C21 /* PersistenceMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */; };
+		834E31E52042B9CC00143C21 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834E31E42042B9CC00143C21 /* PersistenceManager.swift */; };
 		83AE3BBD204395F400BBFAE1 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AE3BBC204395F400BBFAE1 /* SignInPresenter.swift */; };
 		83B2B6C6203C92F50042331B /* ExternalLinkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */; };
 		83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B2B6CA203C9ABD0042331B /* LoadIndicatingView.swift */; };
@@ -88,11 +87,12 @@
 		83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A31F2033A2A2002D4B5B /* CountViewController.swift */; };
 		83F9A3252033A2A2002D4B5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3242033A2A2002D4B5B /* Assets.xcassets */; };
 		83F9A3282033A2A2002D4B5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83F9A3262033A2A2002D4B5B /* LaunchScreen.storyboard */; };
-		83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A33D2033A2AD002D4B5B /* Store.swift */; };
 		83F9A3402033A2E1002D4B5B /* StateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A33F2033A2E1002D4B5B /* StateType.swift */; };
 		83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A3412033A3ED002D4B5B /* Presenter.swift */; };
-		83F9A3442033A6D7002D4B5B /* Middleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A3432033A6D7002D4B5B /* Middleware.swift */; };
 		83F9A3462033A77A002D4B5B /* ActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9A3452033A77A002D4B5B /* ActionType.swift */; };
+		99945EDA20498CBF00F9B172 /* Observable+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99945ED920498CBF00F9B172 /* Observable+Localization.swift */; };
+		99945EDC20498CD600F9B172 /* Observable+Listen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99945EDB20498CD600F9B172 /* Observable+Listen.swift */; };
+		99945EDE20498D0500F9B172 /* SideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99945EDD20498D0500F9B172 /* SideEffect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +114,7 @@
 		822C7CAEA800E26C1B42746C /* Pods-RxRedux.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.debug.xcconfig"; sourceTree = "<group>"; };
 		827719A3DDB52CCE167C06F9 /* Pods-RxReduxUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxReduxUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxReduxUITests/Pods-RxReduxUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8304A1542033B71100E8BCF1 /* CountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountPresenter.swift; sourceTree = "<group>"; };
-		8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingMiddleware.swift; sourceTree = "<group>"; };
+		8304A1592033C08C00E8BCF1 /* ActionLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionLogger.swift; sourceTree = "<group>"; };
 		830E6F77203760AC00441057 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		830E6F7A2037641200441057 /* UIView+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Accessibility.swift"; sourceTree = "<group>"; };
 		830E6F7E2037834300441057 /* UIView+SnapKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		8341170B2038971500399D2C /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		8341170D203897E700399D2C /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		8341170F2038980800399D2C /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
-		8341171120389E0300399D2C /* LanguageMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageMiddleware.swift; sourceTree = "<group>"; };
+		8341171120389E0300399D2C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		834117132038AAD300399D2C /* TitlableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlableView.swift; sourceTree = "<group>"; };
 		834117152038ABA400399D2C /* TabTitlableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabTitlableView.swift; sourceTree = "<group>"; };
 		8341171A2038AD6200399D2C /* LocalizableTabTitlePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableTabTitlePresenter.swift; sourceTree = "<group>"; };
@@ -143,12 +143,11 @@
 		834117242038BC8B00399D2C /* StylePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylePresenter.swift; sourceTree = "<group>"; };
 		834117262038BCBB00399D2C /* StyleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleTableViewCell.swift; sourceTree = "<group>"; };
 		834117282038BCE100399D2C /* StyleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleState.swift; sourceTree = "<group>"; };
-		8341172E2038DB6400399D2C /* Store+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Language.swift"; sourceTree = "<group>"; };
 		83411730203A7E8000399D2C /* LanguageStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageStateTests.swift; sourceTree = "<group>"; };
 		83411733203A7FFF00399D2C /* Spy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spy.swift; sourceTree = "<group>"; };
 		83411734203A7FFF00399D2C /* Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		83411737203A834400399D2C /* LanguageViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewControllerTests.swift; sourceTree = "<group>"; };
-		834A0EBA203AC25F002A3FF1 /* StyleMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleMiddleware.swift; sourceTree = "<group>"; };
+		834A0EBA203AC25F002A3FF1 /* StyleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleManager.swift; sourceTree = "<group>"; };
 		834A0EBD203AF526002A3FF1 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		834A0EC0203B0497002A3FF1 /* ImageSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchViewController.swift; sourceTree = "<group>"; };
 		834A0EC2203B05BA002A3FF1 /* ImageSearchNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchNavigationController.swift; sourceTree = "<group>"; };
@@ -162,13 +161,13 @@
 		834A0ED8203C6839002A3FF1 /* BlueStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueStyle.swift; sourceTree = "<group>"; };
 		834A0EDA203C685F002A3FF1 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		834A0EDC203C6878002A3FF1 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingMiddleware.swift; sourceTree = "<group>"; };
+		834A0EE2203C6EAF002A3FF1 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		834A0EE4203C716C002A3FF1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		834A0EE6203C7174002A3FF1 /* ImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenter.swift; sourceTree = "<group>"; };
 		834A0EE8203C7E08002A3FF1 /* LocalizableTitlePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableTitlePresenter.swift; sourceTree = "<group>"; };
 		834E31E02041F90400143C21 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		834E31E22041FEE400143C21 /* SignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedInView.swift; sourceTree = "<group>"; };
-		834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceMiddleware.swift; sourceTree = "<group>"; };
+		834E31E42042B9CC00143C21 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		838F53BD917F73BCC9CD89A2 /* Pods-RxRedux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxRedux.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxRedux/Pods-RxRedux.release.xcconfig"; sourceTree = "<group>"; };
 		83AE3BBC204395F400BBFAE1 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		83B2B6C5203C92F50042331B /* ExternalLinkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkRouter.swift; sourceTree = "<group>"; };
@@ -199,11 +198,12 @@
 		83F9A3292033A2A2002D4B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83F9A32E2033A2A2002D4B5B /* RxReduxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxReduxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F9A3342033A2A2002D4B5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83F9A33D2033A2AD002D4B5B /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		83F9A33F2033A2E1002D4B5B /* StateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateType.swift; sourceTree = "<group>"; };
 		83F9A3412033A3ED002D4B5B /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		83F9A3432033A6D7002D4B5B /* Middleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Middleware.swift; sourceTree = "<group>"; };
 		83F9A3452033A77A002D4B5B /* ActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionType.swift; sourceTree = "<group>"; };
+		99945ED920498CBF00F9B172 /* Observable+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Localization.swift"; sourceTree = "<group>"; };
+		99945EDB20498CD600F9B172 /* Observable+Listen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Listen.swift"; sourceTree = "<group>"; };
+		99945EDD20498D0500F9B172 /* SideEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffect.swift; sourceTree = "<group>"; };
 		B56EF77FB77CC13EA1756BB2 /* Pods_RxRedux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxRedux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -234,7 +234,6 @@
 				834117172038ABF500399D2C /* Behaviour */,
 				830E6F79203763FD00441057 /* Extensions */,
 				834A0EBC203AF519002A3FF1 /* Helpers */,
-				8304A1582033C07E00E8BCF1 /* Middleware */,
 				83B2B6C9203C98920042331B /* Routers */,
 			);
 			path = Common;
@@ -244,21 +243,11 @@
 			isa = PBXGroup;
 			children = (
 				83F9A3452033A77A002D4B5B /* ActionType.swift */,
-				83F9A3432033A6D7002D4B5B /* Middleware.swift */,
+				99945EDB20498CD600F9B172 /* Observable+Listen.swift */,
+				99945EDD20498D0500F9B172 /* SideEffect.swift */,
 				83F9A33F2033A2E1002D4B5B /* StateType.swift */,
-				83F9A33D2033A2AD002D4B5B /* Store.swift */,
 			);
 			path = Redux;
-			sourceTree = "<group>";
-		};
-		8304A1582033C07E00E8BCF1 /* Middleware */ = {
-			isa = PBXGroup;
-			children = (
-				8304A1592033C08C00E8BCF1 /* LoggingMiddleware.swift */,
-				834A0EE2203C6EAF002A3FF1 /* RoutingMiddleware.swift */,
-				834E31E42042B9CC00143C21 /* PersistenceMiddleware.swift */,
-			);
-			path = Middleware;
 			sourceTree = "<group>";
 		};
 		830E6F79203763FD00441057 /* Extensions */ = {
@@ -305,7 +294,10 @@
 			isa = PBXGroup;
 			children = (
 				83F9A31D2033A2A2002D4B5B /* AppDelegate.swift */,
+				834A0EE2203C6EAF002A3FF1 /* AppCoordinator.swift */,
 				83C4038A20370CD700138C77 /* AppState.swift */,
+				8304A1592033C08C00E8BCF1 /* ActionLogger.swift */,
+				834E31E42042B9CC00143C21 /* PersistenceManager.swift */,
 				834A0ECC203C3E7D002A3FF1 /* TabBarController.swift */,
 			);
 			path = App;
@@ -367,13 +359,13 @@
 		834117062038928B00399D2C /* Language */ = {
 			isa = PBXGroup;
 			children = (
-				8341171120389E0300399D2C /* LanguageMiddleware.swift */,
+				8341171120389E0300399D2C /* LanguageManager.swift */,
 				834117092038955C00399D2C /* LanguagePresenter.swift */,
 				834117072038929E00399D2C /* LanguageState.swift */,
 				8341170F2038980800399D2C /* LanguageTableViewCell.swift */,
 				8341170B2038971500399D2C /* LanguageViewController.swift */,
 				831D02B4203AAAE200825ED1 /* LanguageNavigationController.swift */,
-				8341172E2038DB6400399D2C /* Store+Language.swift */,
+				99945ED920498CBF00F9B172 /* Observable+Localization.swift */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -391,7 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				834A0EE0203C68D5002A3FF1 /* Styles */,
-				834A0EBA203AC25F002A3FF1 /* StyleMiddleware.swift */,
+				834A0EBA203AC25F002A3FF1 /* StyleManager.swift */,
 				834117242038BC8B00399D2C /* StylePresenter.swift */,
 				834117282038BCE100399D2C /* StyleState.swift */,
 				834117262038BCBB00399D2C /* StyleTableViewCell.swift */,
@@ -852,24 +844,21 @@
 				83D7F6B520418D9C00E7D760 /* SignInActions.swift in Sources */,
 				83D7F6B920418D9C00E7D760 /* SignInViewController.swift in Sources */,
 				834117252038BC8B00399D2C /* StylePresenter.swift in Sources */,
-				83F9A33E2033A2AD002D4B5B /* Store.swift in Sources */,
 				834A0EDD203C6878002A3FF1 /* Style.swift in Sources */,
 				834E31E32041FEE400143C21 /* SignedInView.swift in Sources */,
 				834117292038BCE100399D2C /* StyleState.swift in Sources */,
 				834117162038ABA400399D2C /* TabTitlableView.swift in Sources */,
 				83F9A3202033A2A2002D4B5B /* CountViewController.swift in Sources */,
-				834A0EE3203C6EAF002A3FF1 /* RoutingMiddleware.swift in Sources */,
+				834A0EE3203C6EAF002A3FF1 /* AppCoordinator.swift in Sources */,
 				834A0EC3203B05BA002A3FF1 /* ImageSearchNavigationController.swift in Sources */,
 				831D02BA203ABA9400825ED1 /* StyleNavigationController.swift in Sources */,
 				83C4038D20370DB900138C77 /* CountState.swift in Sources */,
-				8341172F2038DB6400399D2C /* Store+Language.swift in Sources */,
 				83F9A3402033A2E1002D4B5B /* StateType.swift in Sources */,
 				834117102038980800399D2C /* LanguageTableViewCell.swift in Sources */,
 				831D02B5203AAAE200825ED1 /* LanguageNavigationController.swift in Sources */,
 				834A0ECB203B7639002A3FF1 /* ImageSearchCollectionViewDataSource.swift in Sources */,
 				834117082038929E00399D2C /* LanguageState.swift in Sources */,
 				83C4038B20370CD700138C77 /* AppState.swift in Sources */,
-				83F9A3442033A6D7002D4B5B /* Middleware.swift in Sources */,
 				830E6F832037B0F100441057 /* Action+ActionType.swift in Sources */,
 				834A0ED9203C6839002A3FF1 /* BlueStyle.swift in Sources */,
 				834A0EE9203C7E09002A3FF1 /* LocalizableTitlePresenter.swift in Sources */,
@@ -880,11 +869,12 @@
 				83D7F6B820418D9C00E7D760 /* SignInViewModel.swift in Sources */,
 				83B2B6CB203C9ABD0042331B /* LoadIndicatingView.swift in Sources */,
 				83F9A31E2033A2A2002D4B5B /* AppDelegate.swift in Sources */,
-				834E31E52042B9CC00143C21 /* PersistenceMiddleware.swift in Sources */,
-				8304A15A2033C08C00E8BCF1 /* LoggingMiddleware.swift in Sources */,
+				834E31E52042B9CC00143C21 /* PersistenceManager.swift in Sources */,
+				8304A15A2033C08C00E8BCF1 /* ActionLogger.swift in Sources */,
 				83D7F6C020418F5C00E7D760 /* SignedInUser.swift in Sources */,
 				83B2B6CD203C9B910042331B /* LoadingView.swift in Sources */,
 				8341170E203897E700399D2C /* Identifiable.swift in Sources */,
+				99945EDC20498CD600F9B172 /* Observable+Listen.swift in Sources */,
 				834A0EE5203C716C002A3FF1 /* ImageViewController.swift in Sources */,
 				8341171B2038AD6200399D2C /* LocalizableTabTitlePresenter.swift in Sources */,
 				83F9A3422033A3ED002D4B5B /* Presenter.swift in Sources */,
@@ -893,18 +883,20 @@
 				831D02B1203AA4E500825ED1 /* CountNavigationController.swift in Sources */,
 				83F9A3462033A77A002D4B5B /* ActionType.swift in Sources */,
 				830E6F812037895700441057 /* NSLocalizedString+Helper.swift in Sources */,
-				834A0EBB203AC25F002A3FF1 /* StyleMiddleware.swift in Sources */,
+				834A0EBB203AC25F002A3FF1 /* StyleManager.swift in Sources */,
 				830E6F7F2037834300441057 /* UIView+SnapKit.swift in Sources */,
 				834A0EC5203B05F5002A3FF1 /* ImageSearchPresenter.swift in Sources */,
 				83D7F6B720418D9C00E7D760 /* SignInError.swift in Sources */,
+				99945EDE20498D0500F9B172 /* SideEffect.swift in Sources */,
 				8341170C2038971500399D2C /* LanguageViewController.swift in Sources */,
 				834A0EBE203AF526002A3FF1 /* Progress.swift in Sources */,
 				830E6F7B2037641200441057 /* UIView+Accessibility.swift in Sources */,
 				83D7F6B620418D9C00E7D760 /* SignInState.swift in Sources */,
-				8341171220389E0300399D2C /* LanguageMiddleware.swift in Sources */,
+				8341171220389E0300399D2C /* LanguageManager.swift in Sources */,
 				834A0ECD203C3E7D002A3FF1 /* TabBarController.swift in Sources */,
 				834A0ED3203C55F1002A3FF1 /* ImageApi.swift in Sources */,
 				834A0EC9203B54D0002A3FF1 /* ImageSearchCollectionViewCell.swift in Sources */,
+				99945EDA20498CBF00F9B172 /* Observable+Localization.swift in Sources */,
 				834117272038BCBB00399D2C /* StyleTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

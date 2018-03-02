@@ -2,21 +2,12 @@ import Nimble
 import Nimble_Snapshots
 @testable import RxRedux
 
-private func resetStore() {
-    store = Store<AppState>(
-        state: AppState(),
-        middlewares: [
-            StyleMiddleware.create()
-        ])
-}
-
-class ViewControllerTestCase: XCTestCase {
+class ViewControllerTestCase: ReduxTestCase {
     var recordMode: Bool = false
     var window: UIWindow!
     
     override func setUp() {
         super.setUp()
-        resetStore()
         setLanguageToEnglish()
         window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
@@ -28,8 +19,8 @@ class ViewControllerTestCase: XCTestCase {
     }
     
     func setLanguageToEnglish() {
-        store.register(LanguageMiddleware.create())
-        store.dispatch(LanguageAction.set("en"))
+        prepareMockState(hasLanguageManager: true)
+        fire.onNext(LanguageAction.changeTo("en"))
     }
     
     func recordNewSnapshot(_ name: String = #function, file: FileString = #file, line: UInt = #line) {
@@ -52,8 +43,8 @@ class ViewControllerTestCase: XCTestCase {
     }
     
     func expectGreenStyle(_ name: String = #function, file: FileString = #file, line: UInt = #line) {
-        store.dispatch(StyleAction.set(Style(styleType: .green)))
+        fire.onNext(StyleAction.set(Style(styleType: .green)))
         expectValidSnapshot(name, file: file, line: line)
-        store.dispatch(StyleAction.set(Style(styleType: .blue)))
+        fire.onNext(StyleAction.set(Style(styleType: .blue)))
     }
 }

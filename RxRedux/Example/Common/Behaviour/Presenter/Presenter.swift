@@ -5,7 +5,7 @@ class Presenter<T> {
     private var disposeBag = DisposeBag()
     private var view: View?
     private var subPresenters: [Presenter<T>] = []
-    
+
     func attachPresenter(_ presenter: Presenter<T>) {
         subPresenters.append(presenter)
     }

@@ -1,21 +1,20 @@
 import UIKit
 import RxSwift
 
-var api: Api = Api()
+private let disposeBag = DisposeBag()
+private let persistence = PersistenceManager()
+private let sideEffects: [SideEffect<AppState>] =
+    [
+        LanguageManager().sideEffect,
+        ActionLogger().sideEffect,
+        StyleManager().sideEffect,
+        coordinator.sideEffect,
+        persistence.sideEffect
+]
 
-var router = RoutingMiddleware<AppState>(routers: [
-    ExternalLinkRouter()
-])
-
-var store = Store<AppState>(
-    state: getAppState(),
-    middlewares: [
-        LanguageMiddleware.create(),
-        LoggingMiddleware.create(),
-        router.create(),
-        StyleMiddleware.create(),
-        PersistenceMiddleware.create()
-    ])
+let api: Api = Api()
+let coordinator = AppCoordinator(routers: [ExternalLinkRouter()])
+var state: Observable<AppState> = persistence.restore().loop(on: fire, with: sideEffects)
 
 // Used by AppReducer, avoids importing UIKit everywhere
 typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
@@ -26,40 +25,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        store.dispatch(AppLifecycleAction.launch(launchOptions))
+
+        state.subscribe().disposed(by: disposeBag)
+
+        fire.onNext(AppLifecycleAction.launch(launchOptions))
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = TabBarController()
         window?.makeKeyAndVisible()
         
-        store.dispatch(AppLifecycleAction.ready)
+        fire.onNext(AppLifecycleAction.ready)
         
         return true
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.background)
+        fire.onNext(AppLifecycleAction.background)
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.foreground)
+        fire.onNext(AppLifecycleAction.foreground)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.inactive)
+        fire.onNext(AppLifecycleAction.inactive)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.active)
+        fire.onNext(AppLifecycleAction.active)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.terminating)
+        fire.onNext(AppLifecycleAction.terminating)
     }
     
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
-        store.dispatch(AppLifecycleAction.memoryWarning)
+        fire.onNext(AppLifecycleAction.memoryWarning)
     }
 }
 

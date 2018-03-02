@@ -1,6 +1,8 @@
 import Foundation
 import Nimble
 import XCTest
+import RxSwift
+import RxNimble
 @testable import RxRedux
 
 class LanguageManagerMock: LanguageManaging {
@@ -20,26 +22,27 @@ class LanguageManagerMock: LanguageManaging {
 }
 
 class LanguageStateTests: XCTestCase {
-    var sut: Store<LanguageState>!
+    var subject: PublishSubject<ActionType>!
+    var sut: Observable<LanguageState>!
     var manager: LanguageManagerMock!
     
     func test_whenSetAction_thenExpectLanguageToBeSet() {
-        expect(self.sut.state.current).to(equal(""))
-        sut.dispatch(LanguageAction.set("fr"))
-        expect(self.sut.state.current).to(equal("fr"))
+        expect(self.sut.map { $0.current }).first == ""
+        subject.onNext(LanguageAction.changeTo("fr"))
+        expect(self.sut.map { $0.current }).first == "fr"
     }
     
     func test_whenGetListAction_thenExpectWhatManagerContains() {
-        expect(self.sut.state.list).to(equal([]))
-        sut.dispatch(LanguageAction.getList())
-        expect(self.sut.state.list).toEventually(equal(["en"]))
+        expect(self.sut.map { $0.list }).first == []
+        subject.onNext(LanguageAction.getList())
+        expect(self.sut.map { $0.list }).first == ["en"]
     }
     
     override func setUp() {
         super.setUp()
-        sut = Store<LanguageState>(state: LanguageState(current: "", list: []))
         manager = LanguageManagerMock()
-        sut.register(LanguageMiddleware.create(manager: manager))
+        subject = PublishSubject<ActionType>()
+        sut = LanguageState(current: "", list: []).loop(on: subject, with: [manager.sideEffect])
     }
     
     override func tearDown() {

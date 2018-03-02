@@ -5,14 +5,11 @@ enum ExternalRoute: RouteAction {
 }
 
 class ExternalLinkRouter: Router {
-    func handle(route: RouteAction) -> Bool {
-        switch route {
-        case ExternalRoute.openLink(let link):
-            if let url = URL(string: link) {
-                UIApplication.shared.open(url)
-            }
-            return true
-        default: return false
+    func handle(_ route: RouteAction) -> Bool {
+        guard case ExternalRoute.openLink(let link) = route, let url = URL(string: link) else {
+            return false
         }
+        UIApplication.shared.open(url)
+        return true
     }
 }

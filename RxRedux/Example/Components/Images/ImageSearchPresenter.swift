@@ -6,44 +6,43 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
         
-        disposeOnViewDetach(store.observe(\.imageState.isLoading)
+        disposeOnViewDetach(state.listen(\.imageState.isLoading)
             .filter({ $0 })
             .subscribe(onNext: { _ in
                 view.showLoadingIndicator()
             }))
         
-        disposeOnViewDetach(store.observe(\.imageState.isLoading)
+        disposeOnViewDetach(state.listen(\.imageState.isLoading)
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .filter({ !$0 })
             .subscribe(onNext: { _ in
                 view.hideLoadingIndicator()
             }))
         
-        disposeOnViewDetach(store
-            .observe(\.languageState.current)
+        disposeOnViewDetach(state.listen(\.languageState.current)
             .subscribe(onNext: { _ in
                 view.setPlaceholderText(SearchText.placeholder)
             }))
         
         disposeOnViewDetach(view.selectedImage
             .subscribe(onNext: { (imageInfo) in
-                store.dispatch(ImageSearchAction.selectImage(imageInfo))
+                fire.onNext(ImageSearchAction.selectImage(imageInfo))
             }))
         
         disposeOnViewDetach(view.searchText
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { (text) in
-                store.dispatch(ImageSearchAction.search(for: text))
+                fire.onNext(ImageSearchAction.search(for: text))
             }))
         
-        disposeOnViewDetach(store.observe(\.imageState.query)
+        disposeOnViewDetach(state.listen(\.imageState.query)
             .take(1)
             .subscribe(onNext: { (query) in
                 view.setInitialSearchText(query)
             }))
         
-        disposeOnViewDetach(store.observe(\.imageState.images)
+        disposeOnViewDetach(state.listen(\.imageState.images)
             .subscribe(onNext: { (images) in
                 view.setImages(images)
             }))

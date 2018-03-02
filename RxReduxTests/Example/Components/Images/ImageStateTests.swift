@@ -1,6 +1,8 @@
 import Foundation
-import Nimble
 import XCTest
+import Nimble
+import RxNimble
+import RxSwift
 @testable import RxRedux
 
 extension ImageInfo {
@@ -18,32 +20,34 @@ extension ImageInfo {
 }
 
 class ImageStateTests: XCTestCase {
-    var sut: Store<ImageState>!
+    var subject: PublishSubject<ActionType>!
+    var sut: Observable<ImageState>!
 
     func test_whenLoadingAction_thenExpectEmptyResults() {
-        expect(self.sut.state.images).toNot(beEmpty())
-        sut.dispatch(ImageSearchAction.loading)
-        expect(self.sut.state.images).to(beEmpty())
+        expect(self.sut.map { $0.images }).first.toNot(beEmpty())
+        subject.onNext(ImageSearchAction.loading)
+        expect(self.sut.map { $0.images }).first.to(beEmpty())
     }
 
     func test_whenSelectedAction_thenExpectSelectedToNotBeNil() {
-        expect(self.sut.state.selected).to(beNil())
-        sut.dispatch(ImageSearchAction.selected(.fake()))
-        expect(self.sut.state.selected).toNot(beNil())
+        expect(self.sut.map { $0.selected }).first.to(beNil())
+        subject.onNext(ImageSearchAction.selected(.fake()))
+        expect(self.sut.map {$0.selected }).first.toNot(beNil())
     }
 
     func test_whenResultsAction_thenExpectResults() {
-        expect(self.sut.state.images).toNot(beEmpty())
-        expect(self.sut.state.query).to(equal("test"))
-        sut.dispatch(ImageSearchAction.loaded("testTwo", [.fake(), .fake()]))
-        expect(self.sut.state.images.count).to(be(2))
-        expect(self.sut.state.query).to(equal("testTwo"))
+        expect(self.sut.map { $0.images }).first.toNot(beEmpty())
+        expect(self.sut.map { $0.query }).first.to(equal("test"))
+        subject.onNext(ImageSearchAction.loaded("testTwo", [.fake(), .fake()]))
+        expect(self.sut.map { $0.query }).first.to(equal("testTwo"))
+        expect(self.sut.map { $0.images.count }).first.to(equal(2))
     }
 
     override func setUp() {
         super.setUp()
-        sut = Store<ImageState>(state: ImageState())
-        sut.dispatch(ImageSearchAction.loaded("test", [.fake()]))
+        subject = PublishSubject<ActionType>()
+        sut = ImageState().loop(on: subject, with: [])
+        subject.onNext(ImageSearchAction.loaded("test", [.fake()]))
     }
 
     override func tearDown() {

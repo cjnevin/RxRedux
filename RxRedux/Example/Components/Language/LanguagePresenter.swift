@@ -5,20 +5,18 @@ import RxSwift
 class LanguagePresenter<T: LanguageView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
-        
-        disposeOnViewDetach(Observable
-            .combineLatest(store.observe(\.languageState.current),
-                           store.observe(\.languageState.list))
-            .map { current, list in
-                list.map { LanguageCellViewModel(language: $0, isSelected: current == $0) }
+
+        disposeOnViewDetach(state.listen(\.languageState)
+            .map { state in
+                state.list.map { LanguageCellViewModel(language: $0, isSelected: $0 == state.current) }
             }
             .subscribe(onNext: view.setLanguages))
         
         disposeOnViewDetach(view.selectedLanguage.subscribe(onNext: { (viewModel) in
-            store.dispatch(LanguageAction.set(viewModel.language))
+            fire.onNext(LanguageAction.changeTo(viewModel.language))
         }))
         
-        store.dispatch(LanguageAction.getList())
+        fire.onNext(LanguageAction.getList())
     }
 }
 

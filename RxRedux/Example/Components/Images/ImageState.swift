@@ -49,7 +49,7 @@ enum ImageSearchAction: ActionType {
     case selected(ImageInfo)
 
     static func selectImage(_ imageInfo: ImageInfo) -> ActionType {
-        store.dispatch(ImageSearchAction.selected(imageInfo))
+        fire.onNext(ImageSearchAction.selected(imageInfo))
         return ImageSearchRoute.showImage
     }
 
@@ -57,9 +57,9 @@ enum ImageSearchAction: ActionType {
         ImageApi.search(for: query) { result in
             switch result {
             case .success(let images):
-                store.dispatch(ImageSearchAction.loaded(query, images))
+                fire.onNext(ImageSearchAction.loaded(query, images))
             case .failure(let error):
-                store.dispatch(ImageSearchAction.loadFailed(error))
+                fire.onNext(ImageSearchAction.loadFailed(error))
             }
         }
         return .loading

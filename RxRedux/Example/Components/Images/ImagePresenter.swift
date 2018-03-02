@@ -6,22 +6,22 @@ class ImagePresenter<T: ImageView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
         
-        disposeOnViewDetach(store
-            .observe(\.imageState)
+        disposeOnViewDetach(state.listen(\.imageState)
+            .debug("IMAGE")
             .map { $0.selected }
             .filter { $0 != nil }
             .map { $0! }
             .distinctUntilChanged()
             .subscribe(onNext: { imageInfo in
+                print(imageInfo)
                 view.setTitle(ImageText.formatTitle(imageInfo.title))
                 view.setImageInfo(imageInfo)
                 view.setLinkAction(CocoaAction() {
-                    .just(store.dispatch(ExternalRoute.openLink(imageInfo.link)))
+                    .just(fire.onNext(ExternalRoute.openLink(imageInfo.link)))
                 })
             }))
         
-        disposeOnViewDetach(store
-            .localizedObserve()
+        disposeOnViewDetach(state.localized()
             .subscribe(onNext: { _ in
                 view.setLinkTitle(ImageText.openLink)
             }))

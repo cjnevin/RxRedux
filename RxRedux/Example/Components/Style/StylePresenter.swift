@@ -7,8 +7,8 @@ class StylePresenter<T: StyleView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(Observable
-            .combineLatest(store.observe(\.styleState.current),
-                           store.localizedObserve(\.styleState.list))
+            .combineLatest(state.listen(\.styleState.current),
+                           state.localizedListen(\.styleState.list))
             .map { (args) -> [StyleCellViewModel] in
                 args.1.map { style in
                     StyleCellViewModel(style: style, isSelected: style == args.0)
@@ -17,10 +17,10 @@ class StylePresenter<T: StyleView>: Presenter<T> {
             .subscribe(onNext: view.setStyles))
         
         disposeOnViewDetach(view.selectedStyle.subscribe(onNext: { (viewModel) in
-            store.dispatch(StyleAction.set(viewModel.style))
+            fire.onNext(StyleAction.set(viewModel.style))
         }))
         
-        store.dispatch(StyleAction.getList())
+        fire.onNext(StyleAction.getList())
     }
 }
 

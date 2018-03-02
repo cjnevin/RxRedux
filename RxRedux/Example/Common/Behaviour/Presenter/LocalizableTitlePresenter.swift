@@ -11,7 +11,7 @@ class LocalizableTitlePresenter<T: TitlableView>: Presenter<T> {
         super.attachView(view)
         
         disposeOnViewDetach(
-            store.observe(\.languageState.current)
+            state.listen(\.languageState.current)
                 .map { [weak self] _ in self?.localizationKey.localized() ?? "" }
                 .subscribe(onNext: view.setTitle)
         )

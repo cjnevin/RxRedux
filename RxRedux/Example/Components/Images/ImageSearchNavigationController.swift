@@ -70,7 +70,7 @@ class ImageSearchNavigationController: UINavigationController, Router {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func handle(route: RouteAction) -> Bool {
+    func handle(_ route: RouteAction) -> Bool {
         switch route {
         case ImageSearchRoute.showImage:
             pushViewController(ImageViewController.make(), animated: true)
