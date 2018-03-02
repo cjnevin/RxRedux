@@ -7,7 +7,7 @@ import Networking
 class ImageRouterMock: Router {
     let handleSpy = Spy<RouteAction>()
     let handleMock = Mock<Bool>(true)
-    func handle(route: RouteAction) -> Bool {
+    func handle(_ route: RouteAction) -> Bool {
         handleSpy.set(route)
         return handleMock.execute()
     }
@@ -34,11 +34,11 @@ class ImageSearchActionCreatorTests: ReduxTestCase {
     
     func test_whenSearchActionWithNoQuery_thenExpectError() {
         prepareMockState(hasActionLogger: true)
-        expect(store.state.imageState.errorMessage).to(beNil())
+        expect(state.map { $0.imageState.errorMessage }).first.to(beNil())
         api.networking.fakeGET("https://api.flickr.com/services/feeds/photos_public.gne", response: nil, statusCode: 500)
         fire.onNext(ImageSearchAction.search(for: ""))
         waitUntil(timeout: 0.1) { (completion) in
-            expect(store.state.imageState.errorMessage).toNot(beNil())
+            expect(state.map { $0.imageState.errorMessage }).first.toNot(beNil())
             completion()
         }
     }
