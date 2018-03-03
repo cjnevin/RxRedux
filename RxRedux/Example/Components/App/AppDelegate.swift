@@ -26,8 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        if let value = ProcessInfo.processInfo.environment["UNIT_TESTING"], Int(value) == 1 {
+            return true
+        }
+        
         state.subscribe().disposed(by: disposeBag)
-
+        
         fire.onNext(AppLifecycleAction.launch(launchOptions))
         
         window = UIWindow(frame: UIScreen.main.bounds)

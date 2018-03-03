@@ -19,7 +19,7 @@ class ViewControllerTestCase: ReduxTestCase {
     }
     
     func setLanguageToEnglish() {
-        prepareMockState(hasLanguageManager: true)
+        prepareMockState(hasLanguageManager: true).disposed(by: disposeBag)
         fire.onNext(LanguageAction.changeTo("en"))
     }
     
@@ -34,7 +34,7 @@ class ViewControllerTestCase: ReduxTestCase {
             return
         }
         expect(self.window, file: file, line: line)
-            .to(haveValidSnapshot(named: sanitise(name)))
+            .toEventually(haveValidSnapshot(named: sanitise(name)))
     }
     
     private func sanitise(_ name: String) -> String {

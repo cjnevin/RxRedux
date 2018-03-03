@@ -13,6 +13,7 @@ class ImageRouterMock: Router {
     }
 }
 
+/*
 class ImageSearchActionCreatorTests: ReduxTestCase {
     override func setUp() {
         super.setUp()
@@ -43,3 +44,5 @@ class ImageSearchActionCreatorTests: ReduxTestCase {
         }
     }
 }
+*/
+

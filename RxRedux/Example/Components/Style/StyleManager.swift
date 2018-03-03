@@ -14,9 +14,7 @@ struct StyleManager {
         case StyleAction.list(.loading):
             fire.onNext(StyleAction.list(.complete(Style.all)))
         case StyleAction.set(let style):
-            DispatchQueue.main.async {
-                style.apply()
-            }
+            DispatchQueue.main.async(execute: style.apply)
         default:
             break
         }

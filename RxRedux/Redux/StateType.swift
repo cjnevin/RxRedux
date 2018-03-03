@@ -19,11 +19,14 @@ extension StateType {
             .scan((state: self, applied: nil), accumulator: { (state, action) in
                 (state.state.reduced(action), action)
             })
+            .observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
             .do(onNext: { (state, action) in
-                sideEffects.forEach { $0(state, action!) }
+                sideEffects.forEach { sideEffect in
+                    sideEffect(state, action!)
+                }
             })
-            .map({ $0.state })
             .observeOn(MainScheduler.instance)
+            .map({ $0.state })
             .share(replay: 1, scope: SubjectLifetimeScope.whileConnected)
     }
 }

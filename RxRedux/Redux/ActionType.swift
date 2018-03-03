@@ -4,4 +4,4 @@ protocol ActionType { }
 
 struct Init: ActionType { }
 
-let fire = PublishSubject<ActionType>()
+var fire = PublishSubject<ActionType>()
