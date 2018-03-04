@@ -20,7 +20,7 @@ class StylePresenter<T: StyleView>: Presenter<T> {
             store.dispatch(StyleAction.set(viewModel.style))
         }))
         
-        store.dispatch(StyleAction.getList())
+        store.dispatch(StyleAction.list(.loading))
     }
 }
 
@@ -33,4 +33,3 @@ struct StyleCellViewModel {
     let style: Style
     let isSelected: Bool
 }
-

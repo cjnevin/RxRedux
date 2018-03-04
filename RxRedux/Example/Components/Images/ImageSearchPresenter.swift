@@ -2,6 +2,23 @@ import Foundation
 import Action
 import RxSwift
 
+private func selectImage(_ imageInfo: ImageInfo) -> ActionType {
+    store.dispatch(ImageSearchAction.selected(imageInfo))
+    return ImageSearchRoute.showImage
+}
+
+private func search(for query: String) -> ImageSearchAction {
+    ImageApi.search(for: query) { result in
+        switch result {
+        case .success(let images):
+            store.dispatch(ImageSearchAction.loaded(query, images))
+        case .failure(let error):
+            store.dispatch(ImageSearchAction.loadFailed(error))
+        }
+    }
+    return .loading
+}
+
 class ImageSearchPresenter<T: SearchView>: Presenter<T> {
     override func attachView(_ view: T) {
         super.attachView(view)
@@ -27,14 +44,14 @@ class ImageSearchPresenter<T: SearchView>: Presenter<T> {
         
         disposeOnViewDetach(view.selectedImage
             .subscribe(onNext: { (imageInfo) in
-                store.dispatch(ImageSearchAction.selectImage(imageInfo))
+                store.dispatch(selectImage(imageInfo))
             }))
         
         disposeOnViewDetach(view.searchText
             .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
             .distinctUntilChanged()
             .subscribe(onNext: { (text) in
-                store.dispatch(ImageSearchAction.search(for: text))
+                store.dispatch(search(for: text))
             }))
         
         disposeOnViewDetach(store.observe(\.imageState.query)

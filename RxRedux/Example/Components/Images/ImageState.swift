@@ -47,23 +47,6 @@ enum ImageSearchAction: ActionType {
     case loaded(String, [ImageInfo])
     case loadFailed(Error)
     case selected(ImageInfo)
-
-    static func selectImage(_ imageInfo: ImageInfo) -> ActionType {
-        store.dispatch(ImageSearchAction.selected(imageInfo))
-        return ImageSearchRoute.showImage
-    }
-
-    static func search(for query: String) -> ImageSearchAction {
-        ImageApi.search(for: query) { result in
-            switch result {
-            case .success(let images):
-                store.dispatch(ImageSearchAction.loaded(query, images))
-            case .failure(let error):
-                store.dispatch(ImageSearchAction.loadFailed(error))
-            }
-        }
-        return .loading
-    }
 }
 
 struct ImageInfo: Codable, Equatable {

@@ -18,7 +18,7 @@ class LanguagePresenter<T: LanguageView>: Presenter<T> {
             store.dispatch(LanguageAction.changeTo(viewModel.language))
         }))
         
-        store.dispatch(LanguageAction.getList())
+        store.dispatch(LanguageAction.list(.loading))
     }
 }
 
