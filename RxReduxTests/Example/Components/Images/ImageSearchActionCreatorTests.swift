@@ -16,9 +16,9 @@ class ImageRouterMock: Router {
 class ImageSearchActionCreatorTests: ReduxTestCase {
     func test_whenSelectImageAction_thenExpectRouteAndSelectedActions() {
         let imageRouterMock = ImageRouterMock()
-        let routingMiddleware = RoutingMiddleware<AppState, Store<AppState>>(routers: [imageRouterMock])
+        let coordinator = Coordinator<AppState, Store<AppState>>(routers: [imageRouterMock])
         
-        store.register(routingMiddleware.create())
+        store.register(coordinator.sideEffect)
         store.dispatch(ImageSearchAction.selectImage(.fake()))
         expect(store.state.imageState.selected).toNot(beNil())
         imageRouterMock.handleMock.expect(count: .toBeOne)
@@ -29,7 +29,7 @@ class ImageSearchActionCreatorTests: ReduxTestCase {
     }
     
     func test_whenSearchActionWithNoQuery_thenExpectError() {
-        store.register(LoggingMiddleware.create())
+        store.register(Logger().sideEffect)
         expect(store.state.imageState.errorMessage).to(beNil())
         api.networking.fakeGET("https://api.flickr.com/services/feeds/photos_public.gne", response: nil, statusCode: 500)
         store.dispatch(ImageSearchAction.search(for: ""))

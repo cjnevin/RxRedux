@@ -5,17 +5,18 @@ enum StoreAction: ActionType {
 }
 
 final class Store<State: StateType> {
-    typealias MiddlewareType = Middleware<Store<State>>
+    typealias SideEffectType = SideEffect<Store<State>>
     
     private(set) var state: State
     
     private let stateSubject: BehaviorSubject<State>
-    private var middlewares: [MiddlewareType]
+    private var sideEffects: [SideEffectType]
     
-    init(state: State, middlewares: [MiddlewareType] = []) {
+    init(state: State,
+         sideEffects: [SideEffectType] = []) {
         self.state = state
         self.stateSubject = BehaviorSubject(value: state)
-        self.middlewares = middlewares
+        self.sideEffects = sideEffects
         self.dispatch(StoreAction.initialized)
     }
     
@@ -30,9 +31,13 @@ final class Store<State: StateType> {
             }
             return
         }
-        middlewares.reduce(dispatchInternal, { dispatch, middleware in
-            middleware(self)(dispatch)
-        })(action)
+        
+        precondition(Thread.isMainThread)
+        state.reduce(action)
+        stateSubject.onNext(state)
+        sideEffects.forEach { (sideEffect) in
+            sideEffect(self, action)
+        }
     }
     
     private func dispatchInternal(_ action: ActionType) {
@@ -40,9 +45,9 @@ final class Store<State: StateType> {
         stateSubject.onNext(state)
     }
     
-    func register(_ middleware: MiddlewareType...) {
+    func register(_ sideEffect: SideEffectType...) {
         precondition(Thread.isMainThread)
-        middlewares.append(contentsOf: middleware)
+        sideEffects.append(contentsOf: sideEffect)
     }
     
     func observe<T: Equatable>(_ keyPath: KeyPath<State, T>) -> Observable<T> {

@@ -3,22 +3,26 @@ import RxSwift
 
 var api: Api = Api()
 
-var router = RoutingMiddleware<AppState, Store<AppState>>(routers: [
+var router = Coordinator<AppState, Store<AppState>>(routers: [
     ExternalLinkRouter()
 ])
 
+private let storage = Storage()
+
 var store = Store<AppState>(
-    state: AppState(),
-    middlewares: [
-        LanguageMiddleware.create(),
-        LoggingMiddleware.create(),
-        router.create(),
-        StyleMiddleware.create(),
-        PersistenceMiddleware.create()
+    state: storage.initialState(),
+    sideEffects: [
+        LanguageMiddleware().sideEffect,
+        Logger().sideEffect,
+        router.sideEffect,
+        Styler().sideEffect,
+        storage.sideEffect
     ])
 
 // Used by AppReducer, avoids importing UIKit everywhere
 typealias LaunchOptionsKey = UIApplicationLaunchOptionsKey
+
+var isUnitTesting: Bool = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        if let value = ProcessInfo.processInfo.environment["UNIT_TESTING"], Int(value) == 1 {
+            isUnitTesting = true
+            //return true
+        }
         
         store.dispatch(AppLifecycleAction.launch(launchOptions))
         

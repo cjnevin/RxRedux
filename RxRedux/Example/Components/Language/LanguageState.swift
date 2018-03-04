@@ -1,8 +1,11 @@
 import Foundation
 
 enum LanguageAction: ActionType {
-    case list(Progress<[String]>)
-    case set(String)
+    typealias Language = String
+    
+    case list(Progress<[Language]>)
+    case changeTo(Language)
+    case applied(Language)
     
     static func getList() -> ActionType {
         return LanguageAction.list(.loading)
@@ -20,7 +23,7 @@ struct LanguageState: StateType, Equatable, Codable {
     
     mutating func reduce(_ action: ActionType) {
         switch action {
-        case LanguageAction.set(let newLanguage):
+        case LanguageAction.applied(let newLanguage):
             current = newLanguage
         case LanguageAction.list(.loading):
             list = []

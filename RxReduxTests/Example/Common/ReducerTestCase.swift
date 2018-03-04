@@ -5,8 +5,8 @@ import Nimble_Snapshots
 private func resetStore() {
     store = Store<AppState>(
         state: AppState(),
-        middlewares: [
-            StyleMiddleware.create()
+        sideEffects: [
+            Styler().sideEffect
         ])
 }
 

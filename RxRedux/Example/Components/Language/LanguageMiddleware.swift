@@ -21,32 +21,29 @@ class LanguageManager: LanguageManaging {
     }
 }
 
-enum LanguageMiddleware<S, T: Store<S>> {
-    static func create(manager: LanguageManaging = LanguageManager()) -> (T) -> DispatchCreator {
-        return { store in
-            return { next in
-                return { action in
-                    switch action {
-                    case AppLifecycleAction.ready:
-                        if let state = store.state as? AppState {
-                            if manager.list().contains(state.languageState.current) {
-                                store.dispatch(LanguageAction.set(state.languageState.current))
-                            } else {
-                                store.dispatch(LanguageAction.set(manager.systemLanguage()))
-                            }
-                        }
-                        next(action)
-                    case LanguageAction.list(.loading):
-                        next(action)
-                        store.dispatch(LanguageAction.list(.complete(manager.list())))
-                    case LanguageAction.set(let language):
-                        manager.set(language: language)
-                        next(action)
-                    default:
-                        next(action)
-                    }
+class LanguageMiddleware<S, T: Store<S>> {
+    private let manager: LanguageManaging
+    init(manager: LanguageManaging = LanguageManager()) {
+        self.manager = manager
+    }
+    
+    func sideEffect(_ store: T, _ action: ActionType) {
+        switch action {
+        case AppLifecycleAction.ready:
+            if let state = store.state as? AppState {
+                if manager.list().contains(state.languageState.current) {
+                    store.dispatch(LanguageAction.changeTo(state.languageState.current))
+                } else {
+                    store.dispatch(LanguageAction.changeTo(manager.systemLanguage()))
                 }
             }
+        case LanguageAction.list(.loading):
+            store.dispatch(LanguageAction.list(.complete(manager.list())))
+        case LanguageAction.changeTo(let language):
+            manager.set(language: language)
+            store.dispatch(LanguageAction.applied(language))
+        default:
+            break
         }
     }
 }

@@ -15,7 +15,7 @@ class LanguagePresenter<T: LanguageView>: Presenter<T> {
             .subscribe(onNext: view.setLanguages))
         
         disposeOnViewDetach(view.selectedLanguage.subscribe(onNext: { (viewModel) in
-            store.dispatch(LanguageAction.set(viewModel.language))
+            store.dispatch(LanguageAction.changeTo(viewModel.language))
         }))
         
         store.dispatch(LanguageAction.getList())

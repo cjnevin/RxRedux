@@ -23,9 +23,9 @@ class LanguageStateTests: XCTestCase {
     var sut: Store<LanguageState>!
     var manager: LanguageManagerMock!
     
-    func test_whenSetAction_thenExpectLanguageToBeSet() {
+    func test_whenAppliedAction_thenExpectLanguageToBeSet() {
         expect(self.sut.state.current).to(equal(""))
-        sut.dispatch(LanguageAction.set("fr"))
+        sut.dispatch(LanguageAction.applied("fr"))
         expect(self.sut.state.current).to(equal("fr"))
     }
     
@@ -39,7 +39,7 @@ class LanguageStateTests: XCTestCase {
         super.setUp()
         sut = Store<LanguageState>(state: LanguageState(current: "", list: []))
         manager = LanguageManagerMock()
-        sut.register(LanguageMiddleware.create(manager: manager))
+        sut.register(LanguageMiddleware(manager: manager).sideEffect)
     }
     
     override func tearDown() {

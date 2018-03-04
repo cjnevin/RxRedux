@@ -5,8 +5,8 @@ import Nimble_Snapshots
 private func resetStore() {
     store = Store<AppState>(
         state: AppState(),
-        middlewares: [
-            StyleMiddleware.create()
+        sideEffects: [
+            Styler().sideEffect
         ])
 }
 
@@ -28,8 +28,8 @@ class ViewControllerTestCase: XCTestCase {
     }
     
     func setLanguageToEnglish() {
-        store.register(LanguageMiddleware.create())
-        store.dispatch(LanguageAction.set("en"))
+        store.register(LanguageMiddleware().sideEffect)
+        store.dispatch(LanguageAction.changeTo("en"))
     }
     
     func recordNewSnapshot(_ name: String = #function, file: FileString = #file, line: UInt = #line) {
@@ -43,7 +43,7 @@ class ViewControllerTestCase: XCTestCase {
             return
         }
         expect(self.window, file: file, line: line)
-            .to(haveValidSnapshot(named: sanitise(name)))
+            .toEventually(haveValidSnapshot(named: sanitise(name)))
     }
     
     private func sanitise(_ name: String) -> String {
