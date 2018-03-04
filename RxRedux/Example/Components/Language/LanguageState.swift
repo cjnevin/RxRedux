@@ -6,6 +6,10 @@ enum LanguageAction: ActionType {
     case list(Progress<[Language]>)
     case changeTo(Language)
     case applied(Language)
+    
+    static func getList() -> ActionType {
+        return LanguageAction.list(.loading)
+    }
 }
 
 struct LanguageState: StateType, Equatable, Codable {

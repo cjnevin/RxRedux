@@ -3,6 +3,10 @@ import Foundation
 enum StyleAction: ActionType {
     case list(Progress<[Style]>)
     case set(Style)
+    
+    static func getList() -> ActionType {
+        return StyleAction.list(.loading)
+    }
 }
 
 struct StyleState: StateType, Equatable, Codable {
